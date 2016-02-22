@@ -48,6 +48,7 @@ class AbstractExpression;
  */
 struct Instruction {
     InstructionCode code;
+    string identifier;
     AbstractExpression * expr;
 };
 // définition du type de liste pour stocker les instructions d'un script lutin
