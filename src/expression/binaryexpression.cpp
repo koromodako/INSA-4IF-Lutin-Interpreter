@@ -14,6 +14,7 @@ BinaryExpression::BinaryExpression(BinaryOperator op, AbstractExpression * left,
 int BinaryExpression::eval(DataMap &dmap)
 {
     /// \todo implement here
+    /// \todo traiter ici le cas d'erreur type runtime exception : division par zero !
 }
 
 void BinaryExpression::simplify(DataMap &dmap)
