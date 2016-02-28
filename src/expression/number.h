@@ -16,17 +16,22 @@ public:
      *      Valeur de la constante numérique
      */
     Number(int value);
+    Number(Number & other);
+
+    inline bool isNumber() { return true; }
+    inline bool isVariable() { return false; }
+    inline bool isBinaryExpression() { return false; }
 
     /**
      * @override
      * @see AbstractExpression::eval()
      */
-    int eval(DataMap &dmap);
+    int eval(DataMap &dmap, bool & ok);
     /**
      * @override
      * @see AbstractExpression::simplify()
      */
-    void simplify(DataMap &dmap);
+    AbstractExpression * simplify(DataMap &dmap, bool &ok);
     /**
      * @override
      * @see AbstractExpression::stringify()

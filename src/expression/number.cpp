@@ -1,20 +1,32 @@
 #include "number.h"
 
+#include <sstream>
+
 Number::Number(int value) :
     AbstractExpression(), _value(value)
 {}
 
-int Number::eval(DataMap &dmap)
+Number::Number(Number &other) :
+    _value(other._value)
 {
-    /// \todo implement here
 }
 
-void Number::simplify(DataMap &dmap)
+int Number::eval(DataMap &, bool &ok)
 {
-    /// \todo implement here
+    ok = true;
+    return _value;
+}
+
+AbstractExpression * Number::simplify(DataMap &, bool & ok)
+{
+    // Déjà simple
+    ok = true;
+    return NULL;
 }
 
 string Number::stringify()
 {
-    /// \todo implement here
+    stringstream ss("");
+    ss << _value;
+    return ss.str();
 }

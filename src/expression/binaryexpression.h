@@ -20,17 +20,22 @@ public:
      *      Operande droite
      */
     BinaryExpression(BinaryOperator op, AbstractExpression * left, AbstractExpression * right);
+    BinaryExpression(BinaryExpression & other);
+
+    inline bool isNumber() { return false; }
+    inline bool isVariable() { return false; }
+    inline bool isBinaryExpression() { return true; }
 
     /**
      * @override
      * @see AbstractExpression::eval()
      */
-    int eval(DataMap &dmap);
+    int eval(DataMap &dmap, bool &ok);
     /**
      * @override
      * @see AbstractExpression::simplify()
      */
-    void simplify(DataMap &dmap);
+    AbstractExpression * simplify(DataMap &dmap, bool & ok);
     /**
      * @override
      * @see AbstractExpression::stringify()

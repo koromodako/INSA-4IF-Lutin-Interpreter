@@ -16,17 +16,22 @@ public:
      *      Identifiant de la variable à construire
      */
     Variable(string identifier);
+    Variable(Variable & other);
+
+    inline bool isNumber() { return false; }
+    inline bool isVariable() { return true; }
+    inline bool isBinaryExpression() { return false; }
 
     /**
      * @override
      * @see AbstractExpression::eval()
      */
-    int eval(DataMap &dmap);
+    int eval(DataMap &dmap, bool & ok);
     /**
      * @override
      * @see AbstractExpression::simplify()
      */
-    void simplify(DataMap &dmap);
+    AbstractExpression *simplify(DataMap &dmap, bool &ok);
     /**
      * @override
      * @see AbstractExpression::stringify()
