@@ -24,10 +24,15 @@ function generate_file {
     HEADER_CONTENT=${HEADER_CONTENT//"${CLASS_NAME}"/"${TARGET_NAME}${1}"}
     HEADER_CONTENT=${HEADER_CONTENT//"interfaces/abstractstate.h"/"${DIR}/${CLASS_NAME_LW}.h"}
     HEADER_CONTENT=${HEADER_CONTENT//"AbstractState"/"${CLASS_NAME}"}
+    HEADER_CONTENT=${HEADER_CONTENT//"(const string & name)"/"()"}
     HEADER_CONTENT=${HEADER_CONTENT//"${CLASS_NAME_UP}"/"${TARGET_NAME_UP}${1}"}
+    HEADER_CONTENT=${HEADER_CONTENT//"#include \"programstatemachine.h\""/""}
+    HEADER_CONTENT=${HEADER_CONTENT//"#include \"expressionstatemachine.h\""/""}
     # -- in source
     SOURCE_CONTENT=${SOURCE_CONTENT//"${CLASS_NAME}"/"${TARGET_NAME}${1}"}
     SOURCE_CONTENT=${SOURCE_CONTENT//"AbstractState"/"${CLASS_NAME}"}
+    SOURCE_CONTENT=${SOURCE_CONTENT//"(const string & name)"/"()"}
+    SOURCE_CONTENT=${SOURCE_CONTENT//"(name)"/"(\"${CLASS_NAME}\")"}
     SOURCE_CONTENT=${SOURCE_CONTENT//"${CLASS_NAME_LW}.h"/"${TARGET_NAME_LW}${1}.h"}
     # - create files
     echo "${HEADER_CONTENT}" > "${DIR}/states/${TARGET_NAME_LW}${1}.h"

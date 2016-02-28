@@ -21,18 +21,27 @@ public:
     virtual bool isVariable() = 0;
 
     /**
-     * @brief eval
+     * @brief Retourne la valeur calculée à partir de l'évaluation
      * @param dmap
+     * @param ok
      * @return
      */
-    virtual int eval(DataMap & dmap, bool & ok) = 0;
+    virtual double eval(DataMap & dmap, bool & ok) = 0;
     /**
-     * @brief simplify
+     * @brief Simplifie l'expression arithmétique en réduisant l'arbre grâce aux opérations
+     *          suivantes :
+     *              - substitution des constantes,
+     *              - calcul des expressions constantes,
+     *              - élimination des éléments neutres
      * @param dmap
+     *      Dictionnaire des mémoires du programme
+     * @param ok
+     *      Ce paramètre est utilisé pour savoir si l'évaluation à rencontré une erreur ou non
+     * @return
      */
     virtual AbstractExpression * simplify(DataMap & dmap, bool & ok) = 0;
     /**
-     * @brief stringify
+     * @brief Construit la chaine de caractère correspondant à l'expression arithmétique
      * @return
      */
     virtual string stringify() = 0;

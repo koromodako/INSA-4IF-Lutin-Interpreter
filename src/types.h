@@ -1,27 +1,20 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-#include "src/interfaces/abstractexpression.h"
-
 #include <map>
 #include <list>
 #include <string>
 
-
 using namespace std;
 
 /**
- * @brief Cette structure décrit une mémoire et les informations relatives à cette mémoire.
- *      cst : si la mémoire est constante ou non
- *      set : si la mémoire est écrite ou non
- *      used : si la mémoire est lue ou non
- *      value : la valeur stockée dans cette mémoire
+ * @brief Cette structure décrit une mémoire et les méta-données relatives à cette mémoire.
  */
 struct Data {
-    bool cst;
-    bool set;
-    bool used;
-    int value;
+    bool cst;       ///< la mémoire est constante ou non
+    bool set;       ///< la mémoire est écrite ou non
+    bool used;      ///< la mémoire est lue ou non
+    double value;   ///< la valeur stockée dans la mémoire
     Data() :
         cst(false),
         set(false),
@@ -40,6 +33,8 @@ enum InstructionCode {
     ICODE_READ,
     ICODE_SET
 };
+
+#include "src/interfaces/abstractexpression.h"
 
 class AbstractExpression;
 

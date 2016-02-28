@@ -1,6 +1,7 @@
 #ifndef ABSTRACTES_H
 #define ABSTRACTES_H
 
+#include "expressionstatemachine.h"
 #include "src/interfaces/abstractstate.h"
 
 /**
@@ -12,10 +13,16 @@ class AbstractES : public AbstractState
 public:
     ~AbstractES(){}
 
-    /// \todo ajouter toutes les transitions par defaut ici
+    /**
+     * @brief Réalise la transition depuis un état vers un autre état
+     * @param machine
+     * @param symbol
+     * @return
+     */
+    virtual int transition(ExpressionStateMachine & machine, ExpressionStateMachine::Symbol symbol);
 
 protected:
-    AbstractES();
+    AbstractES(const string & name);
 
 };
 

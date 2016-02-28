@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-Number::Number(int value) :
+Number::Number(double value) :
     AbstractExpression(), _value(value)
 {}
 
@@ -11,7 +11,7 @@ Number::Number(Number &other) :
 {
 }
 
-int Number::eval(DataMap &, bool &ok)
+double Number::eval(DataMap &, bool &ok)
 {
     ok = true;
     return _value;

@@ -12,10 +12,10 @@ Variable::Variable(Variable &other) :
 {
 }
 
-int Variable::eval(DataMap &dmap, bool &ok)
+double Variable::eval(DataMap &dmap, bool &ok)
 {
     ok = false;
-    int value(0);
+    double value(0);
     DataMap::iterator d = dmap.find(_identifier);
     if(d != dmap.end()) {
         value = d->second.value;

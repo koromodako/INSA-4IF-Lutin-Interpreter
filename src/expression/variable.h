@@ -26,7 +26,7 @@ public:
      * @override
      * @see AbstractExpression::eval()
      */
-    int eval(DataMap &dmap, bool & ok);
+    double eval(DataMap &dmap, bool & ok);
     /**
      * @override
      * @see AbstractExpression::simplify()
@@ -39,7 +39,7 @@ public:
     string stringify();
 
 private:
-    string _identifier;
+    string _identifier; // identifiant
 };
 
 #endif // VARIABLE_H

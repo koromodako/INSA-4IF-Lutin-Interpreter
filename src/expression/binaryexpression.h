@@ -30,7 +30,7 @@ public:
      * @override
      * @see AbstractExpression::eval()
      */
-    int eval(DataMap &dmap, bool &ok);
+    double eval(DataMap &dmap, bool &ok);
     /**
      * @override
      * @see AbstractExpression::simplify()
@@ -43,9 +43,9 @@ public:
     string stringify();
 
 private:
-    BinaryOperator _op;
-    AbstractExpression * _left;
-    AbstractExpression * _right;
+    BinaryOperator _op;            // opérateur
+    AbstractExpression * _left;    // opérande à gauche
+    AbstractExpression * _right;   // opérande à droite
 };
 
 #endif // BINARYEXPRESSION_H

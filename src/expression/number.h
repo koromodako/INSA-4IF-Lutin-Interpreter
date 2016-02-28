@@ -15,7 +15,7 @@ public:
      * @param value
      *      Valeur de la constante numérique
      */
-    Number(int value);
+    Number(double value);
     Number(Number & other);
 
     inline bool isNumber() { return true; }
@@ -26,7 +26,7 @@ public:
      * @override
      * @see AbstractExpression::eval()
      */
-    int eval(DataMap &dmap, bool & ok);
+    double eval(DataMap &dmap, bool & ok);
     /**
      * @override
      * @see AbstractExpression::simplify()
@@ -39,7 +39,7 @@ public:
     string stringify();
 
 private:
-    int _value;
+    double _value; // valeur
 };
 
 #endif // NUMBER_H

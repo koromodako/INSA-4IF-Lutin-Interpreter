@@ -1,7 +1,8 @@
 #include "expressionstatemachine.h"
 
 ExpressionStateMachine::ExpressionStateMachine() :
-    AbstractStateMachine()
+    AbstractStateMachine(),
+    _expr(NULL)
 {
 
 }

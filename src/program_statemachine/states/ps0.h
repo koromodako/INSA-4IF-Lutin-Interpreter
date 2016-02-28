@@ -1,6 +1,7 @@
 #ifndef PS0_H
 #define PS0_H
 
+
 #include "src/program_statemachine/abstractps.h"
 
 /**
@@ -12,7 +13,7 @@ class PS0 : public AbstractPS
 public:
     ~PS0(){}
 
-    /// \todo ajouter toutes les transitions par defaut ici
+    virtual int transition(ProgramStateMachine & machine, ProgramStateMachine::Symbol symbol);
 
 protected:
     PS0();

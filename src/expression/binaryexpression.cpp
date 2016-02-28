@@ -31,12 +31,12 @@ BinaryExpression::BinaryExpression(BinaryExpression &other) :
     DEEP_COPY(other._right, _right)
 }
 
-int BinaryExpression::eval(DataMap &dmap, bool & ok)
+double BinaryExpression::eval(DataMap &dmap, bool & ok)
 {
-    int value(0);
-    int left_eval = _left->eval(dmap, ok);
+    double value(0);
+    double left_eval = _left->eval(dmap, ok);
     if(ok)
-    {   int right_eval = _right->eval(dmap, ok);
+    {   double right_eval = _right->eval(dmap, ok);
         // si les deux évaluations précédentes sont valides
         if(ok)
         {   // on effectue le calcul en fonction de l'opération

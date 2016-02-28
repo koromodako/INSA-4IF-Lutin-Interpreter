@@ -1,7 +1,8 @@
 #include "programstatemachine.h"
 
 ProgramStateMachine::ProgramStateMachine() :
-    AbstractStateMachine()
+    AbstractStateMachine(),
+    _instructions()
 {
 
 }

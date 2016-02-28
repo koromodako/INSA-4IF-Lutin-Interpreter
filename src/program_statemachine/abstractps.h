@@ -1,6 +1,7 @@
 #ifndef ABSTRACTPS_H
 #define ABSTRACTPS_H
 
+#include "programstatemachine.h"
 #include "src/interfaces/abstractstate.h"
 
 /**
@@ -12,10 +13,10 @@ class AbstractPS : public AbstractState
 public:
     ~AbstractPS(){}
 
-    /// \todo ajouter toutes les transitions par defaut ici
+    virtual int transition(ProgramStateMachine & machine, ProgramStateMachine::Symbol symbol);
 
 protected:
-    AbstractPS();
+    AbstractPS(const string & name);
 };
 
 #endif // ABSTRACTPS_H
