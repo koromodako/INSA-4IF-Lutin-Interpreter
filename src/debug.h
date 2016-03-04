@@ -5,7 +5,7 @@
 #include <iostream>
 
 #ifdef PRINT_DEBUG
-#   define DEBUG(msg) cerr << msg << endl
+#   define DEBUG(msg) cerr << msg << endl << flush
 #else
 #   define DEBUG(msg)
 #endif

@@ -139,4 +139,13 @@ HEADERS += \
     src/debug.h
 
 DISTFILES += \
-    src/make_states.sh
+    src/make_states.sh \
+    tests/files/correct.lt \
+    tests/files/double.lt \
+    tests/files/lexerror.lt \
+    tests/files/neutres.lt \
+    tests/files/nondeclared.lt \
+    tests/files/static1.lt \
+    tests/files/static2.lt \
+    tests/files/static3.lt \
+    tests/files/synerror.lt

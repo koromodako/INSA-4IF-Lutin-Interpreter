@@ -14,7 +14,7 @@ class Lexer
 {
 public:
     Lexer(ifstream & stream);
-    ~Lexer();
+    ~Lexer(){}
     /**
      * @brief Déplace la tête de lecture
      */
@@ -27,7 +27,7 @@ public:
 
 private:
     string _buf;
-    Symbol _latest;
+    size_t _matched_length;
     ifstream & _stream;
 };
 
