@@ -13,7 +13,7 @@ class PS10 : public AbstractPS
 public:
     ~PS10(){}
 
-    virtual int transition(ProgramStateMachine & machine, ProgramStateMachine::Symbol symbol);
+    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
 
 protected:
     PS10();

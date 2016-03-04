@@ -62,7 +62,8 @@ SOURCES += \
     src/program_statemachine/states/ps26.cpp \
     src/program_statemachine/states/ps27.cpp \
     src/program_statemachine/states/ps28.cpp \
-    src/program_statemachine/states/ps29.cpp
+    src/program_statemachine/states/ps29.cpp \
+    src/lexer/lexer.cpp
 
 HEADERS += \
     src/interfaces/abstractstate.h \
@@ -123,7 +124,8 @@ HEADERS += \
     src/program_statemachine/states/ps26.h \
     src/program_statemachine/states/ps27.h \
     src/program_statemachine/states/ps28.h \
-    src/program_statemachine/states/ps29.h
+    src/program_statemachine/states/ps29.h \
+    src/lexer/lexer.h
 
 DISTFILES += \
     src/make_states.sh

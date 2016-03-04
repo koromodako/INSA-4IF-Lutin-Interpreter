@@ -32,7 +32,7 @@ function generate_file {
     SOURCE_CONTENT=${SOURCE_CONTENT//"${CLASS_NAME}"/"${TARGET_NAME}${1}"}
     SOURCE_CONTENT=${SOURCE_CONTENT//"AbstractState"/"${CLASS_NAME}"}
     SOURCE_CONTENT=${SOURCE_CONTENT//"(const string & name)"/"()"}
-    SOURCE_CONTENT=${SOURCE_CONTENT//"(name)"/"(\"${CLASS_NAME}\")"}
+    SOURCE_CONTENT=${SOURCE_CONTENT//"(name)"/"(\"${TARGET_NAME}${1}\")"}
     SOURCE_CONTENT=${SOURCE_CONTENT//"${CLASS_NAME_LW}.h"/"${TARGET_NAME_LW}${1}.h"}
     # - create files
     echo "${HEADER_CONTENT}" > "${DIR}/states/${TARGET_NAME_LW}${1}.h"

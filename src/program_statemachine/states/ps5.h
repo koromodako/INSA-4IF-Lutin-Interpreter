@@ -13,7 +13,7 @@ class PS5 : public AbstractPS
 public:
     ~PS5(){}
 
-    virtual int transition(ProgramStateMachine & machine, ProgramStateMachine::Symbol symbol);
+    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
 
 protected:
     PS5();
