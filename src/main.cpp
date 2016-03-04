@@ -277,25 +277,46 @@ void lexer_test()
 
 void instruction_stringify_test()
 {
-    cout << "coué" <<endl;
-    /// \todo modifier une fois le sringify des expressions implementé
+    cout << "------------------------ InstructionList::Stringify() -----------------------------" << endl;
+    string test("lire b;\na := (1+1);\necrire a;\n");
     InstructionList instructions;
     instructions.push_back(Instruction(ICODE_READ, "b", NULL));
-    instructions.push_back(Instruction(ICODE_SET, "a", NULL));
-    instructions.push_back(Instruction(ICODE_PRINT, NULL, NULL));
+    instructions.push_back(Instruction(ICODE_SET, "a", new BinaryExpression(BOP_PLUS, new Number(1), new Number(1))));
+    instructions.push_back(Instruction(ICODE_PRINT, "", new Variable("a")));
+    string stringify = instructions.Stringify();
+    if(test != stringify)
+    {
+        cout << "TEST FAILED" << endl <<"expected :"<<test<<endl<<"received :"<< stringify <<endl;
 
-    cout << instructions.Stringify() <<endl;
+    }
+    else
+    {
+        cout << "TEST OK" <<endl;
+    }
+    cout << "------------------------------------- done ------------------------------------" << endl;
 
 }
 
 void datamap_stringify_test()
 {
+    cout << "------------------------ DataMap::Stringify() -----------------------------" << endl;
+    string test("var a;\nvar b;\nconst c=5;\n");
     DataMap datamap;
     datamap.insert(make_pair("a", Data(false, false, false)));
     datamap.insert(make_pair("b", Data(false, false, false)));
     datamap.insert(make_pair("c", Data(true, false, false, 5)));
+    string stringify = datamap.Stringify();
+    if(test != stringify)
+    {
+        cout << "TEST FAILED" << endl <<"expected :"<<test<<endl<<"received :"<< stringify <<endl;
 
-    cout << datamap.Stringify() <<endl;
+    }
+    else
+    {
+        cout << "TEST OK" <<endl;
+    }
+    cout << "-------------------------------------- done -----------------------------------" << endl;
+
 }
 
 #endif
