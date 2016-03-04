@@ -3,6 +3,8 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
+LIBS += -lboost_regex
+
 SOURCES += \
     src/main.cpp \
     src/interfaces/abstractstate.cpp \

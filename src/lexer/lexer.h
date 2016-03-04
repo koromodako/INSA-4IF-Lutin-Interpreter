@@ -1,6 +1,8 @@
 #ifndef ABSTRACTLEXER_H
 #define ABSTRACTLEXER_H
 
+#include "src/types.h"
+
 #include <fstream>
 
 using namespace std;
@@ -13,13 +15,19 @@ class Lexer
 public:
     Lexer(ifstream & stream);
     ~Lexer();
-
-    void moveForward();
-
-    int getNext();
+    /**
+     * @brief Déplace la tête de lecture
+     */
+    void MoveForward();
+    /**
+     * @brief Retourne le symbole actuellement sous la tête de lecture
+     * @return
+     */
+    Symbol GetNext();
 
 private:
     string _buf;
+    Symbol _latest;
     ifstream & _stream;
 };
 
