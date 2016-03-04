@@ -9,6 +9,8 @@
 
 using namespace std;
 
+#define TEST
+
 #ifndef TEST
 
 int main(int argc, char *argv[])
@@ -222,10 +224,10 @@ void expr_simplify_test()
             if(!ok)
             {   cout << "test - " << i << " - FAILED !" << endl;
             }
-            if(*expect != (*expr)->stringify())
+            if(*expect != (*expr)->Stringify())
             {   cout << "test - " << i << " - FAILED !" << endl;
                 cout << "expected output : " << *expect << endl;
-                cout << "output : " << (*expr)->stringify() << endl;
+                cout << "output : " << (*expr)->Stringify() << endl;
             }
             else
             {   cout << "test - " << i << " - SUCCESS !" << endl;
