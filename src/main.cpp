@@ -1,4 +1,5 @@
 #include <iostream>
+#include "lexer/lexer.h"
 
 #define TEST
 
@@ -20,11 +21,15 @@ int main(int argc, char *argv[])
 
 void expr_stringify_test();
 void expr_eval_test();
+void expr_simplify_test();
+void lexer_test();
 
 int main()
 {
     expr_stringify_test();
     expr_eval_test();
+    expr_simplify_test();
+    lexer_test();
 }
 
 void expr_stringify_test()
@@ -146,6 +151,67 @@ void expr_eval_test()
     {   delete (*e);
     }
 
+    cout << "-------------------------------------- done -------------------------------------" << endl;
+}
+
+void expr_simplify_test()
+{
+    cout << "------------------------ AbstractExpression::simplify() ------------------------" << endl;
+    DataMap dmap;
+    dmap.insert(make_pair("cste", Data(true, false, false, 2)));
+    dmap.insert(make_pair("var", Data()));
+    list<string> expected;
+    list<AbstractExpression*> expressions;
+
+    // creation des arbres de calculs
+    expected.push_back("var");
+    expressions.push_back(new BinaryExpression(BOP_MULT, new Number(1), new Variable("var"))); // 1*var
+    expected.push_back("var");
+    expressions.push_back(new BinaryExpression(BOP_PLUS, new Number(0), new Variable("var"))); // 0+var
+
+    // execute
+    if(expected.size() == expressions.size())
+    {
+        list<string>::iterator expect = expected.begin();
+        list<AbstractExpression*>::iterator expr = expressions.begin();
+        int i(0);
+        while (expect != expected.end() && expr != expressions.end()) {
+            bool ok = false;
+            if(!ok)
+            {   cout << "test - " << i << " - FAILED !" << endl;
+            }
+            if(*expect != (*expr)->stringify())
+            {   cout << "test - " << i << " - FAILED !" << endl;
+                cout << "expected output : " << *expect << endl;
+                cout << "output : " << (*expr)->stringify() << endl;
+            }
+            else
+            {   cout << "test - " << i << " - SUCCESS !" << endl;
+            }
+            // move iterators
+            expect++;
+            expr++;
+            i++;
+        }
+    }
+    else
+    {
+        cout << "Expected strings count doesn't match expressions count !" << endl;
+    }
+
+
+    // destructions
+    for(list<AbstractExpression*>::iterator e = expressions.begin(); e != expressions.end(); e++)
+    {   delete (*e);
+    }
+
+    cout << "-------------------------------------- done -------------------------------------" << endl;
+}
+
+void lexer_test()
+{
+    cout << "-------------------------------------- Lexer ------------------------------------" << endl;
+    cout << "non implementé" << endl;
     cout << "-------------------------------------- done -------------------------------------" << endl;
 }
 
