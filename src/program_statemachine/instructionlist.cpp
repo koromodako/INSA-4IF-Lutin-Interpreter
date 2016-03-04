@@ -4,20 +4,17 @@
 
 string InstructionList::Stringify()
 {
-    cout << "coucou salomé" <<endl;
     string instructions("");
-    cout << "coué" <<endl;
     for( InstructionList::iterator i = begin(); i != end(); i++)
 	{
         switch (i->code){
 			case ICODE_PRINT:
-				instructions += "lire ";
-                instructions += i->identifier;
-				instructions += ";";
+                instructions += "ecrire ";
+                instructions += i->expr->Stringify();
 				break;
 			case ICODE_READ:
-				instructions += "ecrire ";
-                //instructions += this[i].expr.Stringify();
+                instructions += "lire ";
+                instructions += i->identifier;
 				break;
 			case ICODE_SET:
                 instructions += i->identifier;
@@ -27,8 +24,8 @@ string InstructionList::Stringify()
 			default:
 				cout << "Instruction non supportée";
 				break;
-			}
-        instructions += "\n";
+            }
+        instructions += ";\n";
 	}
     return instructions;
 }
