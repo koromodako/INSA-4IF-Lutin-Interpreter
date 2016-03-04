@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 
+#include "config.h"
 #include "lexer/lexer.h"
 #include "program_statemachine/programstatemachine.h"
 #include "optionsManager.h"
@@ -8,8 +9,6 @@
 #include "program_statemachine/instructionlist.h"
 
 using namespace std;
-
-#define TEST
 
 #ifndef TEST
 
@@ -212,6 +211,12 @@ void expr_simplify_test()
     expressions.push_back(new BinaryExpression(BOP_MULT, new Number(1), new Variable("var"))); // 1*var
     expected.push_back("var");
     expressions.push_back(new BinaryExpression(BOP_PLUS, new Number(0), new Variable("var"))); // 0+var
+    expected.push_back("2");
+    expressions.push_back(new Variable("cste")); // cste
+    expected.push_back("10");
+    expressions.push_back(new BinaryExpression(BOP_MULT, new Number(2), new Number(5))); // 2*5
+    expected.push_back("(var*var)");
+    expressions.push_back(new BinaryExpression(BOP_MULT, new Variable("var"), new Variable("var"))); // var*var
 
     // execute
     if(expected.size() == expressions.size())
@@ -219,18 +224,29 @@ void expr_simplify_test()
         list<string>::iterator expect = expected.begin();
         list<AbstractExpression*>::iterator expr = expressions.begin();
         int i(0);
+
         while (expect != expected.end() && expr != expressions.end()) {
             bool ok = false;
+            AbstractExpression * simplified = (*expr)->Simplify(dmap, ok);
             if(!ok)
-            {   cout << "test - " << i << " - FAILED !" << endl;
-            }
-            if(*expect != (*expr)->Stringify())
-            {   cout << "test - " << i << " - FAILED !" << endl;
-                cout << "expected output : " << *expect << endl;
-                cout << "output : " << (*expr)->Stringify() << endl;
+            {   cout << "test - " << i << " - FAILED ! (simplify failed)." << endl;
             }
             else
-            {   cout << "test - " << i << " - SUCCESS !" << endl;
+            {   if(simplified != NULL)
+                {   if(*expect != simplified->Stringify())
+                    {   cout << "test - " << i << " - FAILED !" << endl;
+                        cout << "expected output : " << *expect << endl;
+                        cout << "output : " << simplified->Stringify() << endl;
+                    }
+                    else
+                    {   cout << "test - " << i << " - SUCCESS (simplified) !" << endl;
+                    }
+                    // free memory allocated for simplified expression tree
+                    delete simplified;
+                }
+                else
+                {   cout << "test - " << i << " - SUCCESS (not simplified) !" << endl;
+                }
             }
             // move iterators
             expect++;

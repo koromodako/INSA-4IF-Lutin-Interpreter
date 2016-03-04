@@ -134,7 +134,9 @@ HEADERS += \
     src/program_statemachine/instructionlist.h \
     src/program_statemachine/datamap.h \
     src/lexer/lexer.h \
-    src/optionsManager.h
+    src/optionsManager.h \
+    src/config.h \
+    src/debug.h
 
 DISTFILES += \
     src/make_states.sh

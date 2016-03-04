@@ -14,23 +14,23 @@ static list<pair<regex, Symbol> > REGEX = list<pair<regex, Symbol> >();
 #define PUSH(regexp, symbol) REGEX.push_back(make_pair(regex(regexp), symbol))
 void init()
 {
-    PUSH("var", S_VAR);
-    PUSH("lire", S_READ);
-    PUSH("ecrire", S_WRITE);
-    PUSH("const", S_CONST);
-    PUSH("^[a-zA-Z]\\w*$", S_ID);
-    PUSH("\\d+", S_NUM);
-    PUSH("[,]", S_V);
-    PUSH("[;]", S_PV);
-    PUSH("[+]", S_PLUS);
-    PUSH("[-]", S_MINUS);
-    PUSH("[*]", S_MULT);
-    PUSH("[/]", S_DIV);
-    PUSH("[:=]", S_AFFECT);
-    PUSH("[=]", S_EQ);
-    PUSH("[(]", S_PO);
-    PUSH("[)]", S_PF);
-    PUSH("", S_EOF);
+    PUSH("var",             S_VAR);
+    PUSH("lire",            S_READ);
+    PUSH("ecrire",          S_WRITE);
+    PUSH("const",           S_CONST);
+    PUSH("^[a-zA-Z]\\w*$",  S_ID);
+    PUSH("\\d+",            S_NUM);
+    PUSH("[,]",             S_V);
+    PUSH("[;]",             S_PV);
+    PUSH("[+]",             S_PLUS);
+    PUSH("[-]",             S_MINUS);
+    PUSH("[*]",             S_MULT);
+    PUSH("[/]",             S_DIV);
+    PUSH("[:=]",            S_AFFECT);
+    PUSH("[=]",             S_EQ);
+    PUSH("[(]",             S_PO);
+    PUSH("[)]",             S_PF);
+    PUSH("",                S_EOF);
 }
 regex getRegExp(Symbol symbol) {
     for(list<pair<regex,Symbol> >::iterator p = REGEX.begin(); p != REGEX.end(); ++p)
@@ -63,7 +63,7 @@ void Lexer::MoveForward()
     }
 }
 
-Symbol Lexer::GetNext()
+Symbol Lexer::GetNext(string &val)
 {
     for(list<pair<regex, Symbol> >::iterator p = REGEX.begin(); p != REGEX.end(); ++p)
     {   // si la regexp match en debut de chaine

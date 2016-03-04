@@ -23,7 +23,7 @@ public:
      * @brief Retourne le symbole actuellement sous la tête de lecture
      * @return
      */
-    Symbol GetNext();
+    Symbol GetNext(string & val);
 
 private:
     string _buf;

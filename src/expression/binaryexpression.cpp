@@ -1,10 +1,10 @@
 #include "binaryexpression.h"
 
+#include "src/config.h"
+#include "src/debug.h"
 #include "number.h"
 #include "variable.h"
 #include <sstream>
-
-#define ADD_PARENTHESIS
 
 #define DEEP_COPY(original, copy) \
     if(original->IsNumber()) { copy = new Number(*dynamic_cast<Number*>(original)); } \
