@@ -5,9 +5,15 @@
 #include "src/program_statemachine/abstractps.h"
 
 /**
- * @brief Etat définissant le comportement par defaut pour les transitions des états de
- *      la machine à état qui analyse les scripts lutin.
- */
+ * @brief
+ * const->PS18
+ * var->PS11
+ * lire-> PS6
+ * ecrire->PS5
+ * id->PS3
+ * D->PS17
+ * I->E2
+*/
 class PS1 : public AbstractPS
 {
 public:
