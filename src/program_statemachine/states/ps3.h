@@ -13,7 +13,7 @@ class PS3 : public AbstractPS
 public:
     ~PS3(){}
 
-    virtual int transition(ProgramStateMachine & machine, ProgramStateMachine::Symbol symbol);
+    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
 
 protected:
     PS3();

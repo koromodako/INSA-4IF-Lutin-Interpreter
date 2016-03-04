@@ -13,7 +13,7 @@ class AbstractPS : public AbstractState
 public:
     ~AbstractPS(){}
 
-    virtual int transition(ProgramStateMachine & machine, ProgramStateMachine::Symbol symbol);
+    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
 
 protected:
     AbstractPS(const string & name);

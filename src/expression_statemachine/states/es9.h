@@ -19,7 +19,7 @@ public:
      * @param symbol
      * @return
      */
-    virtual int transition(ExpressionStateMachine & machine, ExpressionStateMachine::Symbol symbol);
+    virtual int transition(ExpressionStateMachine & machine, Symbol symbol);
 
 protected:
     ES9();

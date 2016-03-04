@@ -3,6 +3,8 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
+LIBS += -lboost_regex
+
 SOURCES += \
     src/main.cpp \
     src/interfaces/abstractstate.cpp \
@@ -64,7 +66,9 @@ SOURCES += \
     src/program_statemachine/states/ps28.cpp \
     src/program_statemachine/states/ps29.cpp \
     src/program_statemachine/datamap.cpp \
-    src/program_statemachine/instructionlist.cpp
+    src/program_statemachine/instructionlist.cpp \
+    src/lexer/lexer.cpp
+
 
 HEADERS += \
     src/interfaces/abstractstate.h \
@@ -127,7 +131,8 @@ HEADERS += \
     src/program_statemachine/states/ps28.h \
     src/program_statemachine/states/ps29.h \
     src/program_statemachine/instructionlist.h \
-    src/program_statemachine/datamap.h
+    src/program_statemachine/datamap.h \
+    src/lexer/lexer.h
 
 DISTFILES += \
     src/make_states.sh
