@@ -7,9 +7,9 @@
 #define ADD_PARENTHESIS
 
 #define DEEP_COPY(original, copy) \
-    if(original->isNumber()) { copy = new Number(*dynamic_cast<Number*>(original)); } \
-    else if(original->isVariable()) { copy = new Variable(*dynamic_cast<Variable*>(original)); } \
-    else if(original->isBinaryExpression()) { copy = new BinaryExpression(*dynamic_cast<BinaryExpression*>(original)); }
+    if(original->IsNumber()) { copy = new Number(*dynamic_cast<Number*>(original)); } \
+    else if(original->IsVariable()) { copy = new Variable(*dynamic_cast<Variable*>(original)); } \
+    else if(original->IsBinaryExpression()) { copy = new BinaryExpression(*dynamic_cast<BinaryExpression*>(original)); }
 
 BinaryExpression::~BinaryExpression()
 {
@@ -31,12 +31,12 @@ BinaryExpression::BinaryExpression(BinaryExpression &other) :
     DEEP_COPY(other._right, _right)
 }
 
-double BinaryExpression::eval(DataMap &dmap, bool & ok)
+double BinaryExpression::Eval(DataMap &dmap, bool & ok)
 {
     double value(0);
-    double left_eval = _left->eval(dmap, ok);
+    double left_eval = _left->Eval(dmap, ok);
     if(ok)
-    {   double right_eval = _right->eval(dmap, ok);
+    {   double right_eval = _right->Eval(dmap, ok);
         // si les deux évaluations précédentes sont valides
         if(ok)
         {   // on effectue le calcul en fonction de l'opération
@@ -64,13 +64,13 @@ double BinaryExpression::eval(DataMap &dmap, bool & ok)
     return value;
 }
 
-AbstractExpression *BinaryExpression::simplify(DataMap &dmap, bool &ok)
+AbstractExpression *BinaryExpression::Simplify(DataMap &dmap, bool &ok)
 {
     AbstractExpression * simplified = NULL;
     // on esssaie d'abord de simplifier les deux opérandes
-    AbstractExpression * left_simplified = _left->simplify(dmap, ok);
+    AbstractExpression * left_simplified = _left->Simplify(dmap, ok);
     if(ok)
-    {   AbstractExpression * right_simplified = _right->simplify(dmap, ok);
+    {   AbstractExpression * right_simplified = _right->Simplify(dmap, ok);
         if(ok)
         {   if(left_simplified != NULL)
             {   // on libère la mémoire de l'ancien opérande de gauche
@@ -86,9 +86,9 @@ AbstractExpression *BinaryExpression::simplify(DataMap &dmap, bool &ok)
             }
             // on essaie ensuite de simplifier le calcul
             // si les deux opérandes sont des nombres
-            if(_left->isNumber() && _right->isNumber())
+            if(_left->IsNumber() && _right->IsNumber())
             {   // on simplifie le calcul en évaluant ce dernier
-                int value = eval(dmap, ok);
+                int value = Eval(dmap, ok);
                 // si l'évaluation s'est bien déroulée
                 if(ok)
                 {   simplified = new Number(value);
@@ -98,33 +98,33 @@ AbstractExpression *BinaryExpression::simplify(DataMap &dmap, bool &ok)
             {   bool useless_ok;
                 switch (_op) {
                 case BOP_PLUS:
-                    if(_left->isNumber() && _left->eval(dmap, useless_ok) == 0)
+                    if(_left->IsNumber() && _left->Eval(dmap, useless_ok) == 0)
                     {   // copie profonde
                         DEEP_COPY(_right, simplified)
                     }
-                    else if(_right->isNumber() && _right->eval(dmap, useless_ok) == 0)
+                    else if(_right->IsNumber() && _right->Eval(dmap, useless_ok) == 0)
                     {   // copie profonde
                         DEEP_COPY(_left, simplified)
                     }
                     break;
                 case BOP_MINUS:
-                    if(_right->isNumber() && _right->eval(dmap, useless_ok) == 0)
+                    if(_right->IsNumber() && _right->Eval(dmap, useless_ok) == 0)
                     {   // copie profonde
                         DEEP_COPY(_left, simplified)
                     }
                     break;
                 case BOP_MULT:
-                    if(_left->isNumber() && _left->eval(dmap, useless_ok) == 1)
+                    if(_left->IsNumber() && _left->Eval(dmap, useless_ok) == 1)
                     {   // copie profonde
                         DEEP_COPY(_right, simplified)
                     }
-                    else if(_right->isNumber() && _right->eval(dmap, useless_ok) == 1)
+                    else if(_right->IsNumber() && _right->Eval(dmap, useless_ok) == 1)
                     {   // copie profonde
                         DEEP_COPY(_left, simplified)
                     }
                     break;
                 case BOP_DIV:
-                    if(_right->isNumber() && _right->eval(dmap, useless_ok) == 1)
+                    if(_right->IsNumber() && _right->Eval(dmap, useless_ok) == 1)
                     {   // copie profonde
                         DEEP_COPY(_left, simplified)
                     }
@@ -136,20 +136,20 @@ AbstractExpression *BinaryExpression::simplify(DataMap &dmap, bool &ok)
     return simplified;
 }
 
-string BinaryExpression::stringify()
+string BinaryExpression::Stringify()
 {
     stringstream ss("");
 #ifdef ADD_PARENTHESIS
     ss << "(";
 #endif
-    ss << _left->stringify();
+    ss << _left->Stringify();
     switch (_op) {
     case BOP_PLUS:  ss << '+'; break;
     case BOP_MINUS: ss << '-'; break;
     case BOP_MULT:  ss << '*'; break;
     case BOP_DIV:   ss << '/'; break;
     }
-    ss << _right->stringify();
+    ss << _right->Stringify();
 #ifdef ADD_PARENTHESIS
     ss << ")";
 #endif

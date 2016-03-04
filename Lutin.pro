@@ -62,7 +62,9 @@ SOURCES += \
     src/program_statemachine/states/ps26.cpp \
     src/program_statemachine/states/ps27.cpp \
     src/program_statemachine/states/ps28.cpp \
-    src/program_statemachine/states/ps29.cpp
+    src/program_statemachine/states/ps29.cpp \
+    src/program_statemachine/datamap.cpp \
+    src/program_statemachine/instructionlist.cpp
 
 HEADERS += \
     src/interfaces/abstractstate.h \
@@ -123,7 +125,9 @@ HEADERS += \
     src/program_statemachine/states/ps26.h \
     src/program_statemachine/states/ps27.h \
     src/program_statemachine/states/ps28.h \
-    src/program_statemachine/states/ps29.h
+    src/program_statemachine/states/ps29.h \
+    src/program_statemachine/instructionlist.h \
+    src/program_statemachine/datamap.h
 
 DISTFILES += \
     src/make_states.sh
