@@ -22,25 +22,25 @@ public:
     BinaryExpression(BinaryOperator op, AbstractExpression * left, AbstractExpression * right);
     BinaryExpression(BinaryExpression & other);
 
-    inline bool isNumber() { return false; }
-    inline bool isVariable() { return false; }
-    inline bool isBinaryExpression() { return true; }
+    inline bool IsNumber() { return false; }
+    inline bool IsVariable() { return false; }
+    inline bool IsBinaryExpression() { return true; }
 
     /**
      * @override
      * @see AbstractExpression::eval()
      */
-    double eval(DataMap &dmap, bool &ok);
+    double Eval(DataMap &dmap, bool &ok);
     /**
      * @override
      * @see AbstractExpression::simplify()
      */
-    AbstractExpression * simplify(DataMap &dmap, bool & ok);
+    AbstractExpression * Simplify(DataMap &dmap, bool & ok);
     /**
      * @override
      * @see AbstractExpression::stringify()
      */
-    string stringify();
+    string Stringify();
 
 private:
     BinaryOperator _op;            // opérateur

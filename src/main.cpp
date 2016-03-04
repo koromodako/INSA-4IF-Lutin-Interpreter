@@ -1,7 +1,11 @@
 #include <iostream>
-#include "lexer/lexer.h"
+#include <fstream>
 
-#define TEST
+#include "lexer/lexer.h"
+#include "program_statemachine/programstatemachine.h"
+#include "optionsManager.h"
+#include "program_statemachine/datamap.h"
+#include "program_statemachine/instructionlist.h"
 
 using namespace std;
 
@@ -9,7 +13,39 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    cout << "Hello World!" << endl;
+    if (argc < 2)
+    {
+        cerr << "Aucun fichier spécifié" << endl;
+        cerr << "Syntaxe d'appel : ./Lutin nomFichier.lt [-p] [-o] [-a] [-e]" << endl;
+        return -1;
+    }
+
+    ifstream stream(argv[1]);
+
+    //Vérification du fichier
+    if (!stream.good())
+    {
+        stream.close();
+        cerr << "Impossible d'ouvrir le fichier : " << argv[1] << endl;
+        cerr << "Syntaxe d'appel : ./Lutin nomFichier.lt [-p] [-o] [-a] [-e]" << endl;
+        return -2;
+    }
+
+    //Création des structures de stockage
+    DataMap dataMap;
+    InstructionList instructionList;
+    OptionsManager optionsManager(dataMap, instructionList);
+    //Traitement des options
+    if (!optionsManager.CheckOption(argc, argv))
+    {
+        cerr << "Option inconnue" << endl;
+        cerr << "Syntaxe d'appel : ./Lutin nomFichier.lt [-p] [-o] [-a] [-e]" << endl;
+        return -3;
+    }
+
+    //Execution du programme
+    ProgramStateMachine programStateMachine/*(stream, dataMap, instructionMap)*/;
+
     return 0;
 }
 
@@ -18,11 +54,15 @@ int main(int argc, char *argv[])
 #include "expression/variable.h"
 #include "expression/number.h"
 #include "expression/binaryexpression.h"
+#include "program_statemachine/instructionlist.h"
+#include "program_statemachine/datamap.h"
 
 void expr_stringify_test();
 void expr_eval_test();
 void expr_simplify_test();
 void lexer_test();
+void instruction_stringify_test();
+void datamap_stringify_test();
 
 int main()
 {
@@ -30,6 +70,8 @@ int main()
     expr_eval_test();
     expr_simplify_test();
     lexer_test();
+    instruction_stringify_test();
+    datamap_stringify_test();
 }
 
 void expr_stringify_test()
@@ -60,10 +102,10 @@ void expr_stringify_test()
         list<AbstractExpression*>::iterator expr = expressions.begin();
         int i(0);
         while (expect != expected.end() && expr != expressions.end()) {
-            if(*expect != (*expr)->stringify())
+            if(*expect != (*expr)->Stringify())
             {   cout << "test - " << i << " - FAILED !" << endl;
                 cout << "expected output : " << *expect << endl;
-                cout << "output : " << (*expr)->stringify() << endl;
+                cout << "output : " << (*expr)->Stringify() << endl;
             }
             else
             {   cout << "test - " << i << " - SUCCESS !" << endl;
@@ -122,14 +164,14 @@ void expr_eval_test()
         int i(0);
         while (expect != expected.end() && expr != expressions.end()) {
             bool ok = false;
-            double val = (*expr)->eval(dmap, ok);
+            double val = (*expr)->Eval(dmap, ok);
             if(!ok)
             {   cout << "test - " << i << " - FAILED !" << endl;
             }
             if(*expect != val)
             {   cout << "test - " << i << " - FAILED !" << endl;
                 cout << "expected output : " << *expect << endl;
-                cout << "output : " << (*expr)->eval(dmap, ok) << endl;
+                cout << "output : " << (*expr)->Eval(dmap, ok) << endl;
             }
             else
             {   cout << "test - " << i << " - SUCCESS !" << endl;
@@ -213,6 +255,29 @@ void lexer_test()
     cout << "-------------------------------------- Lexer ------------------------------------" << endl;
     cout << "non implementé" << endl;
     cout << "-------------------------------------- done -------------------------------------" << endl;
+}
+
+void instruction_stringify_test()
+{
+    cout << "coué" <<endl;
+    /// \todo modifier une fois le sringify des expressions implementé
+    InstructionList instructions;
+    instructions.push_back(Instruction(ICODE_READ, "b", NULL));
+    instructions.push_back(Instruction(ICODE_SET, "a", NULL));
+    instructions.push_back(Instruction(ICODE_PRINT, NULL, NULL));
+
+    cout << instructions.Stringify() <<endl;
+
+}
+
+void datamap_stringify_test()
+{
+    DataMap datamap;
+    datamap.insert(make_pair("a", Data(false, false, false)));
+    datamap.insert(make_pair("b", Data(false, false, false)));
+    datamap.insert(make_pair("c", Data(true, false, false, 5)));
+
+    cout << datamap.Stringify() <<endl;
 }
 
 #endif

@@ -11,20 +11,20 @@ Number::Number(Number &other) :
 {
 }
 
-double Number::eval(DataMap &, bool &ok)
+double Number::Eval(DataMap &, bool &ok)
 {
     ok = true;
     return _value;
 }
 
-AbstractExpression * Number::simplify(DataMap &, bool & ok)
+AbstractExpression * Number::Simplify(DataMap &, bool & ok)
 {
     // Déjà simple
     ok = true;
     return NULL;
 }
 
-string Number::stringify()
+string Number::Stringify()
 {
     stringstream ss("");
     ss << _value;

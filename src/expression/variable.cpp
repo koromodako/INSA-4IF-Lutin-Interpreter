@@ -12,7 +12,7 @@ Variable::Variable(Variable &other) :
 {
 }
 
-double Variable::eval(DataMap &dmap, bool &ok)
+double Variable::Eval(DataMap &dmap, bool &ok)
 {
     ok = false;
     double value(0);
@@ -25,7 +25,7 @@ double Variable::eval(DataMap &dmap, bool &ok)
     return value;
 }
 
-AbstractExpression * Variable::simplify(DataMap &dmap, bool & ok)
+AbstractExpression * Variable::Simplify(DataMap &dmap, bool & ok)
 {
     ok = false;
     AbstractExpression * simplified = NULL;
@@ -42,7 +42,7 @@ AbstractExpression * Variable::simplify(DataMap &dmap, bool & ok)
     return simplified;
 }
 
-string Variable::stringify()
+string Variable::Stringify()
 {
     return _identifier;
 }

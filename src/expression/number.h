@@ -18,25 +18,25 @@ public:
     Number(double value);
     Number(Number & other);
 
-    inline bool isNumber() { return true; }
-    inline bool isVariable() { return false; }
-    inline bool isBinaryExpression() { return false; }
+    inline bool IsNumber() { return true; }
+    inline bool IsVariable() { return false; }
+    inline bool IsBinaryExpression() { return false; }
 
     /**
      * @override
      * @see AbstractExpression::eval()
      */
-    double eval(DataMap &dmap, bool & ok);
+    double Eval(DataMap &dmap, bool & ok);
     /**
      * @override
      * @see AbstractExpression::simplify()
      */
-    AbstractExpression * simplify(DataMap &dmap, bool &ok);
+    AbstractExpression * Simplify(DataMap &dmap, bool &ok);
     /**
      * @override
      * @see AbstractExpression::stringify()
      */
-    string stringify();
+    string Stringify();
 
 private:
     double _value; // valeur

@@ -18,25 +18,25 @@ public:
     Variable(string identifier);
     Variable(Variable & other);
 
-    inline bool isNumber() { return false; }
-    inline bool isVariable() { return true; }
-    inline bool isBinaryExpression() { return false; }
+    inline bool IsNumber() { return false; }
+    inline bool IsVariable() { return true; }
+    inline bool IsBinaryExpression() { return false; }
 
     /**
      * @override
      * @see AbstractExpression::eval()
      */
-    double eval(DataMap &dmap, bool & ok);
+    double Eval(DataMap &dmap, bool & ok);
     /**
      * @override
      * @see AbstractExpression::simplify()
      */
-    AbstractExpression *simplify(DataMap &dmap, bool &ok);
+    AbstractExpression *Simplify(DataMap &dmap, bool &ok);
     /**
      * @override
      * @see AbstractExpression::stringify()
      */
-    string stringify();
+    string Stringify();
 
 private:
     string _identifier; // identifiant
