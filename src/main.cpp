@@ -1,6 +1,10 @@
 #include <iostream>
+#include <fstream>
 
-#define TEST
+#include "src/program_statemachine/programstatemachine.h"
+#include "src/optionsManager.h"
+#include "src/program_statemachine/datamap.h"
+#include "src/program_statemachine/instructionlist.h"
 
 using namespace std;
 
@@ -8,7 +12,39 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    cout << "Hello World!" << endl;
+    if (argc < 2)
+    {
+        cerr << "Aucun fichier spécifié" << endl;
+        cerr << "Syntaxe d'appel : ./Lutin nomFichier.lt [-p] [-o] [-a] [-e]" << endl;
+        return -1;
+    }
+
+    ifstream stream(argv[1]);
+
+    //Vérification du fichier
+    if (!stream.good())
+    {
+        stream.close();
+        cerr << "Impossible d'ouvrir le fichier : " << argv[1] << endl;
+        cerr << "Syntaxe d'appel : ./Lutin nomFichier.lt [-p] [-o] [-a] [-e]" << endl;
+        return -2;
+    }
+
+    //Création des structures de stockage
+    DataMap dataMap;
+    InstructionList instructionList;
+    OptionsManager optionsManager(dataMap, instructionList);
+    //Traitement des options
+    if (!optionsManager.CheckOption(argc, argv))
+    {
+        cerr << "Option inconnue" << endl;
+        cerr << "Syntaxe d'appel : ./Lutin nomFichier.lt [-p] [-o] [-a] [-e]" << endl;
+        return -3;
+    }
+
+    //Execution du programme
+    ProgramStateMachine programStateMachine/*(stream, dataMap, instructionMap)*/;
+
     return 0;
 }
 
