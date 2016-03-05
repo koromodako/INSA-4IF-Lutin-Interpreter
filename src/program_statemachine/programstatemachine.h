@@ -3,6 +3,7 @@
 
 #include "src/types.h"
 #include "src/interfaces/abstractstatemachine.h"
+#include "src/program_statemachine/instructionlist.h"
 
 #include <list>
 
@@ -15,10 +16,11 @@ class ProgramStateMachine : public AbstractStateMachine
 {
 public:
     ~ProgramStateMachine(){}
-    ProgramStateMachine();
+    ProgramStateMachine(Lexer & lexer, DataMap & dmap, InstructionList & instructions);
 
 private:
-    list<Instruction> _instructions;
+    InstructionList & _instructions;
+    DataMap & _dmap; // cet automate doit remplir cette structure avec les déclarations de variables et constantes
 };
 
 #endif // PROGRAMSTATEMACHINE_H

@@ -1,7 +1,7 @@
 #include "expressionstatemachine.h"
 
-ExpressionStateMachine::ExpressionStateMachine() :
-    AbstractStateMachine(),
+ExpressionStateMachine::ExpressionStateMachine(Lexer & lexer) :
+    AbstractStateMachine(lexer),
     _expr(NULL)
 {
 

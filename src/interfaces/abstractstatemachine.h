@@ -2,6 +2,7 @@
 #define ABSTRACTSTATEMACHINE_H
 
 #include "abstractstate.h"
+#include "src/lexer/lexer.h"
 #include <stack>
 
 using namespace std;
@@ -33,9 +34,12 @@ public:
     virtual void unexpected(int symbole, AbstractState * state);
 
 protected:
-    AbstractStateMachine();
+    AbstractStateMachine(Lexer & lexer);
+
+    inline Lexer & lexer() { return _lexer; } // inline explicite
 
 private:
+    Lexer & _lexer;
     stack<string> _error_stack;         // pile des erreurs
     stack<int> _symbols_stack;          // pile des symboles
     stack<AbstractState*> _state_stack; // pile des états

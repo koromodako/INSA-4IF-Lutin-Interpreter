@@ -68,7 +68,11 @@ SOURCES += \
     src/program_statemachine/datamap.cpp \
     src/program_statemachine/instructionlist.cpp \
     src/lexer/lexer.cpp \
-    src/optionsManager.cpp
+    src/optionsManager.cpp \
+    src/unit_tests/abstractexpressiontests.cpp \
+    src/unit_tests/lexertests.cpp \
+    src/unit_tests/instructionlisttests.cpp \
+    src/unit_tests/datamaptests.cpp
 
 
 HEADERS += \
@@ -136,7 +140,12 @@ HEADERS += \
     src/lexer/lexer.h \
     src/optionsManager.h \
     src/config.h \
-    src/debug.h
+    src/debug.h \
+    src/unit_tests/abstractexpressiontests.h \
+    src/unit_tests/test_macros.h \
+    src/unit_tests/lexertests.h \
+    src/unit_tests/instructionlisttests.h \
+    src/unit_tests/datamaptests.h
 
 DISTFILES += \
     src/make_states.sh \

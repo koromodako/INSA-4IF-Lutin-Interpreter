@@ -1,8 +1,9 @@
 #include "programstatemachine.h"
 
-ProgramStateMachine::ProgramStateMachine() :
-    AbstractStateMachine(),
-    _instructions()
+ProgramStateMachine::ProgramStateMachine(Lexer &lexer, DataMap &dmap, InstructionList &instructions) :
+    AbstractStateMachine(lexer),
+    _instructions(instructions),
+    _dmap(dmap)
 {
 
 }

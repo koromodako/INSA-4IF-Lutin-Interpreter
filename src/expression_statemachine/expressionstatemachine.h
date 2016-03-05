@@ -11,7 +11,7 @@ class ExpressionStateMachine : public AbstractStateMachine
 {
 public:
     ~ExpressionStateMachine(){}
-    ExpressionStateMachine();
+    ExpressionStateMachine(Lexer &lexer);
 
 private:
     AbstractExpression * _expr;
