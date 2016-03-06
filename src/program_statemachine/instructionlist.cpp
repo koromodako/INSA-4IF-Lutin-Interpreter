@@ -2,12 +2,13 @@
 
 #include "instructionlist.h"
 
-string InstructionList::Stringify()
+string InstructionList::Stringify() const
 {
     string instructions("");
-    for( InstructionList::iterator i = begin(); i != end(); i++)
+    for( InstructionList::const_iterator i = begin(); i != end(); i++)
 	{
-        switch (i->code){
+        switch (i->code)
+        {
 			case ICODE_PRINT:
                 instructions += "ecrire ";
                 instructions += i->expr->Stringify();
@@ -24,17 +25,8 @@ string InstructionList::Stringify()
 			default:
 				cout << "Instruction non supportée";
 				break;
-            }
+        }
         instructions += ";\n";
 	}
     return instructions;
-}
-
-
-
-int Execute(){
-	
-	
-	
-	
 }

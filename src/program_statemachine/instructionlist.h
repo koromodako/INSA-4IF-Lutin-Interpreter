@@ -10,21 +10,14 @@
  */
 class InstructionList: public list<Instruction>
 {
-    /// \todo Implementer la methode d'execution
 	public:
     /**
          * @brief Stringify
          * @return la structure de donnée sous forme de string à restituer
          */
-		string Stringify();
-		int Execute();
-	
-	
+        string Stringify() const;
 	
 	private:
-		
-	
-	
 };
 
 #endif // INSTRUCTIIONLIST_H

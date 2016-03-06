@@ -2,6 +2,11 @@ TEMPLATE = app
 CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
+macx {
+    QMAKE_MAC_SDK = macosx10.11
+    INCLUDEPATH += /opt/local/include
+    LIBS += -L/opt/local/lib/
+}
 
 LIBS += -lboost_regex
 

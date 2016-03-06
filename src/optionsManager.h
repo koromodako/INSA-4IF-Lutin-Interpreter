@@ -19,12 +19,12 @@ private:
     /**
      * @brief Analyse le programme donné de manière statique afin d'en extraire les erreurs.
      */
-    void analysis();
+    void analysis() const;
 
     /**
      * @brief Interprete chacune des instructions du programme de manière intéractive.
      */
-    void execute();
+    void execute() const;
 
     /**
      * @brief Affiche sur la sortie standard la représentation en mémoire du programme.

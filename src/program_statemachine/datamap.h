@@ -13,7 +13,8 @@ using namespace std;
 struct Data {
     bool exist;     ///< la mémoire existe (au sens a été déclarée à l'aide de 'const' ou 'var')
     bool cst;       ///< la mémoire est constante ou non
-    bool set;       ///< la mémoire est écrite ou non
+    bool set;       ///< la mémoire est écrite ou non. Si la mémoire est constante, set est true
+                    ///< si elle a été réafféctée après sa création
     bool used;      ///< la mémoire est lue ou non
     double value;   ///< la valeur stockée dans la mémoire
     Data(bool _exist = false,
@@ -39,16 +40,16 @@ public:
      * @brief Stringify
      * @return la structure de donnée sous forme de string à restituer
      */
-    string Stringify();
+    string Stringify() const;
     /**
      * @brief Cette méthode vérifie l'intégrité de la structure en réalisant les tests suivant :
      *      + les variables utilisées existent
      *      + les variables déclarées sont utilisées
      *      + les constantes ne sont pas utilisées en partie gauche d'une affectation
      *
-     * @return
+     * @return les erreurs trouvées sous forme de chaine de charactère
      */
-    string Test(); /// \todo Implementer la methode de test
+    string Test() const;
 
 private:
 

@@ -43,12 +43,12 @@ void OptionsManager::Execute()
         execute();
 }
 
-void OptionsManager::analysis()
+void OptionsManager::analysis() const
 {
-
+    cout << _dataMap.Test();
 }
 
-void OptionsManager::execute()
+void OptionsManager::execute() const
 {
     list<Instruction>::iterator itIns;
     bool ok;
@@ -78,9 +78,7 @@ void OptionsManager::execute()
         if ((*itIns).code == ICODE_PRINT)
             cout << value << endl;
         else if ((*itIns).code == ICODE_READ)
-        {
             cin >> _dataMap[(*itIns).identifier].value;
-        }
         else
             _dataMap[(*itIns).identifier].value = value;
     }
@@ -88,30 +86,8 @@ void OptionsManager::execute()
 
 void OptionsManager::print() const
 {
-    /*_dataMap.stringify();
-     * _instructionList.stringify();
-     *
-    map<string, Data>::iterator itData;
-    for (itData = _dataMap.begin() ; itData != _dataMap.end() ; ++itData)
-    {
-        if ((*itData).second.cst)
-            cout << "const " << (*itData).first << "=" << (*itData).second.value;
-        else
-            cout << "var "<< (*itData).first;
-        cout << ";" << endl;
-    }
-    list<Instruction>::iterator itIns;
-    for (itIns = _instructionList.begin() ; itIns != _instructionList.end() ; ++itIns)
-    {
-        if ((*itIns).code == ICODE_PRINT)
-            cout << ;
-        else if ((*itIns).code == ICODE_PRINT)
-            cout << ;
-        else
-            cout <<;
-
-        cout << ";" << endl;
-    }*/
+    _dataMap.Stringify();
+    _instructionList.Stringify();
 }
 
 void OptionsManager::transform()
