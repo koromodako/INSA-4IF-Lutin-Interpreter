@@ -27,7 +27,7 @@ struct Instruction {
     InstructionCode code;       ///< Ce code permet de définir de quel type d'instruction il s'agit (READ,WRITE,AFFECT)
     string identifier;          ///< Utile dans le cas d'une affectation pour savoir quelle variable on affecte dans les cas READ ou AFFECT
     AbstractExpression * expr;  ///< Expression arithmétique de liée à l'instruction si nécessaire
-    Instruction(InstructionCode _code,
+    Instruction(InstructionCode _code = ICODE_READ,
                 string _identifier = "",
                 AbstractExpression* _expr = NULL):
         code(_code),

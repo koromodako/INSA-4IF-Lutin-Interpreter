@@ -3,9 +3,34 @@
 #include "string"
 #include "sstream"
 
-/**
- * @brief Cette structure décrit une mémoire et les méta-données relatives à cette mémoire.
- */
+DataMap::DataMap() :
+    map<string, Data>()
+{
+}
+
+void DataMap::StartConst(const string &identifier)
+{
+    _current_identifier = identifier;
+    _current_data = Data(true, true);
+}
+
+void DataMap::StartVar(const string &identifier)
+{
+    _current_identifier = identifier;
+    _current_data = Data(true);
+}
+
+void DataMap::SetDataValue(double value)
+{
+    _current_data.set = true;
+    _current_data.value = value;
+}
+
+void DataMap::EndData()
+{
+    insert(make_pair(_current_identifier, _current_data));
+}
+
 string DataMap::Stringify()
 {
     string consts("");

@@ -1,6 +1,31 @@
+#include "instructionlist.h"
 #include <iostream>
 
-#include "instructionlist.h"
+InstructionList::InstructionList() :
+    list<Instruction>()
+{
+}
+
+void InstructionList::AppendRead(string &identifier)
+{
+    _current_instr = Instruction(ICODE_READ, identifier);
+    EndInstruction();
+}
+
+void InstructionList::StartPrint()
+{
+    _current_instr = Instruction(ICODE_PRINT);
+}
+
+void InstructionList::StartSet(string &identifier)
+{
+    _current_instr = Instruction(ICODE_SET, identifier);
+}
+
+void InstructionList::EndInstruction()
+{
+    push_back(_current_instr);
+}
 
 string InstructionList::Stringify()
 {
@@ -30,11 +55,6 @@ string InstructionList::Stringify()
     return instructions;
 }
 
-
-
-int Execute(){
-	
-	
-	
-	
+int InstructionList::Execute(){
+    /// \todo implement here
 }

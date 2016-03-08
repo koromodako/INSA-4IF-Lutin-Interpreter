@@ -35,6 +35,29 @@ struct Data {
 class DataMap: public map<string, Data>
 {
 public:
+    DataMap();
+    /**
+     * @brief Commence l'ajout d'une nouvelle constante
+     * @param identifier
+     *      Identifiant de la constante
+     */
+    void StartConst(const string & identifier);
+    /**
+     * @brief Commence l'ajout d'une nouvelle variable
+     * @param identifier
+     *      Identifiant de la variable
+     */
+    void StartVar(const string & identifier);
+    /**
+     * @brief Donne la valeur de la donnée (constante ou la variable) en cours d'ajout
+     * @param value
+     *      Valeur à donner à la donnée
+     */
+    void SetDataValue(double value);
+    /**
+     * @brief Termine l'ajout de la nouvelle donnée (constante ou variable)
+     */
+    void EndData();
     /**
      * @brief Stringify
      * @return la structure de donnée sous forme de string à restituer
@@ -51,7 +74,8 @@ public:
     string Test(); /// \todo Implementer la methode de test
 
 private:
-
+    string _current_identifier;
+    Data _current_data;
 };
 
 #endif // DATAMAP_H
