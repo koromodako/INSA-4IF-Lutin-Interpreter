@@ -1,7 +1,7 @@
 #include "datamap.h"
 
-#include "string"
-#include "sstream"
+#include <string>
+#include <sstream>
 
 DataMap::DataMap() :
     map<string, Data>()
@@ -31,33 +31,36 @@ void DataMap::EndData()
     insert(make_pair(_current_identifier, _current_data));
 }
 
-string DataMap::Stringify()
+/**
+ * @brief Cette structure décrit une mémoire et les méta-données relatives à cette mémoire.
+ */
+string DataMap::Stringify() const
 {
-    string consts("");
-    string vars("");
-    for(DataMap::iterator i = this->begin(); i != this->end(); i++)
+    stringstream consts;
+    stringstream vars;
+    for(DataMap::const_iterator i = this->begin() ; i != this->end() ; i++)
 	{
         if( i->second.cst )
-		{
-            ostringstream strs;
-            strs << i->second.value;
-            consts += "const "+ i->first + "=" + strs.str() + ";\n" ;
-			
-		}
+            consts << "const " << i->first << "=" << i->second.value << ";" << endl;
 		else
-		{
-			vars += "var "+ i->first + ";\n";
-			
-		}
-		
-		
+            vars << "var " << i->first << ";\n";
 	}
 	
-	return vars+consts;
+    return vars.str() + consts.str();
 }
 
 
-string DataMap::Test()
+string DataMap::Test() const
 {
-	return string("not implemented yet");
+    stringstream result;
+    for (DataMap::const_iterator it = begin() ; it != end() ; ++it)
+    {
+        if (it->second.cst && it->second.set)
+            result << "Erreur : " << it->first << " est constante et donc n'est pas assignable" << endl;
+        if (!it->second.used)
+            result << "Attention : " <<  it->first << " n'est jamais utilisé" << endl;
+        else if (!it->second.cst && !it->second.set)
+            result << "Erreur : " <<  it->first << " est utilisé sans être initialisé" << endl;
+    }
+    return result.str();
 }

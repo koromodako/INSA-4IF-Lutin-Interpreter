@@ -23,7 +23,7 @@ public:
      * @param state
      *      Nouvel état
      */
-    virtual void reduce(int symbole, AbstractState * state);
+    void Reduce(int symbole, AbstractState * state, int size);
 
     /**
      * @brief Effectue la recupération sur erreur s'il y a lieu ou place la machine à état dans un état d'erreur
@@ -32,7 +32,7 @@ public:
      * @param state
      *      Nouvel état
      */
-    virtual void unexpected(int symbole, AbstractState * state);
+    void Unexpected(int symbole, AbstractState * state);
 
 protected:
     AbstractStateMachine(Lexer & lexer, DataMap & dmap, InstructionList & instructions);
@@ -43,8 +43,8 @@ protected:
 
 private:
     Lexer & _lexer;
-    InstructionList & _instructions;
     DataMap & _dmap; // cet automate doit remplir cette structure avec les déclarations de variables et constantes
+    InstructionList & _instructions;
     stack<string> _error_stack;         // pile des erreurs
     stack<int> _symbols_stack;          // pile des symboles
     stack<AbstractState*> _state_stack; // pile des états

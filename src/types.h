@@ -47,7 +47,7 @@ enum BinaryOperator {
 };
 
 /**
- * @brief Cette énumération décrit les différents symboles
+ * @brief Cette cnumération décrit les différents symboles
  * terminaux et non terminaux pouvant être rencontrés dans
  * lors de l'analyse syntaxique
  */

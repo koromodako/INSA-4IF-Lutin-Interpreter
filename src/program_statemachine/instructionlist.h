@@ -40,7 +40,11 @@ public:
      * @brief Stringify
      * @return la structure de donnée sous forme de string à restituer
      */
-    string Stringify();
+    string Stringify() const;
+    /**
+     * @brief Execute la liste d'instructions
+     * @return
+     */
     int Execute();
 
 
