@@ -34,12 +34,14 @@ public:
      */
     void Unexpected(int symbole, AbstractState * state);
 
+    inline InstructionList & GetInstructionList() { return _instructions; } // inline explicite
+    inline DataMap & GetDataMap() { return _dmap; }
+
 protected:
     AbstractStateMachine(Lexer & lexer, DataMap & dmap, InstructionList & instructions);
 
     inline Lexer & lexer() { return _lexer; }                               // inline explicite
-    inline InstructionList & GetInstructionList() { return _instructions; } // inline explicite
-    inline DataMap & GetDataMap() { return _dmap; }                         // inline explicite
+                             // inline explicite
 
 private:
     Lexer & _lexer;
