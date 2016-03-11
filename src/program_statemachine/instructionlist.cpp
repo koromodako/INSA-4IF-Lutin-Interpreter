@@ -8,23 +8,23 @@ InstructionList::InstructionList() :
 
 void InstructionList::AppendRead(string &identifier)
 {
-    _current_instr = Instruction(ICODE_READ, identifier);
+    _currentInstr = Instruction(ICODE_READ, identifier);
     EndInstruction();
 }
 
 void InstructionList::StartPrint()
 {
-    _current_instr = Instruction(ICODE_PRINT);
+    _currentInstr = Instruction(ICODE_PRINT);
 }
 
 void InstructionList::StartSet(string &identifier)
 {
-    _current_instr = Instruction(ICODE_SET, identifier);
+    _currentInstr = Instruction(ICODE_SET, identifier);
 }
 
 void InstructionList::EndInstruction()
 {
-    push_back(_current_instr);
+    push_back(_currentInstr);
 }
 
 string InstructionList::Stringify() const

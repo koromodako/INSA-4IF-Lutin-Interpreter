@@ -47,7 +47,7 @@ public:
     void Unexpected(Symbol symbol);
 
     inline InstructionList & GetInstructionList() { return _instructions; } // inline explicite
-    inline DataMap & GetDataMap() { return _dmap; }
+    inline DataMap & GetDataMap() { return _dMap; }
     inline Lexer & GetLexer() {return _lexer;}
 
 protected:
@@ -58,11 +58,11 @@ protected:
 
 private:
     Lexer & _lexer;
-    DataMap & _dmap; // cet automate doit remplir cette structure avec les déclarations de variables et constantes
+    DataMap & _dMap; // cet automate doit remplir cette structure avec les déclarations de variables et constantes
     InstructionList & _instructions;
-    stack<string> _error_stack;         // pile des erreurs
-    stack<Symbol> _symbols_stack;          // pile des symboles
-    stack<AbstractState*> _state_stack; // pile des états
+    stack<string> _errorsStack;         // pile des erreurs
+    stack<Symbol> _symbolsStack;          // pile des symboles
+    stack<AbstractState*> _statesStack; // pile des états
 };
 
 #endif // ABSTRACTSTATEMACHINE_H

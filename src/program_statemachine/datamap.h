@@ -76,8 +76,8 @@ public:
     string Test() const;
 
 private:
-    string _current_identifier;
-    Data _current_data;
+    string _currentIdentifier;
+    Data _currentData;
 };
 
 #endif // DATAMAP_H

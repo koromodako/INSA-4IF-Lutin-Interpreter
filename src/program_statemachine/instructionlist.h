@@ -45,7 +45,7 @@ public:
 
 
 private:
-    Instruction _current_instr;
+    Instruction _currentInstr;
 };
 
 #endif // INSTRUCTIIONLIST_H

@@ -1,6 +1,6 @@
 #include "abstractps.h"
 
-int AbstractPS::transition(ProgramStateMachine &machine, Symbol symbol)
+int AbstractPS::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
     // default transition
     return -1;

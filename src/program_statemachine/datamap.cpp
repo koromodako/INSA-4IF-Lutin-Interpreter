@@ -10,27 +10,27 @@ DataMap::DataMap() :
 
 void DataMap::StartConst(const string &identifier)
 {
-    _current_identifier = identifier;
-    _current_data = Data(true, true);
+    _currentIdentifier = identifier;
+    _currentData = Data(true, true);
 }
 
 void DataMap::StartVar(const string &identifier)
 {
-    _current_identifier = identifier;
-    _current_data = Data(true);
+    _currentIdentifier = identifier;
+    _currentData = Data(true);
 }
 
 void DataMap::SetDataValue(double value)
 {
-    _current_data.set = true;
-    _current_data.value = value;
+    _currentData.set = true;
+    _currentData.value = value;
 }
 
 bool DataMap::EndData()
 {
-    if (count(_current_identifier) == 0)
+    if (count(_currentIdentifier) == 0)
     {
-        insert(make_pair(_current_identifier, _current_data));
+        insert(make_pair(_currentIdentifier, _currentData));
         return true;
     }
     return false;
