@@ -6,31 +6,31 @@ AbstractState::TransitionResult ES15::Transition(AbstractStateMachine &machine, 
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_EOF:
-        machine.Reduce(RULE_10);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_10);
         ret = AbstractState::REDUCED;
         break;
     case S_PF:
-        machine.Reduce(RULE_10);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_10);
         ret = AbstractState::REDUCED;
         break;
     case S_PLUS:
-        machine.Reduce(RULE_10);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_10);
         ret = AbstractState::REDUCED;
         break;
     case S_MINUS:
-        machine.Reduce(RULE_10);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_10);
         ret = AbstractState::REDUCED;
         break;
     case S_MULT:
-        machine.Reduce(RULE_10);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_10);
         ret = AbstractState::REDUCED;
         break;
     case S_DIV:
-        machine.Reduce(RULE_10);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_10);
         ret = AbstractState::REDUCED;
         break;
     case S_PV:
-        machine.Reduce(RULE_10);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_10);
         ret = AbstractState::REDUCED;
         break;
     default:

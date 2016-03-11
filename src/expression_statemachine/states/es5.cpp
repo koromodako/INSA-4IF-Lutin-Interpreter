@@ -35,7 +35,7 @@ AbstractState::TransitionResult ES5::Transition(AbstractStateMachine &machine, S
 }
 
 ES5::ES5() :
-    AbstractState("ES5")
+    AbstractState("ES05")
 {
 
 }

@@ -7,13 +7,11 @@ AbstractState::TransitionResult PS21::Transition(AbstractStateMachine &machine, 
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
         case S_V:///< ','
-            machine.Reduce(RULE_9);
-            Transition(machine, S_LC);
+            machine.Reduce(Symbol(S_LC), RULE_9);
             ret = AbstractState::REDUCED;
             break;
         case S_PV:///< ';'
-            machine.Reduce(RULE_9);
-            Transition(machine, S_LC);
+            machine.Reduce(Symbol(S_LC), RULE_9);
             ret = AbstractState::REDUCED;
             break;
         case S_LC:///< liste de constantes

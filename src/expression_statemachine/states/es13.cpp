@@ -8,15 +8,15 @@ AbstractState::TransitionResult ES13::Transition(AbstractStateMachine &machine, 
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_PF:
-        machine.Reduce(RULE_3);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_3);
         ret = AbstractState::REDUCED;
         break;
     case S_PLUS:
-        machine.Reduce(RULE_3);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_3);
         ret = AbstractState::REDUCED;
         break;
     case S_MINUS:
-        machine.Reduce(RULE_3);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_3);
         ret = AbstractState::REDUCED;
         break;
     case S_MULT:
@@ -30,7 +30,7 @@ AbstractState::TransitionResult ES13::Transition(AbstractStateMachine &machine, 
         ret = AbstractState::PILED_UP;
         break;
     case S_PV:
-        machine.Reduce(RULE_3);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_3);
         ret = AbstractState::REDUCED;
         break;
     default:

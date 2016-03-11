@@ -18,7 +18,7 @@ AbstractState::TransitionResult PS5::Transition(AbstractStateMachine &machine, S
 }
 
 PS5::PS5() :
-    AbstractState("PS5")
+    AbstractState("PS05")
 {
 
 }

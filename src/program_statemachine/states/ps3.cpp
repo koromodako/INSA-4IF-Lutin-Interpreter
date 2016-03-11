@@ -23,7 +23,7 @@ AbstractState::TransitionResult PS3::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::PILED_UP;
         break;
     case S_EOF:///< $
-        machine.Reduce(RULE_1);
+        machine.Reduce(Symbol(S_EOF), RULE_1);
         ret = AbstractState::PILED_UP;
         break;
     case S_I:///< instruction
@@ -38,7 +38,7 @@ AbstractState::TransitionResult PS3::Transition(AbstractStateMachine &machine, S
 }
 
 PS3::PS3() :
-    AbstractState("PS3")
+    AbstractState("PS03")
 {
 
 }

@@ -50,7 +50,7 @@ AbstractState::TransitionResult PS1::Transition(AbstractStateMachine &machine, S
 }
 
 PS1::PS1() :
-    AbstractState("PS1")
+    AbstractState("PS01")
 {
 
 }

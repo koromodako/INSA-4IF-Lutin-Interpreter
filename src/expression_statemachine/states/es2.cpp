@@ -39,7 +39,7 @@ AbstractState::TransitionResult ES2::Transition(AbstractStateMachine &machine, S
 }
 
 ES2::ES2() :
-    AbstractState("ES2")
+    AbstractState("ES02")
 {
 
 }

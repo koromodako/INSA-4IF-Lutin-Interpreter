@@ -6,19 +6,19 @@ AbstractState::TransitionResult PS2::Transition(AbstractStateMachine &machine, S
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_READ:///< 'lire'
-        machine.Reduce(RULE_10);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_10);
         ret = AbstractState::REDUCED;
         break;
     case S_WRITE:///< 'ecrire'
-        machine.Reduce(RULE_10);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_10);
         ret = AbstractState::REDUCED;
         break;
     case S_ID:///< identifiant '\w[\w\d]*'
-        machine.Reduce(RULE_10);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_10);
         ret = AbstractState::REDUCED;
         break;
     case S_EOF:///< $
-        machine.Reduce(RULE_10);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_10);
         ret = AbstractState::REDUCED;
         break;
     case S_LI:///< liste d'instructions
@@ -33,7 +33,7 @@ AbstractState::TransitionResult PS2::Transition(AbstractStateMachine &machine, S
 }
 
 PS2::PS2() :
-    AbstractState("PS2")
+    AbstractState("PS02")
 {
 
 }

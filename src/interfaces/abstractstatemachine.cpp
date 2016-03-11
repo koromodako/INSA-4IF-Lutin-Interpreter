@@ -25,7 +25,7 @@ void AbstractStateMachine::Run(AbstractState * initialState)
     }
 }
 
-void AbstractStateMachine::Reduce(int size)
+void AbstractStateMachine::Reduce(Symbol symbol, int size)
 {
     // -- DEBUG --------------------------------------------------------
     DEBUG("current state is '" << _statesStack.top()->name() << "' -> reducing with size=" << size);
@@ -37,6 +37,8 @@ void AbstractStateMachine::Reduce(int size)
         _symbolsStack.pop();
         size--;
     }
+    // transition appliquée quand on arrive dans le nouvel état
+    _statesStack.top()->Transition(*this, symbol);
 }
 
 void AbstractStateMachine::PileUp(Symbol symbol, AbstractState *state)

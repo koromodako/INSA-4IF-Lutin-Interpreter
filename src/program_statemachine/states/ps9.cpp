@@ -18,7 +18,7 @@ AbstractState::TransitionResult PS9::Transition(AbstractStateMachine &machine, S
 }
 
 PS9::PS9() :
-    AbstractState("PS9")
+    AbstractState("PS09")
 {
 
 }

@@ -19,7 +19,7 @@ AbstractState::TransitionResult PS6::Transition(AbstractStateMachine &machine, S
 }
 
 PS6::PS6() :
-    AbstractState("PS6")
+    AbstractState("PS06")
 {
 
 }

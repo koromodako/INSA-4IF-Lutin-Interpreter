@@ -29,7 +29,7 @@ AbstractState::TransitionResult ES1::Transition(AbstractStateMachine &machine, S
 }
 
 ES1::ES1() :
-    AbstractState("ES1")
+    AbstractState("ES01")
 {
 
 }

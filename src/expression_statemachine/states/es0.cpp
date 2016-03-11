@@ -44,4 +44,4 @@ AbstractState::TransitionResult ES0::Transition(AbstractStateMachine &machine, S
     return ret;
 }
 
-ES0::ES0() : AbstractState("ES0") {}
+ES0::ES0() : AbstractState("ES00") {}

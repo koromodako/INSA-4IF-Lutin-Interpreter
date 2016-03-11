@@ -7,19 +7,19 @@ AbstractState::TransitionResult PS8::Transition(AbstractStateMachine &machine, S
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_READ:///< 'lire'
-        machine.Reduce(RULE_8);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_8);
         ret = AbstractState::REDUCED;
         break;
     case S_WRITE:///< 'ecrire'
-        machine.Reduce(RULE_8);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_8);
         ret = AbstractState::REDUCED;
         break;
     case S_ID:///< identifiant '\w[\w\d]*'
-        machine.Reduce(RULE_8);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_8);
         ret = AbstractState::REDUCED;
         break;
     case S_EOF:///< $
-        machine.Reduce(RULE_8);
+        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_8);
         ret = AbstractState::REDUCED;
         break;
     default:
@@ -30,7 +30,7 @@ AbstractState::TransitionResult PS8::Transition(AbstractStateMachine &machine, S
 }
 
 PS8::PS8() :
-    AbstractState("PS8")
+    AbstractState("PS08")
 {
 
 }

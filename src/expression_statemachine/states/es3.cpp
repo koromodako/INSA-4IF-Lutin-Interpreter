@@ -40,7 +40,7 @@ AbstractState::TransitionResult ES3::Transition(AbstractStateMachine &machine, S
 }
 
 ES3::ES3() :
-    AbstractState("ES3")
+    AbstractState("ES03")
 {
 
 }

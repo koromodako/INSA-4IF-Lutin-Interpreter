@@ -26,7 +26,7 @@ public:
      * @param size
      *      Taille de la réduction (en nombre d'états)
      */
-    void Reduce(int size);
+    void Reduce(Symbol symbol, int size);
 
     /**
      * @brief Effectue la transition vers l'état suivant
