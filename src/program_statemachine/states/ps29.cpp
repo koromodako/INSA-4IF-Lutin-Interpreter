@@ -1,5 +1,6 @@
 #include "ps29.h"
 #include "../rules.h"
+#include "../../expression_statemachine/expressionstatemachine.h"
 
 int PS29::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
