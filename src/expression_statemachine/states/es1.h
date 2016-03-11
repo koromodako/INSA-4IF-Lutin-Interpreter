@@ -11,6 +11,7 @@
 class ES1 : public AbstractES
 {
 public:
+    ES1();
     ~ES1(){}
 
     /**
@@ -19,10 +20,8 @@ public:
      * @param symbol
      * @return
      */
-    virtual int transition(ExpressionStateMachine & machine, Symbol symbol);
+    virtual int Transition(ExpressionStateMachine & machine, Symbol symbol);
 
-protected:
-    ES1();
 
 };
 

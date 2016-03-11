@@ -1,6 +1,6 @@
 #include "es3.h"
 
-int ES3::transition(ExpressionStateMachine &machine, Symbol symbol)
+int ES3::Transition(ExpressionStateMachine &machine, Symbol symbol)
 {
     //default transition
     return -1;

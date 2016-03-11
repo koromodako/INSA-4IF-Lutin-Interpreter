@@ -1,6 +1,6 @@
 #include "es5.h"
 
-int ES5::transition(ExpressionStateMachine &machine, Symbol symbol)
+int ES5::Transition(ExpressionStateMachine &machine, Symbol symbol)
 {
     //default transition
     return -1;
