@@ -34,8 +34,8 @@ AbstractState::TransitionResult ES8::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::REDUCED;
         break;
     default:
-        machine.Unexpected(symbol);ret = AbstractState::UNEXPECTED;
-        ret = AbstractState::UNEXPECTED;
+        machine.Unexpected(symbol);
+
         break;
     }
     return ret;

@@ -8,16 +8,6 @@ ProgramStateMachine::ProgramStateMachine(Lexer &lexer, DataMap &dmap, Instructio
 
 void ProgramStateMachine::Run()
 {
-    Symbol symbol;
-    while(!getStateStack().empty())
-    {
-        symbol = GetLexer().GetNext();
-        if(!getStateStack().top()->Transition(*this, symbol))
-        {
-            break;
-        }
-        GetLexer().MoveForward();
-
-
-    }
+    // -- run state machine
+    AbstractStateMachine::Run(new PS0);
 }

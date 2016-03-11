@@ -10,7 +10,6 @@
  */
 class InstructionList: public list<Instruction>
 {
-    /// \todo Implementer la methode d'execution
 public:
     InstructionList();
     /**
@@ -29,9 +28,15 @@ public:
      *      Identifiant de la variable à affecter
      */
     void StartSet(string & identifier);
-    ///
-    /// \todo Ajouter la méthode pour construire les expressions arithmétiques
-    ///
+    /**
+     * @brief Ajoute un symbole d'expression dans un buffer interne
+     * @param symbol
+     */
+    void AppendSymbol(Symbol symbol);
+    /**
+     * @brief Traite le contenu du buffer interne pour créer une expression
+     */
+    void MergeSymbols();
     /**
      * @brief Termine l'ajout d'une instruction quelle qu'elle soit
      */
@@ -46,6 +51,7 @@ public:
 
 private:
     Instruction _currentInstr;
+    list<Symbol> _exprSymbols;
 };
 
 #endif // INSTRUCTIIONLIST_H

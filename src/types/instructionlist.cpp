@@ -1,4 +1,6 @@
 #include "instructionlist.h"
+#include "../debug.h"
+
 #include <iostream>
 
 InstructionList::InstructionList() :
@@ -20,6 +22,39 @@ void InstructionList::StartPrint()
 void InstructionList::StartSet(string &identifier)
 {
     _currentInstr = Instruction(ICODE_SET, identifier);
+}
+
+void InstructionList::AppendSymbol(Symbol symbol)
+{
+    _exprSymbols.push_back(symbol);
+    // -- DEBUG ---------------------------------------------------------------------
+    DBG_PRT("internal_symbol_stack = { ");
+    for(list<Symbol>::iterator s = _exprSymbols.begin(); s != _exprSymbols.end(); ++s)
+    {   if(s != _exprSymbols.begin())
+        {   DBG_PRT(", ");
+        }
+        switch (s->code) {
+        case S_NUM:     DBG_PRT("num");         break;
+        case S_VAR:     DBG_PRT("var");         break;
+        case S_PLUS:    DBG_PRT("pls");         break;
+        case S_MINUS:   DBG_PRT("min");         break;
+        case S_MULT:    DBG_PRT("mul");         break;
+        case S_DIV:     DBG_PRT("div");         break;
+        case S_PO:      DBG_PRT("po");          break;
+        case S_PF:      DBG_PRT("pf");          break;
+        default:        DBG_PRT("unexpected");  break;
+        }
+    }
+    DBG_PRT(" }" << endl << flush);
+    // -- DEBUG ---------------------------------------------------------------------
+}
+
+void InstructionList::MergeSymbols()
+{
+    /// \todo implementer ici
+    // -- DEBUG ---------------------------------------------------------------------
+    DEBUG("merge required");
+    // -- DEBUG ---------------------------------------------------------------------
 }
 
 void InstructionList::EndInstruction()

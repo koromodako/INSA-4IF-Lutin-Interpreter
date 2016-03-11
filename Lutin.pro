@@ -11,6 +11,8 @@ macx {
 TARGET = lut
 LIBS += -lboost_regex
 
+QMAKE_CXXFLAGS += -Wall -Werror
+
 SOURCES += \
     src/main.cpp \
     src/interfaces/abstractstate.cpp \

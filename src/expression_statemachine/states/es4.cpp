@@ -20,10 +20,12 @@ AbstractState::TransitionResult ES4::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::REDUCED;
         break;
     case S_MULT:
+        machine.GetInstructionList().AppendSymbol(symbol);
         machine.PileUp(symbol, new ES5);
         ret = AbstractState::PILED_UP;
         break;
     case S_DIV:
+        machine.GetInstructionList().AppendSymbol(symbol);
         machine.PileUp(symbol, new ES6);
         ret = AbstractState::PILED_UP;
         break;
@@ -32,8 +34,8 @@ AbstractState::TransitionResult ES4::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::REDUCED;
         break;
     default:
-        machine.Unexpected(symbol);ret = AbstractState::UNEXPECTED;
-        ret = AbstractState::UNEXPECTED;
+        machine.Unexpected(symbol);
+
         break;
     }
     return ret;

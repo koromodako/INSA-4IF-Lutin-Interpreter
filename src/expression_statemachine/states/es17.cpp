@@ -10,8 +10,8 @@ AbstractState::TransitionResult ES17::Transition(AbstractStateMachine &machine, 
         ret = AbstractState::REDUCED;
         break;
     default:
-        machine.Unexpected(symbol);ret = AbstractState::UNEXPECTED;
-        ret = AbstractState::UNEXPECTED;
+        machine.Unexpected(symbol);
+
         break;
     }
     return ret;

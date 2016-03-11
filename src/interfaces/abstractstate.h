@@ -22,10 +22,19 @@ public:
     };
     virtual ~AbstractState(){}
     /**
-     * @brief Affiche le nom de l'état
+     * @brief Réalise la transition de l'état vers un autre état
+     * @param machine
+     *      Machine à états contenant l'état courant
+     * @param symbol
+     *      Symbole suivant
+     * @return
      */
-    void print() const;
-    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol)=0;
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol) = 0;
+    /**
+     * @brief Retourne le nom de l'état courant
+     * @return
+     */
+    inline const string & name() const { return _name; }
 
 protected:
     AbstractState(const string & name);

@@ -8,18 +8,6 @@ ExpressionStateMachine::ExpressionStateMachine(Lexer & lexer, DataMap & dmap, In
 
 void ExpressionStateMachine::Run()
 {
-    Symbol symbol;
-    bool ok = true;
-    while(!getStateStack().empty() && ok)
-    {
-        symbol = GetLexer().GetNext();
-        switch(getStateStack().top()->Transition(*this, symbol))
-        {
-            case AbstractState::UNEXPECTED: ok = false; break;
-            case AbstractState::REDUCED:break;
-            case AbstractState::PILED_UP:break;
-        }
-        GetLexer().MoveForward();
-
-    }
+    // -- run state machine
+    AbstractStateMachine::Run(new ES0);
 }

@@ -5,9 +5,11 @@
 #include <iostream>
 
 #ifdef PRINT_DEBUG
-#   define DEBUG(msg) cerr << msg << endl << flush
+#   define DEBUG(msg) cerr << "-!-[DEBUG] - " <<  msg << endl << flush
+#   define DBG_PRT(msg) cerr << msg
 #else
 #   define DEBUG(msg)
+#   define DBG_PRT(msg)
 #endif
 
 #endif // DEBUG_H

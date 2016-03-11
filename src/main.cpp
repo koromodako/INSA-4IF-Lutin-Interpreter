@@ -58,6 +58,8 @@ int main(int argc, char *argv[])
     Lexer lexer(stream);
     // -- construction de l'automate
     ProgramStateMachine programStateMachine(lexer, dataMap, instructionList);
+    // -- execution de l'automate
+    programStateMachine.Run();
 
     return 0;
 }

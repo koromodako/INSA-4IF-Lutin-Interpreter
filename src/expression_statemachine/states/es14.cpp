@@ -8,20 +8,23 @@ AbstractState::TransitionResult ES14::Transition(AbstractStateMachine &machine, 
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_PF:
+        machine.GetInstructionList().AppendSymbol(symbol);
+        machine.GetInstructionList().MergeSymbols();
         machine.PileUp(symbol, new ES15);
         ret = AbstractState::PILED_UP;
         break;
     case S_PLUS:
+        machine.GetInstructionList().AppendSymbol(symbol);
         machine.PileUp(symbol, new ES2);
         ret = AbstractState::PILED_UP;
         break;
     case S_MINUS:
+        machine.GetInstructionList().AppendSymbol(symbol);
         machine.PileUp(symbol, new ES3);
         ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(symbol);ret = AbstractState::UNEXPECTED;
-        ret = AbstractState::UNEXPECTED;
+        machine.Unexpected(symbol);
         break;
     }
     return ret;

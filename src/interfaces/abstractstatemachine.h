@@ -19,7 +19,7 @@ public:
     /**
      * @brief Execute la machine à état en utilisant le lexer
      */
-    virtual void Run() = 0;
+    virtual void Run(AbstractState * initialState);
 
     /**
      * @brief Effectue la reduction souhaitée
@@ -52,7 +52,6 @@ public:
 
 protected:
     AbstractStateMachine(Lexer & lexer, DataMap & dmap, InstructionList & instructions);
-    inline stack<AbstractState*> getStateStack() const{return _statesStack;}
 
 private:
     Lexer & _lexer;
