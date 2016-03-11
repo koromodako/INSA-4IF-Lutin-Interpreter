@@ -3,7 +3,7 @@
 #include "ps8.h"
 int PS7::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
     case S_PV:///< ';'
         machine.PileUp(symbol, new PS8());
         break;

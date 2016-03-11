@@ -3,7 +3,7 @@
 #include "ps29.h"
 int PS5::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
     case S_EXP:///< expression arithmetique
         machine.PileUp(symbol, new PS29());
         break;

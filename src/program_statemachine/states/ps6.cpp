@@ -4,7 +4,7 @@
 
 int PS6::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
     case S_ID:///< identifiant '\w[\w\d]*'
         machine.PileUp(symbol, new PS7());
         break;

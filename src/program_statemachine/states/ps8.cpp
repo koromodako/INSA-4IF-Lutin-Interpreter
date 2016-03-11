@@ -2,7 +2,7 @@
 
 int PS8::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
     case S_READ:///< 'lire'
         break;
     case S_WRITE:///< 'ecrire'

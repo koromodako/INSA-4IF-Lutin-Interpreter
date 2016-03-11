@@ -5,7 +5,7 @@
 #include "ps4.h"
 int PS3::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
 
     case S_READ:///< 'lire'
         machine.PileUp(symbol, new PS6());

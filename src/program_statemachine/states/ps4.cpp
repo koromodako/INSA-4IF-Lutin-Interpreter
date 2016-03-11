@@ -2,7 +2,7 @@
 
 int PS4::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
 
     case S_READ:///< 'lire'
         break;
