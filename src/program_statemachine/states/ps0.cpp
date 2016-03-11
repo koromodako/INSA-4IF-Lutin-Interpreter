@@ -9,22 +9,27 @@ AbstractState::TransitionResult PS0::Transition(AbstractStateMachine &machine, S
     switch (symbol.code) {
     case S_CONST:///< mot-clé 'const'
         machine.Reduce(RULE_3);
+        Transition(machine, Symbol(S_LD));
         ret = AbstractState::REDUCED;
         break;
     case S_VAR:///< mot-clé 'var'
         machine.Reduce(RULE_3);
+        Transition(machine, Symbol(S_LD));
         ret = AbstractState::REDUCED;
         break;
     case S_READ:///< 'lire'
         machine.Reduce(RULE_3);
+        Transition(machine, Symbol(S_LD));
         ret = AbstractState::REDUCED;
         break;
     case S_WRITE:///< 'ecrire'
         machine.Reduce(RULE_3);
+        Transition(machine, Symbol(S_LD));
         ret = AbstractState::REDUCED;
         break;
     case S_ID:///< identifiant '\w[\w\d]*'
         machine.Reduce(RULE_3);
+        Transition(machine, Symbol(S_LD));
         ret = AbstractState::REDUCED;
         break;
     case S_LD:///< liste de déclarations
@@ -33,7 +38,6 @@ AbstractState::TransitionResult PS0::Transition(AbstractStateMachine &machine, S
         break;
     default:
         machine.Unexpected(symbol);
-        ret = AbstractState::UNEXPECTED;
         break;
     }
     return ret;

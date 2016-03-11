@@ -53,36 +53,36 @@ enum BinaryOperator {
  */
 enum SymbolCode {
     // terminaux
-    S_LEXER_ERROR,  ///< symbole terminal non identifiable
-    S_CONST,        ///< mot-clé 'const'
-    S_VAR,          ///< mot-clé 'var'
-    S_NUM,          ///< nombre '\d+'
-    S_EQ,           ///< '='
-    S_AFFECT,       ///< ':='
-    S_V,            ///< ','
-    S_PV,           ///< ';'
-    S_READ,         ///< 'lire'
-    S_WRITE,        ///< 'ecrire'
-    S_ID,           ///< identifiant '\w[\w\d]*'
-    S_EOF,          ///< $ (fin du flux)
-    S_PO,           ///< '('
-    S_PF,           ///< ')'
-    S_PLUS,         ///< '+'
-    S_MINUS,        ///< '-'
-    S_MULT,         ///< '*'
-    S_DIV,          ///< '\'
+    S_LEXER_ERROR   = 0,    ///< symbole terminal non identifiable
+    S_CONST         = 101,  ///< mot-clé 'const'
+    S_VAR           = 102,  ///< mot-clé 'var'
+    S_NUM           = 103,  ///< nombre '\d+'
+    S_EQ            = 104,  ///< '='
+    S_AFFECT        = 105,  ///< ':='
+    S_V             = 106,  ///< ','
+    S_PV            = 107,  ///< ';'
+    S_READ          = 108,  ///< 'lire'
+    S_WRITE         = 109,  ///< 'ecrire'
+    S_ID            = 110,  ///< identifiant '\w[\w\d]*'
+    S_PO            = 111,  ///< '('
+    S_PF            = 112,  ///< ')'
+    S_PLUS          = 113,  ///< '+'
+    S_MINUS         = 114,  ///< '-'
+    S_MULT          = 115,  ///< '*'
+    S_DIV           = 116,  ///< '\'
+    S_EOF           = 117,  ///< $ (fin du flux)
     // non terminaux
-    S_EXP,          ///< expression arithmetique  ---> appel de l'automate d'expression par l'automate de programme
-    S_P,            ///< programme
-    S_D,            ///< déclaration
-    S_LD,           ///< liste de déclarations
-    S_LC,           ///< liste de constantes
-    S_LI,           ///< liste d'instructions
-    S_I,            ///< instruction
-    S_LV,           ///< liste de variables
-    S_A,            ///< expression
-    S_T,            ///< terme
-    S_F             ///< facteur
+    S_EXP           = 201,  ///< expression arithmetique  ---> appel de l'automate d'expression par l'automate de programme
+    S_P             = 202,  ///< programme
+    S_D             = 203,  ///< déclaration
+    S_LD            = 204,  ///< liste de déclarations
+    S_LC            = 205,  ///< liste de constantes
+    S_LI            = 206,  ///< liste d'instructions
+    S_I             = 207,  ///< instruction
+    S_LV            = 208,  ///< liste de variables
+    S_A             = 209,  ///< expression
+    S_T             = 210,  ///< terme
+    S_F             = 211   ///< facteur
 };
 
 struct Symbol {

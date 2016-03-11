@@ -28,7 +28,6 @@ AbstractState::TransitionResult PS29::Transition(AbstractStateMachine &machine, 
             break;
         default:
             machine.Unexpected(symbol);
-            ret = AbstractState::UNEXPECTED;
             break;
     }
     return ret;

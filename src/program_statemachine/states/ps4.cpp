@@ -24,7 +24,6 @@ AbstractState::TransitionResult PS4::Transition(AbstractStateMachine &machine, S
         break;
     default:
         machine.Unexpected(symbol);
-        ret = AbstractState::UNEXPECTED;
         break;
     }
     return ret;

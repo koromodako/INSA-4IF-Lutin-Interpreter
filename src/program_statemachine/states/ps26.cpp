@@ -15,7 +15,6 @@ AbstractState::TransitionResult PS26::Transition(AbstractStateMachine &machine, 
             break;
         default:
             machine.Unexpected(symbol);
-            ret = AbstractState::UNEXPECTED;
             break;
     }
     return ret;

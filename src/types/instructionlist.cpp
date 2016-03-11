@@ -28,6 +28,7 @@ void InstructionList::AppendSymbol(Symbol symbol)
 {
     _exprSymbols.push_back(symbol);
     // -- DEBUG ---------------------------------------------------------------------
+    DEBUG("AppendSymbol(symbol(code='"<<symbol.code<<"',buf='"<<symbol.buf<<"'))");
     DBG_PRT("internal_symbol_stack = { ");
     for(list<Symbol>::iterator s = _exprSymbols.begin(); s != _exprSymbols.end(); ++s)
     {   if(s != _exprSymbols.begin())
@@ -36,6 +37,7 @@ void InstructionList::AppendSymbol(Symbol symbol)
         switch (s->code) {
         case S_NUM:     DBG_PRT("num");         break;
         case S_VAR:     DBG_PRT("var");         break;
+        case S_ID:      DBG_PRT("id");          break;
         case S_PLUS:    DBG_PRT("pls");         break;
         case S_MINUS:   DBG_PRT("min");         break;
         case S_MULT:    DBG_PRT("mul");         break;

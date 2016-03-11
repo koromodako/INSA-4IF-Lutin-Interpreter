@@ -7,7 +7,7 @@
 #define RULE_4 2
 #define RULE_5 0
 #define RULE_6 4
-#define RULE_7 5
+#define RULE_7 6
 #define RULE_8 5
 #define RULE_9 0
 #define RULE_10 2

@@ -8,10 +8,12 @@ AbstractState::TransitionResult PS12::Transition(AbstractStateMachine &machine, 
     switch (symbol.code) {
     case S_V:///< ','
         machine.Reduce(RULE_3);
+        Transition(machine, Symbol(S_LV));
         ret = AbstractState::REDUCED;
         break;
     case S_PV:///< ';'
         machine.Reduce(RULE_3);
+        Transition(machine, Symbol(S_LV));
         ret = AbstractState::REDUCED;
         break;
     case S_LV:
@@ -20,7 +22,6 @@ AbstractState::TransitionResult PS12::Transition(AbstractStateMachine &machine, 
         break;
     default:
         machine.Unexpected(symbol);
-        ret = AbstractState::UNEXPECTED;
         break;
     }
     return ret;

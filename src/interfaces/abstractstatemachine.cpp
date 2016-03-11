@@ -43,7 +43,7 @@ void AbstractStateMachine::PileUp(Symbol symbol, AbstractState *state)
 {
     // -- DEBUG --------------------------------------------------------
     DEBUG("current state is '" << _statesStack.top()->name() << "' -> piling up : new state is '" <<
-          state->name() << "' symbol(code="<<symbol.code<<",buf="<<symbol.buf<<")" );
+          state->name() << "' symbol(code='"<<symbol.code<<"',buf='"<<symbol.buf<<"')" );
     // -- DEBUG --------------------------------------------------------
 
     _statesStack.push(state);
@@ -54,7 +54,7 @@ void AbstractStateMachine::Unexpected(Symbol symbol)
 {
     /// \todo implement here
     // -- DEBUG -------------------------------------------------------------------
-    DEBUG("Symbole inattendu dans la machine : code = '" << symbol.code << "' valeur = '" << symbol.buf << "'");
+    DEBUG("Symbole inattendu dans la machine : symbol(code='"<<symbol.code<<"',buf='"<<symbol.buf<<"')");
     // -- DEBUG -------------------------------------------------------------------
 }
 

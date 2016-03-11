@@ -4,9 +4,10 @@
 #include "ps11.h"
 #include "ps6.h"
 #include "ps5.h"
-#include "ps3.h"
+#include "ps9.h"
 #include "ps17.h"
 #include "ps2.h"
+
 AbstractState::TransitionResult PS1::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
@@ -29,7 +30,7 @@ AbstractState::TransitionResult PS1::Transition(AbstractStateMachine &machine, S
         break;
     case S_ID:///< identifiant '\w[\w\d]*'
         machine.GetInstructionList().StartSet(symbol.buf);
-        machine.PileUp(symbol, new PS3());
+        machine.PileUp(symbol, new PS9()); /// \todo correction table transition nécessaire ! PS3 -> PS9 in PS1 for id
         ret = AbstractState::PILED_UP;
         break;
     case S_D:///< déclaration
@@ -42,7 +43,6 @@ AbstractState::TransitionResult PS1::Transition(AbstractStateMachine &machine, S
         break;
     default:
         machine.Unexpected(symbol);
-        ret = AbstractState::UNEXPECTED;
         break;
     }
     return ret;

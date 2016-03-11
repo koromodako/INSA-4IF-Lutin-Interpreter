@@ -35,7 +35,6 @@ AbstractState::TransitionResult ES13::Transition(AbstractStateMachine &machine, 
         break;
     default:
         machine.Unexpected(symbol);
-        ret = AbstractState::PILED_UP;
         break;
     }
     return ret;

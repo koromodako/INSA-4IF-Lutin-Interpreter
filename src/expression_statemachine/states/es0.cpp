@@ -12,13 +12,11 @@ AbstractState::TransitionResult ES0::Transition(AbstractStateMachine &machine, S
     switch (symbol.code) {
     case S_ID:
         machine.GetInstructionList().AppendSymbol(symbol);  // on ajoute le symbole ID
-        machine.GetInstructionList().MergeSymbols();        // puis on construit l'expression directement
         machine.PileUp(symbol, new ES9);
         ret = AbstractState::PILED_UP;
         break;
     case S_NUM:
         machine.GetInstructionList().AppendSymbol(symbol);  // on ajoute le symbole NUM
-        machine.GetInstructionList().MergeSymbols();        // puis on construit l'expression directement
         machine.PileUp(symbol, new ES10);
         ret = AbstractState::PILED_UP;
         break;
@@ -41,7 +39,6 @@ AbstractState::TransitionResult ES0::Transition(AbstractStateMachine &machine, S
         break;
     default:
         machine.Unexpected(symbol);
-
         break;
     }
     return ret;

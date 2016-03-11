@@ -35,7 +35,6 @@ AbstractState::TransitionResult ES16::Transition(AbstractStateMachine &machine, 
         break;
     default:
         machine.Unexpected(symbol);
-
         break;
     }
     return ret;

@@ -9,7 +9,6 @@ AbstractState::TransitionResult ES14::Transition(AbstractStateMachine &machine, 
     switch (symbol.code) {
     case S_PF:
         machine.GetInstructionList().AppendSymbol(symbol);
-        machine.GetInstructionList().MergeSymbols();
         machine.PileUp(symbol, new ES15);
         ret = AbstractState::PILED_UP;
         break;
