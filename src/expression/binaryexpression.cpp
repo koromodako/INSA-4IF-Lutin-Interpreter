@@ -88,7 +88,7 @@ AbstractExpression *BinaryExpression::Simplify(DataMap &dmap, bool &ok)
             // si les deux opérandes sont des nombres
             if(_left->IsNumber() && _right->IsNumber())
             {   // on simplifie le calcul en évaluant ce dernier
-                int value = Eval(dmap, ok);
+                double value = Eval(dmap, ok);
                 // si l'évaluation s'est bien déroulée
                 if(ok)
                 {   simplified = new Number(value);

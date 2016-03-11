@@ -12,7 +12,7 @@ class OptionsManager
 public:
     OptionsManager(DataMap &dataMap, InstructionList &instructionList);
 
-    bool CheckOption(int argc, char *argv[]);
+    bool CheckOptions(int argc, char *argv[]);
     void Execute();
 
 private:

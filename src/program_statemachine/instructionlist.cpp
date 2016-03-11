@@ -55,8 +55,3 @@ string InstructionList::Stringify() const
 	}
     return instructions;
 }
-
-int InstructionList::Execute(){
-    /// \todo implement here
-}
-

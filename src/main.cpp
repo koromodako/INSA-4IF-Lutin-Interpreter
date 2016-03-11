@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     InstructionList instructionList;
     OptionsManager optionsManager(dataMap, instructionList);
     //Traitement des options
-    if (!optionsManager.CheckOption(argc, argv))
+    if (!optionsManager.CheckOptions(argc, argv))
     {
         cerr << "Option inconnue" << endl;
         cerr << "Syntaxe d'appel : ./Lutin nomFichier.lt [-p] [-o] [-a] [-e]" << endl;
