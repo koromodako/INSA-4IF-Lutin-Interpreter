@@ -7,7 +7,7 @@
 #include <stack>
 
 using namespace std;
-
+class AbstractState;
 /**
  * @brief Cette classe abstraite représente une machine à états pour l'analyse syntaxique quelconque
  */
@@ -52,9 +52,7 @@ public:
 
 protected:
     AbstractStateMachine(Lexer & lexer, DataMap & dmap, InstructionList & instructions);
-
-    inline Lexer & lexer() { return _lexer; }                               // inline explicite
-                             // inline explicite
+    inline stack<AbstractState*> getStateStack() const{return _state_stack;}
 
 private:
     Lexer & _lexer;

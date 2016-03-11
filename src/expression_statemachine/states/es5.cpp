@@ -4,32 +4,36 @@
 #include "es11.h"
 #include "es7.h"
 
-int ES5::Transition(ExpressionStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult ES5::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
-    int ret = 0;
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_ID:
         machine.PileUp(symbol, new ES9);
+        ret = AbstractState::PILED_UP;
         break;
     case S_NUM:
         machine.PileUp(symbol, new ES10);
+        ret = AbstractState::PILED_UP;
         break;
     case S_PF:
         machine.PileUp(symbol, new ES11);
+        ret = AbstractState::PILED_UP;
         break;
     case S_F:
         machine.PileUp(symbol, new ES7);
+        ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(symbol);
-        ret = -1;
+        machine.Unexpected(symbol);ret = AbstractState::UNEXPECTED;
+        ret = AbstractState::UNEXPECTED;
         break;
     }
     return ret;
 }
 
 ES5::ES5() :
-    AbstractES("ES5")
+    AbstractState("ES5")
 {
 
 }

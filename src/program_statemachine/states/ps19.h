@@ -2,18 +2,18 @@
 #define PS19_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
- * num->PS20
+ * =->PS20
 */
-class PS19 : public AbstractPS
+class PS19 : public AbstractState
 {
 public:
     ~PS19(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
     PS19();
 };
 

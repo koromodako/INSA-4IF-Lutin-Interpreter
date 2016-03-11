@@ -2,18 +2,18 @@
 #define PS14_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
  * id->PS15
 */
-class PS14 : public AbstractPS
+class PS14 : public AbstractState
 {
 public:
     ~PS14(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
     PS14();
 };
 

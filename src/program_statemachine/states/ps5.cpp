@@ -1,21 +1,25 @@
 #include "ps5.h"
 
 #include "ps29.h"
-int PS5::Transition(ProgramStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS5::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_EXP:///< expression arithmetique
+        machine.GetInstructionList().StartPrint();
         machine.PileUp(symbol, new PS29());
+        ret = AbstractState::PILED_UP;
         break;
     default:
         machine.Unexpected(symbol);
+        ret = AbstractState::UNEXPECTED;
         break;
     }
-    return -1;
+    return ret;
 }
 
 PS5::PS5() :
-    AbstractPS("PS5")
+    AbstractState("PS5")
 {
 
 }

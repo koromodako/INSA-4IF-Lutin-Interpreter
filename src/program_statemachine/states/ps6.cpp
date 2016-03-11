@@ -2,21 +2,25 @@
 
 #include "ps7.h"
 
-int PS6::Transition(ProgramStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS6::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_ID:///< identifiant '\w[\w\d]*'
+        machine.GetInstructionList().AppendRead(symbol.buf);
         machine.PileUp(symbol, new PS7());
+        ret = AbstractState::PILED_UP;
         break;
     default:
         machine.Unexpected(symbol);
+        ret = AbstractState::UNEXPECTED;
         break;
     }
-    return -1;
+    return ret;
 }
 
 PS6::PS6() :
-    AbstractPS("PS6")
+    AbstractState("PS6")
 {
 
 }

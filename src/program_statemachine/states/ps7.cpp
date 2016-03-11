@@ -1,21 +1,25 @@
 #include "ps7.h"
 
 #include "ps8.h"
-int PS7::Transition(ProgramStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS7::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_PV:///< ';'
+        machine.GetInstructionList().EndInstruction();
         machine.PileUp(symbol, new PS8());
+        ret = AbstractState::PILED_UP;
         break;
     default:
         machine.Unexpected(symbol);
+        ret = AbstractState::UNEXPECTED;
         break;
     }
-    return -1;
+    return ret;
 }
 
 PS7::PS7() :
-    AbstractPS("PS7")
+    AbstractState("PS7")
 {
 
 }
