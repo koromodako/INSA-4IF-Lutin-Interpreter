@@ -18,8 +18,8 @@ BinaryExpression::~BinaryExpression()
     delete _right;
 }
 
-BinaryExpression::BinaryExpression(BinaryOperator op, AbstractExpression * left, AbstractExpression * right) :
-    AbstractExpression(), _op(op), _left(left), _right(right)
+BinaryExpression::BinaryExpression(BinaryOperator op, AbstractExpression * left, AbstractExpression * right, bool hasParenthesisAround) :
+    AbstractExpression(), _hasParenthesisAround(hasParenthesisAround), _op(op), _left(left), _right(right)
 {}
 
 BinaryExpression::BinaryExpression(BinaryExpression &other) :
@@ -139,9 +139,9 @@ AbstractExpression *BinaryExpression::Simplify(DataMap &dmap, bool &ok)
 string BinaryExpression::Stringify()
 {
     stringstream ss("");
-#ifdef ADD_PARENTHESIS
-    ss << "(";
-#endif
+    if (_hasParenthesisAround)
+        ss << "(";
+
     ss << _left->Stringify();
     switch (_op) {
     case BOP_PLUS:  ss << '+'; break;
@@ -150,8 +150,8 @@ string BinaryExpression::Stringify()
     case BOP_DIV:   ss << '/'; break;
     }
     ss << _right->Stringify();
-#ifdef ADD_PARENTHESIS
-    ss << ")";
-#endif
+    if (_hasParenthesisAround)
+        ss << ")";
+
     return ss.str();
 }
