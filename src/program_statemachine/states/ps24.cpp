@@ -1,8 +1,16 @@
 #include "ps24.h"
+#include "ps25.h"
 
-int PS24::transition(ProgramStateMachine &machine, Symbol symbol)
+int PS24::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    // default transition
+    switch (symbol) {
+        case S_EQ:///< '='
+            machine.PileUp(symbol, new PS25());
+            break;
+        default:
+            machine.Unexpected(symbol,this);
+            break;
+    }
     return -1;
 }
 

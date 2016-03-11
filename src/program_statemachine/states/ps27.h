@@ -6,16 +6,15 @@
 
 /**
  * @brief
- * const, var, lire, ecrire, id, $->R5
+ * const, var, lire, ecrire, id, $->R7
 */
 class PS27 : public AbstractPS
 {
 public:
     ~PS27(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
 
-protected:
     PS27();
 };
 

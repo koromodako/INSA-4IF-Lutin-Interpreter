@@ -13,9 +13,8 @@ class PS9 : public AbstractPS
 public:
     ~PS9(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
 
-protected:
     PS9();
 };
 

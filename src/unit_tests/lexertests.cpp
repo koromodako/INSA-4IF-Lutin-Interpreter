@@ -23,23 +23,22 @@ void LexerTests::nominal_test()
     }
     Lexer lexer(ifs);
     list<Symbol> symbols;
-    list<string> values;
     Symbol symbol;
-    string value;
     lexer.MoveForward(); // commence à lire en placant la tete de lecture au debut du flux
-    while((symbol = lexer.GetNext(value)) != S_EOF)
-    {   if(symbol == S_LEXER_ERROR)
+    symbol = lexer.GetNext();
+    while(symbol.code != S_EOF)
+    {   if(symbol.code == S_LEXER_ERROR)
         {   PRINT("Lexer error encountered...");
             break;
         }
         // on récupère les valeurs
         symbols.push_back(symbol);
-        values.push_back(value);
         // on déplace la tête de lecture
         lexer.MoveForward();
+        // on lit le prochain symbole
+        symbol = lexer.GetNext();
     }
     symbols.push_back(symbol);
-    values.push_back(value);
     /*
      * Programme testé : correct.lt
      *
@@ -54,74 +53,58 @@ void LexerTests::nominal_test()
      * 9. ecrire e;
      */
     list<Symbol> expectedSymbols;
-    list<string> expectedValues;
-#define PUSH_SYM(symbol) expectedSymbols.push_back(symbol)
-#define PUSH_VAL(value) expectedValues.push_back(value)
+#define PUSH_SYM(symbolcode, value) expectedSymbols.push_back(Symbol(symbolcode, value));
     // ligne 1
-    PUSH_SYM(S_VAR);PUSH_SYM(S_ID);PUSH_SYM(S_V);PUSH_SYM(S_ID);PUSH_SYM(S_PV);
-    PUSH_VAL("var");PUSH_VAL("a");PUSH_VAL(",");PUSH_VAL("b");PUSH_VAL(";");
+    PUSH_SYM(S_VAR,"var");PUSH_SYM(S_ID,"a");PUSH_SYM(S_V,",");PUSH_SYM(S_ID,"b");PUSH_SYM(S_PV,";");
     // ligne 2
-    PUSH_SYM(S_CONST);PUSH_SYM(S_ID);PUSH_SYM(S_EQ);PUSH_SYM(S_NUM);PUSH_SYM(S_PV);
-    PUSH_VAL("const");PUSH_VAL("c");PUSH_VAL("=");PUSH_VAL("4");PUSH_VAL(";");
+    PUSH_SYM(S_CONST,"const");PUSH_SYM(S_ID,"c");PUSH_SYM(S_EQ,"=");PUSH_SYM(S_NUM,"4");PUSH_SYM(S_PV,";");
     // ligne 3
-    PUSH_SYM(S_CONST);PUSH_SYM(S_ID);PUSH_SYM(S_EQ);PUSH_SYM(S_NUM);PUSH_SYM(S_PV);
-    PUSH_VAL("const");PUSH_VAL("d");PUSH_VAL("=");PUSH_VAL("6");PUSH_VAL(";");
+    PUSH_SYM(S_CONST,"const");PUSH_SYM(S_ID,"d");PUSH_SYM(S_EQ,"=");PUSH_SYM(S_NUM,"6");PUSH_SYM(S_PV,";");
     // ligne 4
-    PUSH_SYM(S_VAR);PUSH_SYM(S_ID);PUSH_SYM(S_PV);
-    PUSH_VAL("var");PUSH_VAL("e");PUSH_VAL(";");
+    PUSH_SYM(S_VAR,"var");PUSH_SYM(S_ID,"e");PUSH_SYM(S_PV,";");
     // ligne 5
-    PUSH_SYM(S_ID);PUSH_SYM(S_AFFECT);PUSH_SYM(S_PO);PUSH_SYM(S_ID);PUSH_SYM(S_PLUS);PUSH_SYM(S_ID);PUSH_SYM(S_PF);PUSH_SYM(S_MULT);PUSH_SYM(S_NUM);PUSH_SYM(S_MINUS);PUSH_SYM(S_NUM);PUSH_SYM(S_PV);
-    PUSH_VAL("a");PUSH_VAL(":=");PUSH_VAL("(");PUSH_VAL("c");PUSH_VAL("+");PUSH_VAL("d");PUSH_VAL(")");PUSH_VAL("*");PUSH_VAL("3");PUSH_VAL("-");PUSH_VAL("5");PUSH_VAL(";");
+    PUSH_SYM(S_ID,"a");PUSH_SYM(S_AFFECT,":=");PUSH_SYM(S_PO,"(");PUSH_SYM(S_ID,"c");PUSH_SYM(S_PLUS,"+");PUSH_SYM(S_ID,"d");PUSH_SYM(S_PF,")");PUSH_SYM(S_MULT,"*");PUSH_SYM(S_NUM,"3");PUSH_SYM(S_MINUS,"-");PUSH_SYM(S_NUM,"5");PUSH_SYM(S_PV,";");
     // ligne 6
-    PUSH_SYM(S_READ);PUSH_SYM(S_ID);PUSH_SYM(S_PV);
-    PUSH_VAL("lire");PUSH_VAL("b");PUSH_VAL(";");
+    PUSH_SYM(S_READ,"lire");PUSH_SYM(S_ID,"b");PUSH_SYM(S_PV,";");
     // ligne 7
-    PUSH_SYM(S_WRITE);PUSH_SYM(S_ID);PUSH_SYM(S_MULT);PUSH_SYM(S_ID);PUSH_SYM(S_PV);
-    PUSH_VAL("ecrire");PUSH_VAL("a");PUSH_VAL("*");PUSH_VAL("b");PUSH_VAL(";");
+    PUSH_SYM(S_WRITE,"ecrire");PUSH_SYM(S_ID,"a");PUSH_SYM(S_MULT,"*");PUSH_SYM(S_ID,"b");PUSH_SYM(S_PV,";");
     // ligne 8
-    PUSH_SYM(S_ID);PUSH_SYM(S_AFFECT);PUSH_SYM(S_ID);PUSH_SYM(S_PLUS);PUSH_SYM(S_ID);PUSH_SYM(S_PV);
-    PUSH_VAL("e");PUSH_VAL(":=");PUSH_VAL("b");PUSH_VAL("+");PUSH_VAL("d");PUSH_VAL(";");
+    PUSH_SYM(S_ID,"e");PUSH_SYM(S_AFFECT,":=");PUSH_SYM(S_ID,"b");PUSH_SYM(S_PLUS,"+");PUSH_SYM(S_ID,"d");PUSH_SYM(S_PV,";");
     // ligne 9
-    PUSH_SYM(S_WRITE);PUSH_SYM(S_ID);PUSH_SYM(S_PV);
-    PUSH_VAL("ecrire");PUSH_VAL("e");PUSH_VAL(";");
+    PUSH_SYM(S_WRITE,"ecrire");PUSH_SYM(S_ID,"e");PUSH_SYM(S_PV,";");
     // eof
-    PUSH_SYM(S_EOF);
-    PUSH_VAL("");
+    PUSH_SYM(S_EOF,"");
 
     // verification de l'adequation des quatres tableaux
     // -- on vérifie d'abord la taille
-    if(values.size() != symbols.size() || values.size() != expectedSymbols.size() || values.size() != expectedValues.size())
+    if(symbols.size() != expectedSymbols.size())
     {   FAILED(0);
         PRINT("Les tailles des tableaux ne correspondent pas !");
-        PRINT("values.size() = " << values.size());
         PRINT("symbols.size() = " << symbols.size());
-        PRINT("expectedValues.size() = " << expectedValues.size());
         PRINT("expectedSymbols.size() = " << expectedSymbols.size());
     }
     else
     {   list<Symbol>::iterator realSymbol = symbols.begin(), expectedSymbol = expectedSymbols.begin();
-        list<string>::iterator realValue = values.begin(), expectedValue = expectedValues.begin();
         // ici on peut tester que sur un itérateur car on sait que tous les tableaux font la meme taille
         int iter(1);
         bool failed(false);
-        while(realValue != values.end())
+        while(realSymbol != symbols.end())
         {   // tests de correspondance
-            if(*realSymbol != *expectedSymbol)
+            if(realSymbol->code != expectedSymbol->code)
             {   FAILED(iter);
-                PRINT("realSymbol = '" << *realSymbol << "'");
-                PRINT("expectedSymbol = '" << *expectedSymbol << "'");
+                PRINT("real code = '" << realSymbol->code << "'");
+                PRINT("expected code = '" << expectedSymbol->code << "'");
                 failed = true;
                 break; // sortie du while
             }
-            else if(*realValue != *expectedValue)
+            else if(realSymbol->buf != expectedSymbol->buf)
             {   FAILED(iter);
-                PRINT("realValue = '" << *realValue << "'");
-                PRINT("expectedValue = '" << *expectedValue << "'");
+                PRINT("real buf = '" << realSymbol->buf << "'");
+                PRINT("expected buf = '" << expectedSymbol->buf << "'");
                 failed = true;
                 break; // sortie du while
             }
             // incrément des itérateurs
-            realValue++; expectedValue++;
             realSymbol++; expectedSymbol++;
             iter++;
         }

@@ -9,7 +9,9 @@
 
 using namespace boost;
 
-static list<pair<regex, Symbol> > REGEX = list<pair<regex, Symbol> >();
+typedef list<pair<regex, SymbolCode> > DictRegexSymbolCode;
+
+static DictRegexSymbolCode REGEX = DictRegexSymbolCode();
 #define PUSH(regexp, symbol) REGEX.push_back(make_pair(regex(regexp), symbol))
 void init()
 {
@@ -68,18 +70,16 @@ void Lexer::MoveForward()
     }
 }
 
-Symbol Lexer::GetNext(string &val)
+Symbol Lexer::GetNext()
 {   //DEBUG("Lexer : GetNext called.");
-    // on vide la variable passée en paramètre
-    val.clear();
     // on initialise le match avec une chaine vide
     string matched("");
     // on initialise le symbole avec une lexer error
-    Symbol symbol(S_LEXER_ERROR);
+    Symbol symbol;
     // match en premiere sur la ligne contenue dans le buffer
     size_t minMatch = _buf.length();   // on initialise le min a la fin du buffer
     // on teste toutes les regex une par une pour trouver celle qui
-    for(list<pair<regex, Symbol> >::iterator p = REGEX.begin(); p != REGEX.end(); ++p)
+    for(DictRegexSymbolCode::iterator p = REGEX.begin(); p != REGEX.end(); ++p)
     {
         //DEBUG("Lexer : testing regexp '" << p->first.expression() << "' against '" << _buf << "'");
         //
@@ -95,21 +95,23 @@ Symbol Lexer::GetNext(string &val)
                 // maj matched
                 matched = matches[0];
                 // maj symbole
-                symbol = p->second;
+                symbol.code = p->second;
                 // optimisation
                 if(currentIndex == 0) { break; }
             }
         }
     }
     // si le symbole est différent de lexer error après la boucle précédente c'est qu'on a un match
-    if(symbol != S_LEXER_ERROR)
+    if(symbol.code != S_LEXER_ERROR)
     {   //DEBUG("Lexer : finally returning match '" << matched << "'");
-        val = matched;
+        symbol.buf = matched;
         _matched_length = matched.length();
     }
     else
     {   // si le buffer est vide c'est la fin du fichier
-        if(_buf.empty()) { return S_EOF; }
+        if(_buf.empty())
+        {   symbol.code = S_EOF;
+        }
         // sinon c'est une lexer error donc on ne fait rien
         //DEBUG("Lexer : no regex match found. It might be an error in input file");
     }

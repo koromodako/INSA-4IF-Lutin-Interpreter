@@ -12,7 +12,6 @@ class PS11 : public AbstractPS
 {
 public:
     ~PS11(){}
-
     virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
     PS11();
 };
