@@ -13,9 +13,10 @@ int PS13::Transition(ProgramStateMachine &machine, Symbol symbol)
         break;
     default:
         machine.Unexpected(symbol);
+        return -1;
         break;
     }
-    return -1;
+    return 0;
 }
 
 PS13::PS13() :

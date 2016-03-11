@@ -15,6 +15,7 @@ int PS3::Transition(ProgramStateMachine &machine, Symbol symbol)
         machine.PileUp(symbol, new PS5());
         break;
     case S_ID:///< identifiant '\w[\w\d]*'
+        machine.GetInstructionList().StartSet(symbol.buf);
         machine.PileUp(symbol, new PS9());
         break;
     case S_EOF:///< $
@@ -25,9 +26,10 @@ int PS3::Transition(ProgramStateMachine &machine, Symbol symbol)
         break;
     default:
         machine.Unexpected(symbol);
+        return -1;
         break;
     }
-    return -1;
+    return 0;
 }
 
 PS3::PS3() :

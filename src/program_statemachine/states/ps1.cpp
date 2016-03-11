@@ -23,6 +23,7 @@ int PS1::Transition(ProgramStateMachine &machine, Symbol symbol)
         machine.PileUp(symbol, new PS5());
         break;
     case S_ID:///< identifiant '\w[\w\d]*'
+        machine.GetInstructionList().StartSet(symbol.buf);
         machine.PileUp(symbol, new PS3());
         break;
     case S_D:///< déclaration
@@ -33,9 +34,11 @@ int PS1::Transition(ProgramStateMachine &machine, Symbol symbol)
         break;
     default:
         machine.Unexpected(symbol);
+        return -1;
         break;
     }
-    return -1;
+
+    return 0;
 }
 
 PS1::PS1() :

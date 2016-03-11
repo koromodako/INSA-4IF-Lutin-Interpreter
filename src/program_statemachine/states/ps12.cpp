@@ -11,14 +11,15 @@ int PS12::Transition(ProgramStateMachine &machine, Symbol symbol)
     case S_PV:///< ';'
         machine.Reduce(RULE_3);
         break;
-    case S_I:///< instruction
+    case S_LV:
         machine.PileUp(symbol, new PS13());
         break;
     default:
         machine.Unexpected(symbol);
+        return -1;
         break;
     }
-    return -1;
+    return 0;
 }
 
 PS12::PS12() :

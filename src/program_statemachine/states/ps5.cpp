@@ -5,13 +5,15 @@ int PS5::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
     switch (symbol.code) {
     case S_EXP:///< expression arithmetique
+        machine.GetInstructionList().StartPrint();
         machine.PileUp(symbol, new PS29());
         break;
     default:
         machine.Unexpected(symbol);
+        return -1;
         break;
     }
-    return -1;
+    return 0;
 }
 
 PS5::PS5() :

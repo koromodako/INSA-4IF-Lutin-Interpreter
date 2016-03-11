@@ -6,7 +6,7 @@
 
 /**
  * @brief
- * num->PS20
+ * =->PS20
 */
 class PS19 : public AbstractPS
 {

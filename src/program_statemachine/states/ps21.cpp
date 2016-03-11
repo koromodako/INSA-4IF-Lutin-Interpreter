@@ -16,9 +16,10 @@ int PS21::Transition(ProgramStateMachine &machine, Symbol symbol)
             break;
         default:
             machine.Unexpected(symbol);
+            return -1;
             break;
     }
-    return -1;
+    return 0;
 }
 
 PS21::PS21() :

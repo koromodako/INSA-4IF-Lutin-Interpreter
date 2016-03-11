@@ -19,9 +19,10 @@ int PS4::Transition(ProgramStateMachine &machine, Symbol symbol)
         break;
     default:
         machine.Unexpected(symbol);
+        return -1;
         break;
     }
-    return -1;
+    return 0;
 }
 
 PS4::PS4() :
