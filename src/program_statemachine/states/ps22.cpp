@@ -9,6 +9,7 @@ int PS22::Transition(ProgramStateMachine &machine, Symbol symbol)
             machine.PileUp(symbol, new PS23());
             break;
         case S_PV:///< ';'
+            machine.GetInstructionList().EndInstruction();
             machine.PileUp(symbol, new PS27());
             break;
         default:
