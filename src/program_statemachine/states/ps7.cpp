@@ -1,8 +1,16 @@
 #include "ps7.h"
 
-int PS7::transition(ProgramStateMachine &machine, Symbol symbol)
+#include "ps8.h"
+int PS7::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    // default transition
+    switch (symbol) {
+    case S_PV:///< ';'
+        machine.PileUp(symbol, new PS8());
+        break;
+    default:
+        machine.Unexpected(symbol);
+        break;
+    }
     return -1;
 }
 

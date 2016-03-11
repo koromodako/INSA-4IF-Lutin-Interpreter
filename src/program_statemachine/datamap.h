@@ -57,8 +57,9 @@ public:
     void SetDataValue(double value);
     /**
      * @brief Termine l'ajout de la nouvelle donnée (constante ou variable)
+     * return true si la donnée a pu être ajouté, false sinon (en cas de double déclaration).
      */
-    void EndData();
+    bool EndData();
     /**
      * @brief Stringify
      * @return la structure de donnée sous forme de string à restituer

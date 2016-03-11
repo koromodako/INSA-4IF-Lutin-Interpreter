@@ -1,8 +1,27 @@
 #include "ps17.h"
 
-int PS17::transition(ProgramStateMachine &machine, Symbol symbol)
+int PS17::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    // default transition
+    switch (symbol.code) {
+    case S_CONST:///< mot-clé 'const'
+        machine.Reduce();
+        break;
+    case S_VAR:///< mot-clé 'var'
+        machine.Reduce();
+        break;
+    case S_READ:///< 'lire'
+        machine.Reduce();
+        break;
+    case S_WRITE:///< 'ecrire'
+        machine.Reduce();
+        break;
+    case S_ID:///< identifiant '\w[\w\d]*'
+        machine.Reduce();
+        break;
+    default:
+        machine.Unexpected(symbol);
+        break;
+    }
     return -1;
 }
 

@@ -10,16 +10,14 @@
  * ecrire->PS5
  * id->PS9
  * $->R1+A
- * I->E4
+ * I->PS4
 */
 class PS3 : public AbstractPS
 {
 public:
     ~PS3(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
-
-protected:
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
     PS3();
 };
 
