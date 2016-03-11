@@ -64,7 +64,6 @@ enum SymbolCode {
     S_READ,         ///< 'lire'
     S_WRITE,        ///< 'ecrire'
     S_ID,           ///< identifiant '\w[\w\d]*'
-    S_EXP,          ///< expression arithmetique  ---> appel de l'automate d'expression par l'automate de programme
     S_EOF,          ///< $ (fin du flux)
     S_PO,           ///< '('
     S_PF,           ///< ')'
@@ -73,6 +72,7 @@ enum SymbolCode {
     S_MULT,         ///< '*'
     S_DIV,          ///< '\'
     // non terminaux
+    S_EXP,          ///< expression arithmetique  ---> appel de l'automate d'expression par l'automate de programme
     S_P,            ///< programme
     S_D,            ///< déclaration
     S_LD,           ///< liste de déclarations

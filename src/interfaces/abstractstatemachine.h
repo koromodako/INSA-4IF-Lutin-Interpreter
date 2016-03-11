@@ -17,6 +17,11 @@ public:
     virtual ~AbstractStateMachine(){}
 
     /**
+     * @brief Execute la machine à état en utilisant le lexer
+     */
+    virtual void Run() = 0;
+
+    /**
      * @brief Effectue la reduction souhaitée
      * @param size
      *      Taille de la réduction (en nombre d'états)

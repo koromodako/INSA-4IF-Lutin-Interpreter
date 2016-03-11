@@ -12,12 +12,11 @@
 class PS0 : public AbstractPS
 {
 public:
+    PS0();
     ~PS0(){}
 
     virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
 
-protected:
-    PS0();
 };
 
 #endif // PS0_H

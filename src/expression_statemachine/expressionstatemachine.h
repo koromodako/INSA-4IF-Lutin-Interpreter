@@ -13,6 +13,7 @@ public:
     ~ExpressionStateMachine(){}
     ExpressionStateMachine(Lexer &lexer, DataMap &dmap, InstructionList &instructions);
 
+    void Run();
 };
 
 #endif // EXPRESSIONSTATEMACHINE_H
