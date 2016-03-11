@@ -19,7 +19,7 @@ public:
      * @param symbol
      * @return
      */
-    virtual int transition(ExpressionStateMachine & machine, Symbol symbol);
+    virtual int Transition(ExpressionStateMachine & machine, Symbol symbol);
 
 protected:
     AbstractES(const string & name);

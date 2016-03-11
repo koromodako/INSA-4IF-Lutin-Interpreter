@@ -22,6 +22,7 @@ public:
      *      Taille de la réduction (en nombre d'états)
      */
     void Reduce(int size);
+
     /**
      * @brief Effectue la transition vers l'état suivant
      * @param symbol
@@ -38,7 +39,7 @@ public:
      * @param state
      *      Nouvel état
      */
-    void Unexpected(Symbol symbol, AbstractState * state);
+    void Unexpected(Symbol symbol);
 
     inline InstructionList & GetInstructionList() { return _instructions; } // inline explicite
     inline DataMap & GetDataMap() { return _dmap; }

@@ -16,7 +16,7 @@ void AbstractStateMachine::PileUp(Symbol symbol, AbstractState *state)
     _symbols_stack.push(symbol);
 }
 
-void AbstractStateMachine::Unexpected(Symbol symbol, AbstractState *state)
+void AbstractStateMachine::Unexpected(Symbol symbol)
 {
     /// \todo implement here
 }

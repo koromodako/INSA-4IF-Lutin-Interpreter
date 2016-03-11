@@ -1,6 +1,6 @@
 #include "abstractes.h"
 
-int AbstractES::transition(ExpressionStateMachine &machine, Symbol symbol)
+int AbstractES::Transition(ExpressionStateMachine &machine, Symbol symbol)
 {
     //default transition
     return -1;
