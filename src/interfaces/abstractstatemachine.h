@@ -43,6 +43,7 @@ public:
 
     inline InstructionList & GetInstructionList() { return _instructions; } // inline explicite
     inline DataMap & GetDataMap() { return _dmap; }
+    inline Lexer & GetLexer() {return _lexer;}
 
 protected:
     AbstractStateMachine(Lexer & lexer, DataMap & dmap, InstructionList & instructions);
