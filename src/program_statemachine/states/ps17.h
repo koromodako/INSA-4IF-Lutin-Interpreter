@@ -13,7 +13,7 @@ class PS17 : public AbstractPS
 public:
     ~PS17(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
     PS17();
 };
 

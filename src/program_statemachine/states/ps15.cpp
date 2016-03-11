@@ -1,8 +1,18 @@
 #include "ps15.h"
 
-int PS15::transition(ProgramStateMachine &machine, Symbol symbol)
+int PS15::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    // default transition
+    switch (symbol.code) {
+    case S_V:///< ','
+        machine.Reduce();
+        break;
+    case S_PV:///< ';'
+        machine.Reduce();
+        break;
+    default:
+        machine.Unexpected(symbol);
+        break;
+    }
     return -1;
 }
 
