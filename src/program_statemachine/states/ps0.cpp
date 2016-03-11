@@ -2,7 +2,7 @@
 
 int PS0::transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
     case S_CONST:///< mot-clé 'const'
         break;
     case S_VAR:///< mot-clé 'var'

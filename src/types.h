@@ -51,7 +51,7 @@ enum BinaryOperator {
  * terminaux et non terminaux pouvant être rencontrés dans
  * lors de l'analyse syntaxique
  */
-enum Symbol {
+enum SymbolCode {
     // terminaux
     S_LEXER_ERROR,  ///< symbole terminal non identifiable
     S_CONST,        ///< mot-clé 'const'
@@ -83,6 +83,14 @@ enum Symbol {
     S_A,            ///< expression
     S_T,            ///< terme
     S_F             ///< facteur
+};
+
+struct Symbol {
+    SymbolCode code;
+    string buf;
+    Symbol(SymbolCode _code = S_LEXER_ERROR, string _buf = "") :
+        code(_code), buf(_buf)
+    {}
 };
 
 #endif // TYPES_H

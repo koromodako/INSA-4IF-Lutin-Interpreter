@@ -9,7 +9,7 @@
 int ES0::Transition(ExpressionStateMachine &machine, Symbol symbol)
 {
     int ret = 0;
-    switch (symbol) {
+    switch (symbol.code) {
     case S_ID:
         machine.PileUp(symbol, new ES9);
         break;
