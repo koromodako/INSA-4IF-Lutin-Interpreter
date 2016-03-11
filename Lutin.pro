@@ -69,8 +69,8 @@ SOURCES += \
     src/program_statemachine/states/ps27.cpp \
     src/program_statemachine/states/ps28.cpp \
     src/program_statemachine/states/ps29.cpp \
-    src/program_statemachine/datamap.cpp \
-    src/program_statemachine/instructionlist.cpp \
+    src/types/datamap.cpp \
+    src/types/instructionlist.cpp \
     src/lexer/lexer.cpp \
     src/optionsManager.cpp \
     src/unit_tests/abstractexpressiontests.cpp \
@@ -83,7 +83,7 @@ HEADERS += \
     src/interfaces/abstractstate.h \
     src/interfaces/abstractstatemachine.h \
     src/interfaces/abstractexpression.h \
-    src/types.h \
+    src/types/types.h \
     src/expression/variable.h \
     src/expression/number.h \
     src/expression/binaryexpression.h \
@@ -137,8 +137,8 @@ HEADERS += \
     src/program_statemachine/states/ps27.h \
     src/program_statemachine/states/ps28.h \
     src/program_statemachine/states/ps29.h \
-    src/program_statemachine/instructionlist.h \
-    src/program_statemachine/datamap.h \
+    src/types/instructionlist.h \
+    src/types/datamap.h \
     src/lexer/lexer.h \
     src/optionsManager.h \
     src/config.h \

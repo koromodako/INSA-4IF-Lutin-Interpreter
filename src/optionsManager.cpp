@@ -1,6 +1,6 @@
 #include "optionsManager.h"
-#include "src/types.h"
-#include "src/interfaces/abstractexpression.h"
+#include "types/types.h"
+#include "interfaces/abstractexpression.h"
 
 #include <iostream>
 

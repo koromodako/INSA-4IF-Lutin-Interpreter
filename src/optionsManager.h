@@ -1,8 +1,8 @@
 #ifndef OPTIONS_MANAGER_H
 #define OPTIONS_MANAGER_H
 
-#include "src/program_statemachine/datamap.h"
-#include "src/program_statemachine/instructionlist.h"
+#include "types/datamap.h"
+#include "types/instructionlist.h"
 
 /**
  * @brief Gestionnaire d'options du programme

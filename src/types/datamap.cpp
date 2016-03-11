@@ -29,8 +29,8 @@ void DataMap::SetDataValue(double value)
 
 void DataMap::SetDataValue(string value)
 {
-    _current_data.set = true;
-    _current_data.value = atof(value.c_str());
+    _currentData.set = true;
+    _currentData.value = atof(value.c_str());
 }
 
 bool DataMap::EndData()

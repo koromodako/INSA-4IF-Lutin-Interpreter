@@ -1,8 +1,8 @@
 #ifndef ABSTRACTEXPRESSION_H
 #define ABSTRACTEXPRESSION_H
 
-#include "src/types.h"
-#include "src/program_statemachine/datamap.h"
+#include "src/types/types.h"
+#include "src/types/datamap.h"
 using namespace std;
 
 /**

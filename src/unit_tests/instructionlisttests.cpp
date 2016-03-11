@@ -1,10 +1,10 @@
 #include "instructionlisttests.h"
 
 #include "test_macros.h"
-#include "src/program_statemachine/instructionlist.h"
-#include "src/expression/binaryexpression.h"
-#include "src/expression/number.h"
-#include "src/expression/variable.h"
+#include "../types/instructionlist.h"
+#include "../expression/binaryexpression.h"
+#include "../expression/number.h"
+#include "../expression/variable.h"
 
 
 InstructionListTests::InstructionListTests()

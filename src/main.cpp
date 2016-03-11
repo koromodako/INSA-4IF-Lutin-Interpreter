@@ -5,8 +5,8 @@
 #include "lexer/lexer.h"
 #include "program_statemachine/programstatemachine.h"
 #include "optionsManager.h"
-#include "program_statemachine/datamap.h"
-#include "program_statemachine/instructionlist.h"
+#include "types/datamap.h"
+#include "types/instructionlist.h"
 
 using namespace std;
 

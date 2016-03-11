@@ -2,7 +2,7 @@
 #define ABSTRACTSTATE_H
 
 #include <string>
-#include "../types.h"
+#include "../types/types.h"
 #include "abstractstatemachine.h"
 
 

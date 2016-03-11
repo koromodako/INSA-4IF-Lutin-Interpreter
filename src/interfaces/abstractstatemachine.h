@@ -2,8 +2,8 @@
 #define ABSTRACTSTATEMACHINE_H
 
 #include "abstractstate.h"
-#include "src/lexer/lexer.h"
-#include "src/program_statemachine/instructionlist.h"
+#include "../lexer/lexer.h"
+#include "../types/instructionlist.h"
 #include <stack>
 
 using namespace std;
@@ -52,7 +52,7 @@ public:
 
 protected:
     AbstractStateMachine(Lexer & lexer, DataMap & dmap, InstructionList & instructions);
-    inline stack<AbstractState*> getStateStack() const{return _state_stack;}
+    inline stack<AbstractState*> getStateStack() const{return _statesStack;}
 
 private:
     Lexer & _lexer;

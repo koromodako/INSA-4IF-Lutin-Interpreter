@@ -4,7 +4,7 @@
 #include <list>
 #include <string>
 
-#include "../types.h"
+#include "../types/types.h"
 /**
  * @brief Classe representant la liste de toutes les instructions du programme
  */
