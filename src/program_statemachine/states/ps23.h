@@ -13,9 +13,8 @@ class PS23 : public AbstractPS
 public:
     ~PS23(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
 
-protected:
     PS23();
 };
 

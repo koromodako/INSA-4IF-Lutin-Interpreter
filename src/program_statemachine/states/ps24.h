@@ -6,16 +6,15 @@
 
 /**
  * @brief
- * num->PS25
+ * = ->PS25
 */
 class PS24 : public AbstractPS
 {
 public:
     ~PS24(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
 
-protected:
     PS24();
 };
 

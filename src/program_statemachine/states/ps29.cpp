@@ -1,8 +1,25 @@
 #include "ps29.h"
+#include "../rules.h"
 
-int PS29::transition(ProgramStateMachine &machine, Symbol symbol)
+int PS29::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    // default transition
+    switch (symbol) {
+        case S_READ:///< 'lire'
+            machine.Reduce(RULE_10);
+            break;
+        case S_WRITE:///< 'ecrire'
+            machine.Reduce(RULE_10);
+            break;
+        case S_ID:///< identifiant '\w[\w\d]*'
+            machine.Reduce(RULE_10);
+            break;
+        case S_EOF:///< $
+            machine.Reduce(RULE_10);
+            break;
+        default:
+            machine.Unexpected(symbol,this);
+            break;
+    }
     return -1;
 }
 
