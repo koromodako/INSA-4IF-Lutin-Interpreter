@@ -152,7 +152,8 @@ HEADERS += \
     src/unit_tests/lexertests.h \
     src/unit_tests/instructionlisttests.h \
     src/unit_tests/datamaptests.h \
-    src/expression_statemachine/rules.h
+    src/expression_statemachine/rules.h \
+    src/program_statemachine/rules.h
 
 DISTFILES += \
     src/make_states.sh \

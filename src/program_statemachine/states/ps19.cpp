@@ -1,8 +1,16 @@
 #include "ps19.h"
+#include "ps20.h"
 
-int PS19::transition(ProgramStateMachine &machine, Symbol symbol)
+int PS19::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    // default transition
+    switch (symbol.code) {
+    case S_NUM:///< nombre '\d+'
+        machine.PileUp(symbol, new PS20());
+        break;
+    default:
+        machine.Unexpected(symbol);
+        break;
+    }
     return -1;
 }
 

@@ -14,9 +14,8 @@ class PS22 : public AbstractPS
 public:
     ~PS22(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
 
-protected:
     PS22();
 };
 

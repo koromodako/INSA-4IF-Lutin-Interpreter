@@ -1,8 +1,16 @@
 #include "ps25.h"
+#include "ps26.h"
 
-int PS25::transition(ProgramStateMachine &machine, Symbol symbol)
+int PS25::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    // default transition
+    switch (symbol.code) {
+        case S_NUM:///< nombre '\d+'
+            machine.PileUp(symbol, new PS26());
+            break;
+        default:
+            machine.Unexpected(symbol);
+            break;
+    }
     return -1;
 }
 

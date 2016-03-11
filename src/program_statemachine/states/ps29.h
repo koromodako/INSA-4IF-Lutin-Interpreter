@@ -5,16 +5,14 @@
 #include "src/program_statemachine/abstractps.h"
 /**
  * @brief
- *lire, ecrire, id, $->R7
+ *lire, ecrire, id, $->R10
 */
 class PS29 : public AbstractPS
 {
 public:
     ~PS29(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
-
-protected:
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
     PS29();
 };
 

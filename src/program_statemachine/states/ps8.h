@@ -13,9 +13,8 @@ class PS8 : public AbstractPS
 public:
     ~PS8(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
 
-protected:
     PS8();
 };
 
