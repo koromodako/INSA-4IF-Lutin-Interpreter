@@ -1,11 +1,16 @@
 #include "abstractstatemachine.h"
 
-void AbstractStateMachine::Reduce(int symbole, AbstractState *state, int size)
+void AbstractStateMachine::Reduce(Symbol symbol, AbstractState *state, int size)
 {
-    /// \todo implement here
+
 }
 
-void AbstractStateMachine::Unexpected(int symbole, AbstractState *state)
+void AbstractStateMachine::PileUp(Symbol symbol, AbstractState *state)
+{
+
+}
+
+void AbstractStateMachine::Unexpected(Symbol symbol, AbstractState *state)
 {
     /// \todo implement here
 }

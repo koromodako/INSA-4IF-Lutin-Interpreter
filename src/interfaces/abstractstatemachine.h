@@ -18,12 +18,18 @@ public:
 
     /**
      * @brief Effectue la reduction souhaitée
-     * @param symbole
-     *      Symbole courant
-     * @param state
-     *      Nouvel état
+     * @param size
+     *      Taille de la réduction (en nombre d'états)
      */
-    void Reduce(int symbole, AbstractState * state, int size);
+    void Reduce(int size);
+    /**
+     * @brief Effectue la transition vers l'état suivant
+     * @param symbol
+     *      Symbole suivant
+     * @param state
+     *      Etat suivant
+     */
+    void PileUp(Symbol symbol, AbstractState * state);
 
     /**
      * @brief Effectue la recupération sur erreur s'il y a lieu ou place la machine à état dans un état d'erreur
@@ -32,7 +38,7 @@ public:
      * @param state
      *      Nouvel état
      */
-    void Unexpected(int symbole, AbstractState * state);
+    void Unexpected(Symbol symbol, AbstractState * state);
 
     inline InstructionList & GetInstructionList() { return _instructions; } // inline explicite
     inline DataMap & GetDataMap() { return _dmap; }
@@ -48,7 +54,7 @@ private:
     DataMap & _dmap; // cet automate doit remplir cette structure avec les déclarations de variables et constantes
     InstructionList & _instructions;
     stack<string> _error_stack;         // pile des erreurs
-    stack<int> _symbols_stack;          // pile des symboles
+    stack<Symbol> _symbols_stack;          // pile des symboles
     stack<AbstractState*> _state_stack; // pile des états
 };
 
