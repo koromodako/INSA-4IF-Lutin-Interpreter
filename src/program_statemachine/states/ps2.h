@@ -14,7 +14,7 @@ class PS2 : public AbstractPS
 public:
     ~PS2(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
 
 protected:
     PS2();

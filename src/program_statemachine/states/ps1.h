@@ -12,14 +12,14 @@
  * ecrire->PS5
  * id->PS3
  * D->PS17
- * I->E2
+ * I->PS2
 */
 class PS1 : public AbstractPS
 {
 public:
     ~PS1(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
 
 protected:
     PS1();

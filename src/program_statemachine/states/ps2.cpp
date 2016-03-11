@@ -1,8 +1,23 @@
 #include "ps2.h"
 
-int PS2::transition(ProgramStateMachine &machine, Symbol symbol)
+int PS2::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    // default transition
+    switch (symbol) {
+    case S_READ:///< 'lire'
+        break;
+    case S_WRITE:///< 'ecrire'
+        break;
+    case S_ID:///< identifiant '\w[\w\d]*'
+        break;
+    case S_EOF:///< $
+        break;
+    case S_LI:///< liste d'instructions
+        machine.PileUp(symbol, new PS3("PS3"));
+        break;
+    default:
+        machine.Unexpected(symbol);
+        break;
+    }
     return -1;
 }
 

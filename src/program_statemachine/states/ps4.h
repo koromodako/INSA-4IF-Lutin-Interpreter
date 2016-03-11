@@ -13,7 +13,7 @@ class PS4 : public AbstractPS
 public:
     ~PS4(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
 
 protected:
     PS4();
