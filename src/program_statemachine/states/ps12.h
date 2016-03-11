@@ -6,7 +6,7 @@
 
 /**
  * @brief
- * ,, ;->R2
+ * ,, ;->R3
  * LV->PS13
 */
 class PS12 : public AbstractPS
@@ -14,9 +14,7 @@ class PS12 : public AbstractPS
 public:
     ~PS12(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
-
-protected:
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
     PS12();
 };
 

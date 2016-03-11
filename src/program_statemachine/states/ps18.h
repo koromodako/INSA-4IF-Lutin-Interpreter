@@ -13,9 +13,7 @@ class PS18 : public AbstractPS
 public:
     ~PS18(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
-
-protected:
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
     PS18();
 };
 

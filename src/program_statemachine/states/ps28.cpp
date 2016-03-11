@@ -1,6 +1,6 @@
 #include "ps28.h"
 
-int PS28::transition(ProgramStateMachine &machine, Symbol symbol)
+int PS28::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
     // default transition
     return -1;
