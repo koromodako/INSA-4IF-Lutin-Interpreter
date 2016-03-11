@@ -3,7 +3,7 @@
 
 int PS29::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
         case S_READ:///< 'lire'
             machine.Reduce(RULE_10);
             break;
@@ -17,7 +17,7 @@ int PS29::Transition(ProgramStateMachine &machine, Symbol symbol)
             machine.Reduce(RULE_10);
             break;
         default:
-            machine.Unexpected(symbol,this);
+            machine.Unexpected(symbol);
             break;
     }
     return -1;

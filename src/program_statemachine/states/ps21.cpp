@@ -4,7 +4,7 @@
 
 int PS21::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
         case S_V:///< ','
             machine.Reduce(RULE_9);
             break;
@@ -15,7 +15,7 @@ int PS21::Transition(ProgramStateMachine &machine, Symbol symbol)
             machine.PileUp(symbol, new PS22());
             break;
         default:
-            machine.Unexpected(symbol,this);
+            machine.Unexpected(symbol);
             break;
     }
     return -1;

@@ -3,12 +3,12 @@
 
 int PS24::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
         case S_EQ:///< '='
             machine.PileUp(symbol, new PS25());
             break;
         default:
-            machine.Unexpected(symbol,this);
+            machine.Unexpected(symbol);
             break;
     }
     return -1;
