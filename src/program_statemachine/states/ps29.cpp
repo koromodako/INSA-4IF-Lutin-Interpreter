@@ -1,8 +1,14 @@
 #include "ps29.h"
 #include "../rules.h"
+#include "../../expression_statemachine/expressionstatemachine.h"
 
 int PS29::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
+    ExpressionStateMachine* expStateMachine = new ExpressionStateMachine(
+                machine.GetLexer(), machine.GetDataMap(),
+                machine.GetInstructionList());
+    //expStateMachine.Run();
+    delete(expStateMachine);
     switch (symbol.code) {
         case S_READ:///< 'lire'
             machine.Reduce(RULE_10);
