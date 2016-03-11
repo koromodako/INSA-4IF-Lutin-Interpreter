@@ -6,6 +6,7 @@ AbstractState::TransitionResult PS5::Transition(AbstractStateMachine &machine, S
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_EXP:///< expression arithmetique
+        machine.GetInstructionList().StartPrint();
         machine.PileUp(symbol, new PS29());
         ret = AbstractState::PILED_UP;
         break;

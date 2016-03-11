@@ -5,7 +5,7 @@ AbstractState::TransitionResult PS19::Transition(AbstractStateMachine &machine, 
 {
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
-    case S_NUM:///< nombre '\d+'
+    case S_EQ:///< nombre '\d+'
         machine.PileUp(symbol, new PS20());
         ret = AbstractState::PILED_UP;
         break;

@@ -35,6 +35,7 @@ AbstractState::TransitionResult PS27::Transition(AbstractStateMachine &machine, 
             break;
     }
     return ret;
+
 }
 
 PS27::PS27() :

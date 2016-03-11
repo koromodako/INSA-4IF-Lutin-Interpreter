@@ -55,6 +55,7 @@ public:
      *      Valeur à donner à la donnée
      */
     void SetDataValue(double value);
+    void SetDataValue(string value);
     /**
      * @brief Termine l'ajout de la nouvelle donnée (constante ou variable)
      * return true si la donnée a pu être ajouté, false sinon (en cas de double déclaration).

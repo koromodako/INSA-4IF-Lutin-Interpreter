@@ -14,16 +14,17 @@ AbstractState::TransitionResult PS12::Transition(AbstractStateMachine &machine, 
         machine.Reduce(RULE_3);
         ret = AbstractState::REDUCED;
         break;
-    case S_I:///< instruction
+    case S_LV:
         machine.PileUp(symbol, new PS13());
         ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(symbol);ret = AbstractState::UNEXPECTED;
+        machine.Unexpected(symbol);
         ret = AbstractState::UNEXPECTED;
         break;
     }
     return ret;
+
 }
 
 PS12::PS12() :

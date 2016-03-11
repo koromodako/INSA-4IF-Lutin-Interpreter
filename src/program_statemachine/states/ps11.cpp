@@ -5,16 +5,18 @@ AbstractState::TransitionResult PS11::Transition(AbstractStateMachine &machine, 
 {
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
-    case S_WRITE:///< 'ecrire'
+    case S_ID:///< 'id'
+        machine.GetDataMap().StartVar(symbol.buf);
         machine.PileUp(symbol, new PS12());
         ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(symbol);ret = AbstractState::UNEXPECTED;
+        machine.Unexpected(symbol);
         ret = AbstractState::UNEXPECTED;
         break;
     }
     return ret;
+
 }
 
 PS11::PS11() :

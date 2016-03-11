@@ -11,6 +11,7 @@ AbstractState::TransitionResult PS22::Transition(AbstractStateMachine &machine, 
             ret = AbstractState::PILED_UP;
             break;
         case S_PV:///< ';'
+            machine.GetInstructionList().EndInstruction();
             machine.PileUp(symbol, new PS27());
             ret = AbstractState::PILED_UP;
             break;
@@ -20,6 +21,7 @@ AbstractState::TransitionResult PS22::Transition(AbstractStateMachine &machine, 
             break;
     }
     return ret;
+
 }
 
 PS22::PS22() :

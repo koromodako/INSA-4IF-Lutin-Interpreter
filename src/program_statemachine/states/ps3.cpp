@@ -18,6 +18,7 @@ AbstractState::TransitionResult PS3::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::PILED_UP;
         break;
     case S_ID:///< identifiant '\w[\w\d]*'
+        machine.GetInstructionList().StartSet(symbol.buf);
         machine.PileUp(symbol, new PS9());
         ret = AbstractState::PILED_UP;
         break;

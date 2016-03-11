@@ -28,6 +28,7 @@ AbstractState::TransitionResult PS1::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::PILED_UP;
         break;
     case S_ID:///< identifiant '\w[\w\d]*'
+        machine.GetInstructionList().StartSet(symbol.buf);
         machine.PileUp(symbol, new PS3());
         ret = AbstractState::PILED_UP;
         break;
@@ -40,11 +41,12 @@ AbstractState::TransitionResult PS1::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(symbol);ret = AbstractState::UNEXPECTED;
+        machine.Unexpected(symbol);
         ret = AbstractState::UNEXPECTED;
         break;
     }
     return ret;
+
 }
 
 PS1::PS1() :

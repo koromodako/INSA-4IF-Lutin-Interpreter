@@ -24,6 +24,7 @@ AbstractState::TransitionResult PS21::Transition(AbstractStateMachine &machine, 
             break;
     }
     return ret;
+
 }
 
 PS21::PS21() :

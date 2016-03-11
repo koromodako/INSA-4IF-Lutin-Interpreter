@@ -6,6 +6,8 @@ AbstractState::TransitionResult PS25::Transition(AbstractStateMachine &machine, 
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
         case S_NUM:///< nombre '\d+'
+            machine.GetDataMap().SetDataValue(symbol.buf);
+            machine.GetDataMap().EndData();
             machine.PileUp(symbol, new PS26());
             ret = AbstractState::PILED_UP;
             break;

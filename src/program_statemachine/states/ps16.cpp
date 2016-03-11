@@ -35,6 +35,7 @@ AbstractState::TransitionResult PS16::Transition(AbstractStateMachine &machine, 
         break;
     }
     return ret;
+
 }
 
 PS16::PS16() :

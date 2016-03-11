@@ -6,6 +6,7 @@ AbstractState::TransitionResult PS7::Transition(AbstractStateMachine &machine, S
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_PV:///< ';'
+        machine.GetInstructionList().EndInstruction();
         machine.PileUp(symbol, new PS8());
         ret = AbstractState::PILED_UP;
         break;

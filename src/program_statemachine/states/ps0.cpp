@@ -32,11 +32,12 @@ AbstractState::TransitionResult PS0::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(symbol);ret = AbstractState::UNEXPECTED;
+        machine.Unexpected(symbol);
         ret = AbstractState::UNEXPECTED;
         break;
     }
     return ret;
+
 }
 
 PS0::PS0() :
