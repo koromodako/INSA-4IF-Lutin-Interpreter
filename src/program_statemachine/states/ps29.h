@@ -13,8 +13,6 @@ public:
     ~PS29(){}
 
     virtual int transition(ProgramStateMachine & machine, Symbol symbol);
-
-protected:
     PS29();
 };
 

@@ -20,8 +20,6 @@ public:
     ~PS1(){}
 
     virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
-
-protected:
     PS1();
 };
 

@@ -15,7 +15,6 @@ public:
 
     virtual int transition(ProgramStateMachine & machine, Symbol symbol);
 
-protected:
     PS18();
 };
 

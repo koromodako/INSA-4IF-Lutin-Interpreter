@@ -16,7 +16,6 @@ public:
 
     virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
 
-protected:
     PS2();
 };
 

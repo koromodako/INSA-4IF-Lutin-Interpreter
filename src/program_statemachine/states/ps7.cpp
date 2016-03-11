@@ -1,10 +1,11 @@
 #include "ps7.h"
 
+#include "ps8.h"
 int PS7::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
     switch (symbol) {
     case S_PV:///< ';'
-        machine.PileUp(symbol, new PS8("PS8"));
+        machine.PileUp(symbol, new PS8());
         break;
     default:
         machine.Unexpected(symbol);

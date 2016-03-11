@@ -18,8 +18,6 @@ public:
     ~PS3(){}
 
     virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
-
-protected:
     PS3();
 };
 

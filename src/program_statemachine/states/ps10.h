@@ -14,8 +14,6 @@ public:
     ~PS10(){}
 
     virtual int transition(ProgramStateMachine & machine, Symbol symbol);
-
-protected:
     PS10();
 };
 
