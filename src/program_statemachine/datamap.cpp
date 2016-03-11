@@ -26,9 +26,14 @@ void DataMap::SetDataValue(double value)
     _current_data.value = value;
 }
 
-void DataMap::EndData()
+bool DataMap::EndData()
 {
-    insert(make_pair(_current_identifier, _current_data));
+    if (count(_current_identifier) == 0)
+    {
+        insert(make_pair(_current_identifier, _current_data));
+        return true;
+    }
+    return false;
 }
 
 /**
@@ -55,14 +60,21 @@ string DataMap::Test() const
     stringstream result;
     for (DataMap::const_iterator it = begin() ; it != end() ; ++it)
     {
+        //Variable utilisé et non déclaré - Test 6.4
         if (it->second.exist)
             result << "Error : Use of undeclared identifier '" << it->first << "''" << endl;
+        //Constante réaffecté - Test 6.5
         if (it->second.cst && it->second.set)
-            result << "Error : read-only variable " << it->first << " is not assignable" << endl;
+            result << "Error : read-only variable '" << it->first << "' is not assignable" << endl;
+        //Déclaré mais pas utilisé - Test 6.2
         if (!it->second.used)
             result << "Warning : Unused parameter '" <<  it->first << "'" << endl;
+        //Déclaré, utilisé, mais pas initialisé -- Test 6.1
+        else if (!it->second.cst && !it->second.set && it->second.used)
+            result << "Error : '" <<  it->first << "' used but not initialized" << endl;
+        //Déclaré, non utilisé et non initialisé - Test 6.3
         else if (!it->second.cst && !it->second.set)
-            result << "Error : " <<  it->first << " used but not declared" << endl;
+            result << "Warning : '" <<  it->first << "' is not initialized" << endl;
     }
     return result.str();
 }
