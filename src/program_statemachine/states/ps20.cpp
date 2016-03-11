@@ -3,12 +3,12 @@
 
 int PS20::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
         case S_NUM:///< nombre '\d+'
             machine.PileUp(symbol, new PS21());
             break;
         default:
-            machine.Unexpected(symbol,this);
+            machine.Unexpected(symbol);
             break;
     }
     return -1;

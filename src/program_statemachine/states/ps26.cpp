@@ -3,7 +3,7 @@
 
 int PS26::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
         case S_V:///< ','
             machine.Reduce(RULE_8);
             break;
@@ -11,7 +11,7 @@ int PS26::Transition(ProgramStateMachine &machine, Symbol symbol)
             machine.Reduce(RULE_8);
             break;
         default:
-            machine.Unexpected(symbol,this);
+            machine.Unexpected(symbol);
             break;
     }
     return -1;

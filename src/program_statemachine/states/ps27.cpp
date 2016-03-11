@@ -3,7 +3,7 @@
 
 int PS27::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
         case S_CONST:///< mot-clé 'const'
             machine.Reduce(RULE_7);
             break;
@@ -23,7 +23,7 @@ int PS27::Transition(ProgramStateMachine &machine, Symbol symbol)
             machine.Reduce(RULE_7);
             break;
         default:
-            machine.Unexpected(symbol,this);
+            machine.Unexpected(symbol);
             break;
     }
     return -1;

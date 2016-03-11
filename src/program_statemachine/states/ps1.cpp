@@ -9,7 +9,7 @@
 #include "ps2.h"
 int PS1::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
     case S_CONST:///< mot-clé 'const'
         machine.PileUp(symbol, new PS18());
         break;

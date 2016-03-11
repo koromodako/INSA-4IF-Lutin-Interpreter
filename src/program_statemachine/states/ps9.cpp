@@ -4,7 +4,7 @@
 
 int PS9::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
     case S_AFFECT:///< ':='
         machine.PileUp(symbol, new PS10());
         break;
