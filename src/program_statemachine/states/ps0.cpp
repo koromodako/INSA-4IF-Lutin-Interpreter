@@ -5,7 +5,7 @@
 
 int PS0::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
     case S_CONST:///< mot-clé 'const'
         machine.Reduce(RULE_3);
         break;

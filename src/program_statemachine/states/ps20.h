@@ -13,9 +13,8 @@ class PS20 : public AbstractPS
 public:
     ~PS20(){}
 
-    virtual int transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
 
-protected:
     PS20();
 };
 

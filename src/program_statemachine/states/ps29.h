@@ -5,7 +5,7 @@
 #include "src/program_statemachine/abstractps.h"
 /**
  * @brief
- *lire, ecrire, id, $->R7
+ *lire, ecrire, id, $->R10
 */
 class PS29 : public AbstractPS
 {

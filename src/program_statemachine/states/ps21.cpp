@@ -1,8 +1,23 @@
 #include "ps21.h"
+#include "ps22.h"
+#include "../rules.h"
 
-int PS21::transition(ProgramStateMachine &machine, Symbol symbol)
+int PS21::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    // default transition
+    switch (symbol) {
+        case S_V:///< ','
+            machine.Reduce(RULE_9);
+            break;
+        case S_PV:///< ';'
+            machine.Reduce(RULE_9);
+            break;
+        case S_LC:///< liste de constantes
+            machine.PileUp(symbol, new PS22());
+            break;
+        default:
+            machine.Unexpected(symbol,this);
+            break;
+    }
     return -1;
 }
 

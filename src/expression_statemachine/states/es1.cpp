@@ -6,7 +6,7 @@
 int ES1::Transition(ExpressionStateMachine &machine, Symbol symbol)
 {
     int ret = 0;
-    switch (symbol) {
+    switch (symbol.code) {
     case S_PLUS:
         machine.PileUp(symbol, new ES2);
         break;
