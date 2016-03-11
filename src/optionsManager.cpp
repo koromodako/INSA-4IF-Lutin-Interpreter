@@ -1,5 +1,6 @@
 #include "optionsManager.h"
 #include "src/types.h"
+#include "src/interfaces/abstractexpression.h"
 
 #include <iostream>
 
@@ -13,7 +14,7 @@ OptionsManager::OptionsManager(DataMap &dataMap, InstructionList &instructionLis
 {
 }
 
-bool OptionsManager::CheckOption(int argc, char *argv[])
+bool OptionsManager::CheckOptions(int argc, char *argv[])
 {
     for (int i = 2 ; i < argc; ++i)
     {
@@ -57,10 +58,10 @@ void OptionsManager::execute() const
     for (itIns = _instructionList.begin() ; itIns != _instructionList.end() ; ++itIns, ++i)
     {
         //Vérification et calcul de l'expression pour SET et PRINT
-        if ((*itIns).expr != NULL)
+        if (itIns->expr != NULL)
         {
             ok = false;
-            value = (*itIns).expr->Eval(_dataMap, ok);
+            value = itIns->expr->Eval(_dataMap, ok);
             if (!ok)
             {
                 cout << "Erreur d'execution à la ligne " << i << endl;
@@ -68,19 +69,19 @@ void OptionsManager::execute() const
             }
         }
         //Vérification de la présence de la variable à modifier pour READ et SET
-        if ((*itIns).identifier != "" && !_dataMap.count((*itIns).identifier))
+        if (itIns->identifier != "" && !_dataMap.count(itIns->identifier))
         {
             cout << "Variable inconnu à la ligne " << i << endl;
             return;
         }
 
         //Execution de la ligne
-        if ((*itIns).code == ICODE_PRINT)
+        if (itIns->code == ICODE_PRINT)
             cout << value << endl;
-        else if ((*itIns).code == ICODE_READ)
-            cin >> _dataMap[(*itIns).identifier].value;
+        else if (itIns->code == ICODE_READ)
+            cin >> _dataMap[itIns->identifier].value;
         else
-            _dataMap[(*itIns).identifier].value = value;
+            _dataMap[itIns->identifier].value = value;
     }
 }
 
@@ -92,5 +93,19 @@ void OptionsManager::print() const
 
 void OptionsManager::transform()
 {
+    AbstractExpression *expr = NULL;
+    list<Instruction>::iterator itIns;
+    bool ok;
 
+    //Pour chaque expression
+    for (itIns = _instructionList.begin() ; itIns != _instructionList.end() ; ++itIns)
+    {
+        ok = false;
+        expr = itIns->expr->Simplify(_dataMap, ok);
+        if (ok && expr != NULL)//Si une simplification a eu lieu...
+        {
+            delete itIns->expr;
+            itIns->expr = expr;
+        }
+    }
 }

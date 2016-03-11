@@ -8,6 +8,7 @@ macx {
     LIBS += -L/opt/local/lib/
 }
 
+TARGET = lut
 LIBS += -lboost_regex
 
 SOURCES += \

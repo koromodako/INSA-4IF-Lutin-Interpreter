@@ -55,12 +55,14 @@ string DataMap::Test() const
     stringstream result;
     for (DataMap::const_iterator it = begin() ; it != end() ; ++it)
     {
+        if (it->second.exist)
+            result << "Error : Use of undeclared identifier '" << it->first << "''" << endl;
         if (it->second.cst && it->second.set)
-            result << "Erreur : " << it->first << " est constante et donc n'est pas assignable" << endl;
+            result << "Error : read-only variable " << it->first << " is not assignable" << endl;
         if (!it->second.used)
-            result << "Attention : " <<  it->first << " n'est jamais utilisé" << endl;
+            result << "Warning : Unused parameter '" <<  it->first << "'" << endl;
         else if (!it->second.cst && !it->second.set)
-            result << "Erreur : " <<  it->first << " est utilisé sans être initialisé" << endl;
+            result << "Error : " <<  it->first << " used but not declared" << endl;
     }
     return result.str();
 }
