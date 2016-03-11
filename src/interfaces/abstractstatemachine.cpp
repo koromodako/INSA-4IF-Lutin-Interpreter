@@ -1,13 +1,19 @@
 #include "abstractstatemachine.h"
 
-void AbstractStateMachine::Reduce(Symbol symbol, AbstractState *state, int size)
+void AbstractStateMachine::Reduce(int size)
 {
-
+    while (size != 0 && !_state_stack.empty()) {
+        delete _state_stack.top();
+        _state_stack.pop();
+        _symbols_stack.pop();
+        size--;
+    }
 }
 
 void AbstractStateMachine::PileUp(Symbol symbol, AbstractState *state)
 {
-
+    _state_stack.push(state);
+    _symbols_stack.push(symbol);
 }
 
 void AbstractStateMachine::Unexpected(Symbol symbol, AbstractState *state)
