@@ -3,6 +3,7 @@
 #include "ps5.h"
 #include "ps9.h"
 #include "ps4.h"
+#include "../rules.h"
 int PS3::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
     switch (symbol.code) {
@@ -17,6 +18,7 @@ int PS3::Transition(ProgramStateMachine &machine, Symbol symbol)
         machine.PileUp(symbol, new PS9());
         break;
     case S_EOF:///< $
+        machine.Reduce(RULE_1);
         break;
     case S_I:///< instruction
         machine.PileUp(symbol, new PS4());

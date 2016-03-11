@@ -3,7 +3,7 @@
 #include "ps3.h"
 int PS2::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
-    switch (symbol) {
+    switch (symbol.code) {
     case S_READ:///< 'lire'
         machine.Reduce(RULE_10);
         break;
