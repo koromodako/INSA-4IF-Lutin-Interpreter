@@ -2,17 +2,17 @@
 #define PS29_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 /**
  * @brief
  *lire, ecrire, id, $->R10
 */
-class PS29 : public AbstractPS
+class PS29 : public AbstractState
 {
 public:
     ~PS29(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
     PS29();
 };
 

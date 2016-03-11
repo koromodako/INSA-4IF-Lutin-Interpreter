@@ -2,7 +2,7 @@
 #define PS3_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
@@ -12,12 +12,12 @@
  * $->R1+A
  * I->PS4
 */
-class PS3 : public AbstractPS
+class PS3 : public AbstractState
 {
 public:
     ~PS3(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
     PS3();
 };
 

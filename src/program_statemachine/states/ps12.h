@@ -2,19 +2,19 @@
 #define PS12_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
- * ,, ;->R3
+ * ,, ;->R2
  * LV->PS13
 */
-class PS12 : public AbstractPS
+class PS12 : public AbstractState
 {
 public:
     ~PS12(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
     PS12();
 };
 

@@ -2,17 +2,17 @@
 #define PS10_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
  * exp->PS28
 */
-class PS10 : public AbstractPS
+class PS10 : public AbstractState
 {
 public:
     ~PS10(){}
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
     PS10();
 };
 

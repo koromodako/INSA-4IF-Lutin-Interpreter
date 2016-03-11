@@ -1,21 +1,24 @@
 #include "ps14.h"
 #include "ps15.h"
 
-int PS14::Transition(ProgramStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS14::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_ID:///< identifiant '\w[\w\d]*'
         machine.PileUp(symbol, new PS15());
+        ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(symbol);
+        machine.Unexpected(symbol);ret = AbstractState::UNEXPECTED;
+        ret = AbstractState::UNEXPECTED;
         break;
     }
-    return -1;
+    return ret;
 }
 
 PS14::PS14() :
-    AbstractPS("PS14")
+    AbstractState("PS14")
 {
 
 }

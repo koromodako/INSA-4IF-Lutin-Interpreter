@@ -2,18 +2,18 @@
 #define PS8_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
  * lire, ecrire, id, $ -> R8
 */
-class PS8 : public AbstractPS
+class PS8 : public AbstractState
 {
 public:
     ~PS8(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
 
     PS8();
 };

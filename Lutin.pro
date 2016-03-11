@@ -21,8 +21,6 @@ SOURCES += \
     src/expression/binaryexpression.cpp \
     src/program_statemachine/programstatemachine.cpp \
     src/expression_statemachine/expressionstatemachine.cpp \
-    src/expression_statemachine/abstractes.cpp \
-    src/program_statemachine/abstractps.cpp \
     src/expression_statemachine/states/es0.cpp \
     src/program_statemachine/states/ps0.cpp \
     src/expression_statemachine/states/es1.cpp \
@@ -91,8 +89,6 @@ HEADERS += \
     src/expression/binaryexpression.h \
     src/program_statemachine/programstatemachine.h \
     src/expression_statemachine/expressionstatemachine.h \
-    src/expression_statemachine/abstractes.h \
-    src/program_statemachine/abstractps.h \
     src/expression_statemachine/states/es0.h \
     src/program_statemachine/states/ps0.h \
     src/expression_statemachine/states/es1.h \

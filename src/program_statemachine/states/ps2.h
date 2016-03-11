@@ -2,19 +2,19 @@
 #define PS2_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
  * lire, ecrire, id, $ -> R10
  * LI->PS3
  */
-class PS2 : public AbstractPS
+class PS2 : public AbstractState
 {
 public:
     ~PS2(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
 
     PS2();
 };

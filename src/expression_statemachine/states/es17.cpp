@@ -1,23 +1,24 @@
 #include "es17.h"
 #include "../rules.h"
 
-int ES17::Transition(ExpressionStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult ES17::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
-    int ret = 0;
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_EOF:
         machine.Reduce(RULE_1);
+        ret = AbstractState::REDUCED;
         break;
     default:
-        machine.Unexpected(symbol);
-        ret = -1;
+        machine.Unexpected(symbol);ret = AbstractState::UNEXPECTED;
+        ret = AbstractState::UNEXPECTED;
         break;
     }
     return ret;
 }
 
 ES17::ES17() :
-    AbstractES("ES17")
+    AbstractState("ES17")
 {
 
 }

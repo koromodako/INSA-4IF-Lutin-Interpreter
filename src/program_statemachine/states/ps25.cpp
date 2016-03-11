@@ -1,21 +1,24 @@
 #include "ps25.h"
 #include "ps26.h"
 
-int PS25::Transition(ProgramStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS25::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
         case S_NUM:///< nombre '\d+'
             machine.PileUp(symbol, new PS26());
+            ret = AbstractState::PILED_UP;
             break;
         default:
             machine.Unexpected(symbol);
+            ret = AbstractState::UNEXPECTED;
             break;
     }
-    return -1;
+    return ret;
 }
 
 PS25::PS25() :
-    AbstractPS("PS25")
+    AbstractState("PS25")
 {
 
 }

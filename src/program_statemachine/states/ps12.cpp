@@ -2,27 +2,32 @@
 #include "ps13.h"
 #include "../rules.h"
 
-int PS12::Transition(ProgramStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS12::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_V:///< ','
         machine.Reduce(RULE_3);
+        ret = AbstractState::REDUCED;
         break;
     case S_PV:///< ';'
         machine.Reduce(RULE_3);
+        ret = AbstractState::REDUCED;
         break;
     case S_I:///< instruction
         machine.PileUp(symbol, new PS13());
+        ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(symbol);
+        machine.Unexpected(symbol);ret = AbstractState::UNEXPECTED;
+        ret = AbstractState::UNEXPECTED;
         break;
     }
-    return -1;
+    return ret;
 }
 
 PS12::PS12() :
-    AbstractPS("PS12")
+    AbstractState("PS12")
 {
 
 }

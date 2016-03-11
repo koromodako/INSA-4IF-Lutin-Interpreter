@@ -2,18 +2,18 @@
 #define PS4_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
  * lire, écrire, id, $->R10
  */
-class PS4 : public AbstractPS
+class PS4 : public AbstractState
 {
 public:
     ~PS4(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
 
     PS4();
 };

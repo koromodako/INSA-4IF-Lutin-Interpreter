@@ -2,18 +2,18 @@
 #define PS6_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
  * id->PS7
 */
-class PS6 : public AbstractPS
+class PS6 : public AbstractState
 {
 public:
     ~PS6(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
 
     PS6();
 };
