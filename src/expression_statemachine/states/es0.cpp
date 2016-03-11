@@ -18,12 +18,16 @@ int ES0::Transition(ExpressionStateMachine &machine, Symbol symbol)
         break;
     case S_PO:
         machine.PileUp(symbol, new ES11);
+        break;
     case S_A:
         machine.PileUp(symbol, new ES1);
+        break;
     case S_T:
         machine.PileUp(symbol, new ES16);
+        break;
     case S_F:
         machine.PileUp(symbol, new ES12);
+        break;
     default:
         machine.Unexpected(symbol);
         ret = -1;
