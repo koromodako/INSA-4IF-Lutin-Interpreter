@@ -1,13 +1,14 @@
 #include "ps15.h"
+#include "../rules.h"
 
 int PS15::Transition(ProgramStateMachine &machine, Symbol symbol)
 {
     switch (symbol.code) {
     case S_V:///< ','
-        machine.Reduce();
+        machine.Reduce(RULE_2);
         break;
     case S_PV:///< ';'
-        machine.Reduce();
+        machine.Reduce(RULE_2);
         break;
     default:
         machine.Unexpected(symbol);
