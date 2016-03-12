@@ -6,6 +6,7 @@
 
 AbstractState::TransitionResult PS5::Transition(AbstractStateMachine &machine, Symbol)
 {
+    machine.GetInstructionList().StartPrint();
     // -- DEBUG ------------------------------------------------
     DEBUG("starting expression analysis");
     // -- DEBUG ------------------------------------------------
@@ -16,6 +17,7 @@ AbstractState::TransitionResult PS5::Transition(AbstractStateMachine &machine, S
     // -- DEBUG ------------------------------------------------
     // on demande le merge de l'expression construite
     machine.GetInstructionList().MergeSymbols();
+    // note : l'ajout final de l'instruction dans la liste d'instruction se fait dans l'état 29
     // dans tous les cas on empile l'état 29
     machine.PileUp(SYM_EXP, new PS29);
     return AbstractState::PILED_UP;
