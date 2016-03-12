@@ -2,7 +2,6 @@
 #define INSTRUCTIONLIST_H
 
 #include <list>
-#include <vector>
 #include <string>
 
 #include "../types/types.h"
@@ -35,10 +34,6 @@ public:
      */
     void AppendSymbol(Symbol symbol);
     /**
-     * @brief Traite le contenu du buffer interne pour créer une expression
-     */
-    void MergeSymbols();
-    /**
      * @brief Termine l'ajout d'une instruction quelle qu'elle soit
      */
     void EndInstruction();
@@ -50,8 +45,6 @@ public:
 
 private:
     Instruction _currentInstr;
-    size_t _depth;
-    vector< list<Symbol> > _operations;
 };
 
 #endif // INSTRUCTIIONLIST_H

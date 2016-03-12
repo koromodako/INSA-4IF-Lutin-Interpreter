@@ -46,9 +46,13 @@ public:
      */
     virtual string Stringify() = 0;
 
+    inline void SetRequireParenthesis() { _requireParenthesis = true; }
+
 protected:
     AbstractExpression();
 
+private:
+    bool _requireParenthesis;
 };
 
 #endif // ABSTRACTEXPRESSION_H

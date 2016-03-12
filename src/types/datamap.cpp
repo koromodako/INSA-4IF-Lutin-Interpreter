@@ -45,7 +45,7 @@ void DataMap::EndData()
     else
     {   d->second.multdecl = true; // on lève le flag de déclarations multiples
     }
-    // on reset le variables (buffers) internes
+    // on reset les variables (buffers) internes
     _currentIdentifier = "";
     _currentData = Data();
 }

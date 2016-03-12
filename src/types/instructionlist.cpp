@@ -1,12 +1,11 @@
 #include "instructionlist.h"
+
 #include "../debug.h"
 
 #include <iostream>
 
 InstructionList::InstructionList() :
-    list<Instruction>(),
-    _depth(0),
-    _operations(1)
+    list<Instruction>()
 {
 }
 
@@ -30,53 +29,6 @@ void InstructionList::AppendSymbol(Symbol symbol)
     // -- DEBUG ----------------------------------------------------
     DEBUG("adding symbol(code='"<< symbol.code <<"',buf='"<< symbol.buf <<"')");
     // -- DEBUG ----------------------------------------------------
-
-    if(symbol.code == S_PO)
-    {   _operations[_depth].push_back(Symbol(S_EXP)); // le symbole exp signifie qu'i existe une sous expression
-        _depth++; // on incrémente la profondeur
-        if(_operations.size() < _depth+1)
-        {   _operations.push_back(list<Symbol>()); // on ajoute une liste
-        }
-    }
-    else if(symbol.code == S_PF)
-    {   _operations[_depth].push_back(Symbol(S_PF)); // le symbole pf sert de séparateur
-        _depth--; // on décrémente la profondeur
-    }
-    else // dans ce cas on doit recevoir un de PLUS,MINUS,MULT,DIV,ID,NUM
-    {   _operations[_depth].push_back(symbol);
-    }
-}
-
-void InstructionList::MergeSymbols()
-{
-    // -- DEBUG -----------------------------------------------------
-    DEBUG("merge required on structure : ");
-    int depth(0);
-    for(vector<list<Symbol> >::iterator d = _operations.begin(); d != _operations.end(); ++d)
-    {   DBG_PRT("depth " << depth << " : { ");
-        for(list<Symbol>::iterator s = d->begin(); s != d->end(); ++s)
-        {   if(s != d->begin())
-            {   DBG_PRT(", ");
-            }
-            switch (s->code) {
-            case S_EXP:     DBG_PRT("subexp");  break;
-            case S_PF:      DBG_PRT("next");    break;
-            case S_PLUS:    DBG_PRT("+");       break;
-            case S_MINUS:   DBG_PRT("-");       break;
-            case S_MULT:    DBG_PRT("*");       break;
-            case S_DIV:     DBG_PRT("/");       break;
-            case S_ID:      DBG_PRT("id");      break;
-            case S_NUM:     DBG_PRT("num");     break;
-            default:        DBG_PRT("error");   break;
-            }
-        }
-        DBG_PRT(" }" << endl);
-        depth++;
-    }
-    // -- DEBUG -----------------------------------------------------
-    _operations.clear();
-    _operations.push_back(list<Symbol>());
-    _depth = 0;
 }
 
 void InstructionList::EndInstruction()

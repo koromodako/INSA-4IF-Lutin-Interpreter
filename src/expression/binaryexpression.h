@@ -19,7 +19,7 @@ public:
      * @param right
      *      Operande droite
      */
-    BinaryExpression(BinaryOperator op, AbstractExpression * left, AbstractExpression * right, bool hasParenthesisAround = false);
+    BinaryExpression(BinaryOperator op, AbstractExpression * left, AbstractExpression * right = NULL);
     BinaryExpression(BinaryExpression & other);
 
     inline bool IsNumber() { return false; }
@@ -41,6 +41,8 @@ public:
      * @see AbstractExpression::stringify()
      */
     string Stringify();
+
+    inline void SetRightOperand(AbstractExpression * right) { _right = right; }
 
 private:
     bool _hasParenthesisAround;

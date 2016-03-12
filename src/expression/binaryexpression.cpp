@@ -18,8 +18,8 @@ BinaryExpression::~BinaryExpression()
     delete _right;
 }
 
-BinaryExpression::BinaryExpression(BinaryOperator op, AbstractExpression * left, AbstractExpression * right, bool hasParenthesisAround) :
-    AbstractExpression(), _hasParenthesisAround(hasParenthesisAround), _op(op), _left(left), _right(right)
+BinaryExpression::BinaryExpression(BinaryOperator op, AbstractExpression * left, AbstractExpression * right) :
+    AbstractExpression(), _op(op), _left(left), _right(right)
 {}
 
 BinaryExpression::BinaryExpression(BinaryExpression &other) :
@@ -41,7 +41,6 @@ double BinaryExpression::Eval(DataMap &dmap, bool & ok)
         if(ok)
         {   // on effectue le calcul en fonction de l'opération
             switch (_op) {
-            case BOP_NOP: break;
             case BOP_PLUS:
                 value = left_eval + right_eval;
                 break;
@@ -98,7 +97,6 @@ AbstractExpression *BinaryExpression::Simplify(DataMap &dmap, bool &ok)
             else // sinon on cherche les éléments neutres
             {   bool useless_ok;
                 switch (_op) {
-                case BOP_NOP: break;
                 case BOP_PLUS:
                     if(_left->IsNumber() && _left->Eval(dmap, useless_ok) == 0)
                     {   // copie profonde
@@ -146,7 +144,6 @@ string BinaryExpression::Stringify()
 
     ss << _left->Stringify();
     switch (_op) {
-    case BOP_NOP: ss << "nop"; break;
     case BOP_PLUS:  ss << '+'; break;
     case BOP_MINUS: ss << '-'; break;
     case BOP_MULT:  ss << '*'; break;
