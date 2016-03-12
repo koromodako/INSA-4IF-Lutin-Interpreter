@@ -8,10 +8,9 @@ InstructionList::InstructionList() :
 {
 }
 
-void InstructionList::AppendRead(string &identifier)
+void InstructionList::StartRead(string &identifier)
 {
     _currentInstr = Instruction(ICODE_READ, identifier);
-    EndInstruction();
 }
 
 void InstructionList::StartPrint()
@@ -75,7 +74,12 @@ string InstructionList::Stringify() const
         {
 			case ICODE_PRINT:
                 instructions += "ecrire ";
-                instructions += i->expr->Stringify();
+                if(i->expr != NULL)
+                {   instructions += i->expr->Stringify();
+                }
+                else
+                {   instructions += "NULL_EXPRESSION";
+                }
 				break;
 			case ICODE_READ:
                 instructions += "lire ";
@@ -84,7 +88,12 @@ string InstructionList::Stringify() const
 			case ICODE_SET:
                 instructions += i->identifier;
 				instructions += " := ";
-                instructions += i->expr->Stringify();
+                if(i->expr != NULL)
+                {   instructions += i->expr->Stringify();
+                }
+                else
+                {   instructions += "NULL_EXPRESSION";
+                }
 				break;
 			default:
 				cout << "Instruction non supportée";

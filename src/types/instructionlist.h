@@ -17,7 +17,7 @@ public:
      * @param identifier
      *      Identifiant de la variable dans laquelle la lecture doit être faite
      */
-    void AppendRead(string & identifier);
+    void StartRead(string & identifier);
     /**
      * @brief Commence l'ajout d'une instruction d'affichage
      */

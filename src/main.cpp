@@ -61,6 +61,12 @@ int main(int argc, char *argv[])
     // -- execution de l'automate
     programStateMachine.Run();
 
+    cout << endl << "-------------------------- RESULTS --------------------------" << endl;
+    cout << endl << "-------------------------- DATAMAP --------------------------" << endl;
+    cout << dataMap.Stringify() << endl;
+    cout << "-------------------------- INSTRUS --------------------------" << endl;
+    cout << instructionList.Stringify() << endl;
+
     return 0;
 }
 

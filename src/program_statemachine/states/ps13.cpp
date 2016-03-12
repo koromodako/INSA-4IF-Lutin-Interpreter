@@ -11,7 +11,6 @@ AbstractState::TransitionResult PS13::Transition(AbstractStateMachine &machine, 
         ret = AbstractState::PILED_UP;
         break;
     case S_PV:///< ';'
-        machine.GetInstructionList().EndInstruction();
         machine.PileUp(symbol, new PS16());
         ret = AbstractState::PILED_UP;
         break;
