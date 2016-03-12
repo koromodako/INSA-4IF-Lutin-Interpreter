@@ -6,7 +6,8 @@ AbstractState::TransitionResult PS14::Transition(AbstractStateMachine &machine, 
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_ID:///< identifiant '\w[\w\d]*'
-        machine.GetDataMap().StartVar(symbol.buf);
+        // on ajoute la nouvelle variable
+        machine.GetDataMap().AppendVar(symbol.buf);
         machine.PileUp(symbol, new PS15());
         ret = AbstractState::PILED_UP;
         break;

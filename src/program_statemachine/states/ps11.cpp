@@ -6,7 +6,8 @@ AbstractState::TransitionResult PS11::Transition(AbstractStateMachine &machine, 
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_ID:///< 'id'
-        machine.GetDataMap().StartVar(symbol.buf);
+        // on ajoute la nouvelle variable
+        machine.GetDataMap().AppendVar(symbol.buf);
         machine.PileUp(symbol, new PS12());
         ret = AbstractState::PILED_UP;
         break;

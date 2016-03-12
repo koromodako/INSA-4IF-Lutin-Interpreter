@@ -15,32 +15,39 @@ void DataMap::StartConst(const string &identifier)
     _currentData = Data(true, true);
 }
 
-void DataMap::StartVar(const string &identifier)
+void DataMap::AppendVar(const string &identifier)
 {
     _currentIdentifier = identifier;
     _currentData = Data(true);
+    EndData();
 }
 
 void DataMap::SetDataValue(double value)
 {
     _currentData.set = true;
     _currentData.value = value;
+    EndData();
 }
 
 void DataMap::SetDataValue(string value)
 {
     _currentData.set = true;
     _currentData.value = atof(value.c_str());
+    EndData();
 }
 
-bool DataMap::EndData()
+void DataMap::EndData()
 {
-    if (count(_currentIdentifier) == 0)
-    {
-        insert(make_pair(_currentIdentifier, _currentData));
-        return true;
+    DataMap::iterator d = find(_currentIdentifier);
+    if (d == end())
+    {   insert(make_pair(_currentIdentifier, _currentData));
     }
-    return false;
+    else
+    {   d->second.multdecl = true; // on lève le flag de déclarations multiples
+    }
+    // on reset le variables (buffers) internes
+    _currentIdentifier = "";
+    _currentData = Data();
 }
 
 /**
