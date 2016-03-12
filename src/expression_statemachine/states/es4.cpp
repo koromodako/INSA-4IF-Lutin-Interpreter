@@ -20,12 +20,12 @@ AbstractState::TransitionResult ES4::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::REDUCED;
         break;
     case S_MULT:
-        machine.GetInstructionList().AppendSymbol(symbol);
+        machine.GetInstructionList().AppendSymbol(symbol); // on ajoute le symbole MULT
         machine.PileUp(symbol, new ES5);
         ret = AbstractState::PILED_UP;
         break;
     case S_DIV:
-        machine.GetInstructionList().AppendSymbol(symbol);
+        machine.GetInstructionList().AppendSymbol(symbol); // on ajoute le symbole DIV
         machine.PileUp(symbol, new ES6);
         ret = AbstractState::PILED_UP;
         break;

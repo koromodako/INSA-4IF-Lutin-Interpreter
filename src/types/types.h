@@ -40,6 +40,7 @@ struct Instruction {
  * @brief Cette énumération définie les différents types d'opérateurs à deux opérandes
  */
 enum BinaryOperator {
+    BOP_NOP,        ///< Opérateur inexistant pour la construction des expressions
     BOP_PLUS,       ///< Opérateur d'addition
     BOP_MINUS,      ///< Opérateur de soustraction
     BOP_MULT,       ///< Opérateur de multiplication

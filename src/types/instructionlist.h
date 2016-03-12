@@ -2,6 +2,7 @@
 #define INSTRUCTIONLIST_H
 
 #include <list>
+#include <vector>
 #include <string>
 
 #include "../types/types.h"
@@ -47,11 +48,10 @@ public:
      */
     string Stringify() const;
 
-
-
 private:
     Instruction _currentInstr;
-    list<Symbol> _exprSymbols;
+    size_t _depth;
+    vector< list<Symbol> > _operations;
 };
 
 #endif // INSTRUCTIIONLIST_H

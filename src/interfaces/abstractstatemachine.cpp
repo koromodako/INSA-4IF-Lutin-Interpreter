@@ -87,7 +87,7 @@ void AbstractStateMachine::Unexpected(Symbol symbol)
 {
     /// \todo implement here
     // -- DEBUG -------------------------------------------------------------------
-    DEBUG("Unexpected symbol : symbol(code='"<<symbol.code<<"',buf='"<<symbol.buf<<"')");
+    DEBUG("[ERROR] - unexpected symbol in '"<< _statesStack.top()->name() <<"' : symbol(code='"<<symbol.code<<"',buf='"<<symbol.buf<<"')");
     // -- DEBUG -------------------------------------------------------------------
 }
 

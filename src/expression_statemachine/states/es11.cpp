@@ -11,17 +11,17 @@ AbstractState::TransitionResult ES11::Transition(AbstractStateMachine &machine, 
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_ID:
-        machine.GetInstructionList().AppendSymbol(symbol);
+        machine.GetInstructionList().AppendSymbol(symbol); // on ajoute le symbole ID
         machine.PileUp(symbol, new ES9);
         ret = AbstractState::PILED_UP;
         break;
     case S_NUM:
-        machine.GetInstructionList().AppendSymbol(symbol);
+        machine.GetInstructionList().AppendSymbol(symbol); // on ajoute le symbole NUM
         machine.PileUp(symbol, new ES10);
         ret = AbstractState::PILED_UP;
         break;
     case S_PO:
-        machine.GetInstructionList().AppendSymbol(symbol);
+        machine.GetInstructionList().AppendSymbol(symbol); // on ajoute le symbole parenthèse ouvrante
         machine.PileUp(symbol, new ES11);
         ret = AbstractState::PILED_UP;
         break;

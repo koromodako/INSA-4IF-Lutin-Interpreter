@@ -21,7 +21,7 @@ AbstractState::TransitionResult ES0::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::PILED_UP;
         break;
     case S_PO:
-        machine.GetInstructionList().AppendSymbol(symbol);
+        machine.GetInstructionList().AppendSymbol(symbol); // on ajoute le symbole PO
         machine.PileUp(symbol, new ES11);
         ret = AbstractState::PILED_UP;
         break;
