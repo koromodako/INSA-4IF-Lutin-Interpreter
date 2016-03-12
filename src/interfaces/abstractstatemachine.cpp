@@ -2,6 +2,15 @@
 
 #include "../debug.h"
 
+AbstractStateMachine::~AbstractStateMachine()
+{
+    // nettoyage de la stack des etats si non vide
+    while (!_statesStack.empty()) {
+        delete _statesStack.top();
+        _statesStack.pop();
+    }
+}
+
 void AbstractStateMachine::Run(AbstractState * initialState)
 {
     // -- DEBUG --------------------------------------------------------
@@ -12,8 +21,8 @@ void AbstractStateMachine::Run(AbstractState * initialState)
     _statesStack.push(initialState);
     // -- run state machine
     Symbol symbol;
-    bool ok = true;
-    while(!_statesStack.empty() && ok)
+    bool ok(true), accept(false);
+    while(!_statesStack.empty() && ok && !accept)
     {
         symbol = _lexer.GetNext();
         switch(_statesStack.top()->Transition(*this, symbol))
@@ -21,8 +30,18 @@ void AbstractStateMachine::Run(AbstractState * initialState)
         case AbstractState::UNEXPECTED: ok = false; break;
         case AbstractState::REDUCED: break;
         case AbstractState::PILED_UP: _lexer.MoveForward(); break;
+        case AbstractState::ACCEPT: accept = true; break;
         }
+
+        // -- DEBUG --------------------------------------------------------
+        DEBUG("is back to transition loop");
+        // -- DEBUG --------------------------------------------------------
+
     }
+
+    // -- DEBUG --------------------------------------------------------
+    DEBUG("exiting transition loop");
+    // -- DEBUG --------------------------------------------------------
 }
 
 void AbstractStateMachine::Reduce(Symbol symbol, int size)
@@ -37,8 +56,20 @@ void AbstractStateMachine::Reduce(Symbol symbol, int size)
         _symbolsStack.pop();
         size--;
     }
+
+    // -- DEBUG --------------------------------------------------------
+    DEBUG("applying direct transition on reduce");
+    // -- DEBUG --------------------------------------------------------
+
     // transition appliquée quand on arrive dans le nouvel état
-    _statesStack.top()->Transition(*this, symbol);
+    if(!_statesStack.empty())
+    {
+        // -- DEBUG --------------------------------------------------------
+        DEBUG("transition applied");
+        // -- DEBUG --------------------------------------------------------
+
+        _statesStack.top()->Transition(*this, symbol);
+    }
 }
 
 void AbstractStateMachine::PileUp(Symbol symbol, AbstractState *state)
@@ -56,7 +87,7 @@ void AbstractStateMachine::Unexpected(Symbol symbol)
 {
     /// \todo implement here
     // -- DEBUG -------------------------------------------------------------------
-    DEBUG("Symbole inattendu dans la machine : symbol(code='"<<symbol.code<<"',buf='"<<symbol.buf<<"')");
+    DEBUG("Unexpected symbol : symbol(code='"<<symbol.code<<"',buf='"<<symbol.buf<<"')");
     // -- DEBUG -------------------------------------------------------------------
 }
 

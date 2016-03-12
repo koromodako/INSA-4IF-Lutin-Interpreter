@@ -2,6 +2,7 @@
 #include "es2.h"
 #include "es3.h"
 #include "es17.h"
+#include "../rules.h"
 
 AbstractState::TransitionResult ES1::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
@@ -18,8 +19,12 @@ AbstractState::TransitionResult ES1::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::PILED_UP;
         break;
     case S_PV:
-        machine.PileUp(symbol, new ES17);
-        ret = AbstractState::PILED_UP;
+        /*
+         *  Normalement on empile E17 mais là on doit accepter,
+         *  l'equation est terminée. L'état E17 ne sert donc à rien.
+         *  => On se contente juste d'accepter
+         */
+        ret = AbstractState::ACCEPT;
         break;
     default:
         machine.Unexpected(symbol);

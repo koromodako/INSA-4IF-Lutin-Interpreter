@@ -7,11 +7,11 @@ AbstractState::TransitionResult PS12::Transition(AbstractStateMachine &machine, 
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_V:///< ','
-        machine.Reduce(Symbol(S_LV), RULE_3);
+        machine.Reduce(SYM_LV, RULE_3);
         ret = AbstractState::REDUCED;
         break;
     case S_PV:///< ';'
-        machine.Reduce(Symbol(S_LV), RULE_3);
+        machine.Reduce(SYM_LV, RULE_3);
         ret = AbstractState::REDUCED;
         break;
     case S_LV:

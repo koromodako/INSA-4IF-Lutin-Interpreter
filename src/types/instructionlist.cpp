@@ -57,6 +57,8 @@ void InstructionList::MergeSymbols()
     // -- DEBUG ---------------------------------------------------------------------
     DEBUG("merge required");
     // -- DEBUG ---------------------------------------------------------------------
+    // on vide la liste des symboles
+    _exprSymbols.clear();
 }
 
 void InstructionList::EndInstruction()

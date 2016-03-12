@@ -2,6 +2,7 @@
 #include "es9.h"
 #include "es10.h"
 #include "es11.h"
+#include "es12.h"
 #include "es4.h"
 
 AbstractState::TransitionResult ES2::Transition(AbstractStateMachine &machine, Symbol symbol)
@@ -28,7 +29,7 @@ AbstractState::TransitionResult ES2::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::PILED_UP;
         break;
     case S_F:
-        machine.PileUp(symbol, new ES2);
+        machine.PileUp(symbol, new ES12); /// \todo corriger la table de transitions
         ret = AbstractState::PILED_UP;
         break;
     default:

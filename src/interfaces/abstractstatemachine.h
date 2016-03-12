@@ -14,7 +14,7 @@ class AbstractState;
 class AbstractStateMachine
 {
 public:
-    virtual ~AbstractStateMachine(){}
+    virtual ~AbstractStateMachine();
 
     /**
      * @brief Execute la machine à état en utilisant le lexer

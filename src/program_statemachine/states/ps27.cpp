@@ -6,27 +6,27 @@ AbstractState::TransitionResult PS27::Transition(AbstractStateMachine &machine, 
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
         case S_CONST:///< mot-clé 'const'
-            machine.Reduce(Symbol(S_D), RULE_7);
+            machine.Reduce(SYM_D, RULE_7);
             ret = AbstractState::REDUCED;
             break;
         case S_VAR:///< mot-clé 'var'
-            machine.Reduce(Symbol(S_D), RULE_7);
+            machine.Reduce(SYM_D, RULE_7);
             ret = AbstractState::REDUCED;
             break;
         case S_READ:///< 'lire'
-            machine.Reduce(Symbol(S_D), RULE_7);
+            machine.Reduce(SYM_D, RULE_7);
             ret = AbstractState::REDUCED;
             break;
         case S_WRITE:///< 'ecrire'
-            machine.Reduce(Symbol(S_D), RULE_7);
+            machine.Reduce(SYM_D, RULE_7);
             ret = AbstractState::REDUCED;
             break;
         case S_ID:///< identifiant '\w[\w\d]*'
-            machine.Reduce(Symbol(S_D), RULE_7);
+            machine.Reduce(SYM_D, RULE_7);
             ret = AbstractState::REDUCED;
             break;
         case S_EOF:///< $
-            machine.Reduce(Symbol(S_D), RULE_7);
+            machine.Reduce(SYM_D, RULE_7);
             ret = AbstractState::REDUCED;
             break;
         default:

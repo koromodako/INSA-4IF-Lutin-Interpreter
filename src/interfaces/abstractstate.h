@@ -18,7 +18,8 @@ public:
     {
         UNEXPECTED,
         REDUCED,
-        PILED_UP
+        PILED_UP,
+        ACCEPT
     };
     virtual ~AbstractState(){}
     /**

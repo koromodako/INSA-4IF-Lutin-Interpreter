@@ -93,4 +93,17 @@ struct Symbol {
     {}
 };
 
+// -- non-terminal symbols
+#define SYM_EXP Symbol(S_EXP, "EXP")
+#define SYM_P   Symbol(S_P, "P")
+#define SYM_D   Symbol(S_D, "D")
+#define SYM_LD  Symbol(S_LD, "LD")
+#define SYM_LC  Symbol(S_LC, "LC")
+#define SYM_LI  Symbol(S_LI, "LI")
+#define SYM_LV  Symbol(S_LV, "LV")
+#define SYM_I   Symbol(S_I, "I")
+#define SYM_A   Symbol(S_A, "A")
+#define SYM_T   Symbol(S_T, "T")
+#define SYM_F   Symbol(S_F, "F")
+
 #endif // TYPES_H

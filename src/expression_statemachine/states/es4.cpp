@@ -8,15 +8,15 @@ AbstractState::TransitionResult ES4::Transition(AbstractStateMachine &machine, S
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_PF:
-        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_2);
+        machine.Reduce(SYM_A, RULE_2);
         ret = AbstractState::REDUCED;
         break;
     case S_PLUS:
-        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_2);
+        machine.Reduce(SYM_A, RULE_2);
         ret = AbstractState::REDUCED;
         break;
     case S_MINUS:
-        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_2);
+        machine.Reduce(SYM_A, RULE_2);
         ret = AbstractState::REDUCED;
         break;
     case S_MULT:
@@ -30,7 +30,7 @@ AbstractState::TransitionResult ES4::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::PILED_UP;
         break;
     case S_PV:
-        machine.Reduce(Symbol(S_LEXER_ERROR), RULE_2);
+        machine.Reduce(SYM_A, RULE_2);
         ret = AbstractState::REDUCED;
         break;
     default:
