@@ -58,7 +58,7 @@ private:
     DataMap & _dMap; // cet automate doit remplir cette structure avec les déclarations de variables et constantes
     InstructionList & _instructions;
     stack<string> _errorsStack;         // pile des erreurs
-    stack<Symbol> _symbolsStack;          // pile des symboles
+    SymbolStack _symbolsStack;          // pile des symboles
     stack<AbstractState*> _statesStack; // pile des états
 };
 

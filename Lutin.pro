@@ -78,7 +78,9 @@ SOURCES += \
     src/unit_tests/abstractexpressiontests.cpp \
     src/unit_tests/lexertests.cpp \
     src/unit_tests/instructionlisttests.cpp \
-    src/unit_tests/datamaptests.cpp
+    src/unit_tests/datamaptests.cpp \
+    src/expression/expressionfactory.cpp \
+    src/unit_tests/expressionfactorytests.cpp
 
 
 HEADERS += \
@@ -151,7 +153,9 @@ HEADERS += \
     src/unit_tests/instructionlisttests.h \
     src/unit_tests/datamaptests.h \
     src/expression_statemachine/rules.h \
-    src/program_statemachine/rules.h
+    src/program_statemachine/rules.h \
+    src/expression/expressionfactory.h \
+    src/unit_tests/expressionfactorytests.h
 
 DISTFILES += \
     src/make_states.sh \

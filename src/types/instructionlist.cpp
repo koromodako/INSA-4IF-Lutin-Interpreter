@@ -1,11 +1,12 @@
 #include "instructionlist.h"
-
+#include "src/expression/expressionfactory.h"
 #include "../debug.h"
 
 #include <iostream>
 
 InstructionList::InstructionList() :
-    list<Instruction>()
+    list<Instruction>(),
+    _symbols()
 {
 }
 
@@ -29,11 +30,20 @@ void InstructionList::AppendSymbol(Symbol symbol)
     // -- DEBUG ----------------------------------------------------
     DEBUG("adding symbol(code='"<< symbol.code <<"',buf='"<< symbol.buf <<"')");
     // -- DEBUG ----------------------------------------------------
+    _symbols.push_back(symbol);
+}
+
+void InstructionList::MergeSymbols()
+{
+    _currentInstr.expr = ExpressionFactory::MakeExpression(_symbols);
 }
 
 void InstructionList::EndInstruction()
 {
     push_back(_currentInstr);
+    // reset des variables (buffers) internes
+    _currentInstr = Instruction();
+    _symbols.clear();
 }
 
 string InstructionList::Stringify() const

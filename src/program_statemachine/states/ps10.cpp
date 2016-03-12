@@ -16,6 +16,8 @@ AbstractState::TransitionResult PS10::Transition(AbstractStateMachine &machine, 
     // -- DEBUG ------------------------------------------------
     DEBUG("return from expression analysis");
     // -- DEBUG ------------------------------------------------
+    // on construit l'expression en interne
+    machine.GetInstructionList().MergeSymbols();
     // dans tous les cas on empile l'état 28
     machine.PileUp(SYM_EXP, new PS28);
     return AbstractState::PILED_UP;

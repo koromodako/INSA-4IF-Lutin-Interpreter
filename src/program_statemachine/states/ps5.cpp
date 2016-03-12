@@ -15,6 +15,8 @@ AbstractState::TransitionResult PS5::Transition(AbstractStateMachine &machine, S
     // -- DEBUG ------------------------------------------------
     DEBUG("return from expression analysis");
     // -- DEBUG ------------------------------------------------
+    // on construit l'expression en interne
+    machine.GetInstructionList().MergeSymbols();
     // note : l'ajout final de l'instruction dans la liste d'instruction se fait dans l'état 29
     // dans tous les cas on empile l'état 29
     machine.PileUp(SYM_EXP, new PS29);

@@ -75,6 +75,7 @@ int main(int argc, char *argv[])
 #include "src/unit_tests/lexertests.h"
 #include "src/unit_tests/instructionlisttests.h"
 #include "src/unit_tests/datamaptests.h"
+#include "src/unit_tests/expressionfactorytests.h"
 
 int main()
 {
@@ -82,6 +83,7 @@ int main()
     LexerTests();
     InstructionListTests();
     DataMapTests();
+    ExpressionFactoryTests();
 }
 
 #endif

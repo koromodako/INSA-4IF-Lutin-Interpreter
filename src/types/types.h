@@ -3,6 +3,7 @@
 
 #include <map>
 #include <list>
+#include <stack>
 #include <string>
 
 using namespace std;
@@ -92,6 +93,10 @@ struct Symbol {
         code(_code), buf(_buf)
     {}
 };
+
+// -- quelques définitions de types
+typedef stack<Symbol> SymbolStack;
+typedef list<Symbol> SymbolList;
 
 // -- non-terminal symbols
 #define SYM_EXP Symbol(S_EXP, "EXP")

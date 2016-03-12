@@ -34,6 +34,10 @@ public:
      */
     void AppendSymbol(Symbol symbol);
     /**
+     * @brief Construit l'expression à partir de la liste de symboles
+     */
+    void MergeSymbols();
+    /**
      * @brief Termine l'ajout d'une instruction quelle qu'elle soit
      */
     void EndInstruction();
@@ -45,6 +49,7 @@ public:
 
 private:
     Instruction _currentInstr;
+    SymbolList _symbols;
 };
 
 #endif // INSTRUCTIIONLIST_H
