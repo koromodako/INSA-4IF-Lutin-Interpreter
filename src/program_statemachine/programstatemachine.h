@@ -17,7 +17,7 @@ public:
     ~ProgramStateMachine(){}
     ProgramStateMachine(Lexer & lexer, DataMap & dmap, InstructionList & instructions);
 
-    void Run();
+    void Run(AbstractState * initialState = NULL);
 
 private:
 

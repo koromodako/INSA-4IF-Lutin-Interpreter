@@ -61,11 +61,13 @@ int main(int argc, char *argv[])
     // -- execution de l'automate
     programStateMachine.Run();
 
+#ifdef PRINT_DEBUG
     cout << endl << "-------------------------- RESULTS --------------------------" << endl;
     cout << endl << "-------------------------- DATAMAP --------------------------" << endl;
     cout << dataMap.Stringify() << endl;
     cout << "-------------------------- INSTRUS --------------------------" << endl;
     cout << instructionList.Stringify() << endl;
+#endif
 
     return 0;
 }

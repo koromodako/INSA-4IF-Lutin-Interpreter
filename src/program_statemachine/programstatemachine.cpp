@@ -6,8 +6,9 @@ ProgramStateMachine::ProgramStateMachine(Lexer &lexer, DataMap &dmap, Instructio
 {
 }
 
-void ProgramStateMachine::Run()
+void ProgramStateMachine::Run(AbstractState *initialState)
 {
+    (void)initialState;
     // -- initialize lexer with a first move forward
     GetLexer().MoveForward();
     // -- run state machine

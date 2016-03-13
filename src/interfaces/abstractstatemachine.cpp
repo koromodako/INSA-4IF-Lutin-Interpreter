@@ -25,6 +25,7 @@ void AbstractStateMachine::Run(AbstractState * initialState)
     while(!_statesStack.empty() && ok && !accept)
     {
         symbol = _lexer.GetNext();
+
         switch(_statesStack.top()->Transition(*this, symbol))
         {
         case AbstractState::UNEXPECTED: ok = false; break;

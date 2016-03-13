@@ -31,6 +31,9 @@ AbstractState::TransitionResult PS0::Transition(AbstractStateMachine &machine, S
         machine.PileUp(symbol, new PS1());
         ret = AbstractState::PILED_UP;
         break;
+    case S_EOF:///< Fin du fichier
+        ret = AbstractState::ACCEPT;
+        break;
     default:
         machine.Unexpected(symbol);
         break;

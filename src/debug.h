@@ -4,10 +4,11 @@
 #include "config.h"
 #include <iostream>
 
+#   define ERROR(msg) cerr << "-!-[ERROR] -" << msg << endl << flush
+
 #ifdef PRINT_DEBUG
 
 #   define DEBUG(msg) cerr << "[DEBUG] - " <<  msg << endl << flush
-#   define ERROR(msg) cerr << "-!-[ERROR] -" << msg << endl << flush
 #   define DBG_PRT(msg) cerr << msg
 
 #   define DBG_SYM_LIST(symbols) \
@@ -29,7 +30,6 @@
 #else
 
 #   define DEBUG(msg)
-#   define ERROR(msg)
 #   define DBG_PRT(msg)
 #   define DBG_SYM_LIST(list)
 
