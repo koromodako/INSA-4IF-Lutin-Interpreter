@@ -19,7 +19,8 @@ SymbolList ExpressionFactory::infixToPostfix(SymbolList &symbols)
     SymbolStack opStack;
     SymbolList postfix;
     for(SymbolList::iterator s = symbols.begin(); s != symbols.end(); ++s)
-    {   if(s->code == S_ID || s->code == S_NUM)
+    {
+        if(s->code == S_ID || s->code == S_NUM)
         {   postfix.push_back(*s);
         }
         else if(s->code == S_PO)
@@ -31,6 +32,7 @@ SymbolList ExpressionFactory::infixToPostfix(SymbolList &symbols)
                 opStack.pop();
             }
             opStack.pop();
+            postfix.push_back(*s);
         }
         else
         {   while (!opStack.empty() && precedence(opStack.top().code) >= precedence(s->code))
@@ -61,6 +63,9 @@ AbstractExpression *ExpressionFactory::postfixToExpr(SymbolList &postfix)
     {   if(s->code == S_ID || s->code == S_NUM)
         {   exprStack.push(makeOperand(*s));
         }
+        else if(s->code == S_PF && exprStack.size() > 0)
+        {   exprStack.top()->SetRequireParenthesis();
+        }
         else if(s->code == S_PLUS || s->code == S_MINUS || s->code == S_MULT || s->code == S_DIV)
         {   // récupération des deux opérandes sur la pile
             AbstractExpression * right = exprStack.top();
@@ -71,7 +76,7 @@ AbstractExpression *ExpressionFactory::postfixToExpr(SymbolList &postfix)
             exprStack.push(makeOperation(*s, left, right));
         }
         else
-        {   ERROR("ExpressionFactory::postfixToExpr : unexpected symbol, skipped !");
+        {   ERROR("ExpressionFactory::postfixToExpr : unexpected symbol, skipped ! "+s->buf);
         }
     }
     if(exprStack.size() == 1)

@@ -51,7 +51,7 @@ public:
 protected:
     AbstractExpression();
 
-private:
+protected:
     bool _requireParenthesis;
 };
 

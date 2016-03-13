@@ -43,7 +43,6 @@ public:
     string Stringify();
 
 private:
-    bool _hasParenthesisAround;
     BinaryOperator _op;            // opérateur
     AbstractExpression * _left;    // opérande à gauche
     AbstractExpression * _right;   // opérande à droite

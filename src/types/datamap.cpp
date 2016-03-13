@@ -55,17 +55,16 @@ void DataMap::EndData()
  */
 string DataMap::Stringify() const
 {
-    stringstream consts;
-    stringstream vars;
+    stringstream result;
     for(DataMap::const_iterator i = this->begin() ; i != this->end() ; i++)
 	{
         if( i->second.cst )
-            consts << "const " << i->first << "=" << i->second.value << ";" << endl;
+            result << "const " << i->first << " = " << i->second.value << ";" << endl;
 		else
-            vars << "var " << i->first << ";\n";
+            result << "var " << i->first << ";" << endl;
 	}
 	
-    return vars.str() + consts.str();
+    return result.str();
 }
 
 

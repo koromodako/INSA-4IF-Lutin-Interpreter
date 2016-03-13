@@ -14,9 +14,9 @@ OptionsManager::OptionsManager(DataMap &dataMap, InstructionList &instructionLis
 {
 }
 
-bool OptionsManager::CheckOptions(int argc, char *argv[])
+int OptionsManager::CheckOptions(int argc, char *argv[])
 {
-    for (int i = 2 ; i < argc; ++i)
+    for (int i = 1 ; i < argc; ++i)
     {
         if (string(argv[i]) == "-o")
             _transform = true;
@@ -26,10 +26,11 @@ bool OptionsManager::CheckOptions(int argc, char *argv[])
             _analysis = true;
         else if (string(argv[i]) == "-e")
             _execute = true;
-        else
-            return false;
+        else if (argv[i][0] == '-')
+            return -1;
+        else return i;
     }
-    return true;
+    return argc;
 }
 
 void OptionsManager::Execute()
@@ -87,8 +88,7 @@ void OptionsManager::execute() const
 
 void OptionsManager::print() const
 {
-    _dataMap.Stringify();
-    _instructionList.Stringify();
+    cout << _dataMap.Stringify() << _instructionList.Stringify();
 }
 
 void OptionsManager::transform()

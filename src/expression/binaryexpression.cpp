@@ -139,7 +139,7 @@ AbstractExpression *BinaryExpression::Simplify(DataMap &dmap, bool &ok)
 string BinaryExpression::Stringify()
 {
     stringstream ss("");
-    if (_hasParenthesisAround)
+    if (_requireParenthesis)
         ss << "(";
 
     ss << _left->Stringify();
@@ -150,7 +150,7 @@ string BinaryExpression::Stringify()
     case BOP_DIV:   ss << '/'; break;
     }
     ss << _right->Stringify();
-    if (_hasParenthesisAround)
+    if (_requireParenthesis)
         ss << ")";
 
     return ss.str();
