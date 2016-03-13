@@ -41,14 +41,14 @@ void OptionsManager::Execute()
             std::cerr << "Warning : redefinition of ’" << it->first << "’"<< endl;
     }
 
+    if (_transform)
+        transform();
+    if (_analysis)
+        analysis();
+    if (_execute)
+        execute();
     if (_display)
         print();
-    else if (_transform)
-        transform();
-    else if (_analysis)
-        analysis();
-    else if (_execute)
-        execute();
 }
 
 void OptionsManager::analysis() const
@@ -107,7 +107,8 @@ void OptionsManager::transform()
     for (itIns = _instructionList.begin() ; itIns != _instructionList.end() ; ++itIns)
     {
         ok = false;
-        expr = itIns->expr->Simplify(_dataMap, ok);
+        if (itIns->expr != NULL)
+            expr = itIns->expr->Simplify(_dataMap, ok);
         if (ok && expr != NULL)//Si une simplification a eu lieu...
         {
             delete itIns->expr;

@@ -25,14 +25,16 @@ void DataMap::AppendVar(const string &identifier)
 
 void DataMap::SetDataValue(double value)
 {
-    _currentData.set = true;
+    if (!_currentData.cst)
+        _currentData.set = true;
     _currentData.value = value;
     EndData();
 }
 
 void DataMap::SetDataValue(string value)
 {
-    _currentData.set = true;
+    if (!_currentData.cst)
+        _currentData.set = true;
     _currentData.value = atof(value.c_str());
     EndData();
 }
@@ -76,8 +78,8 @@ string DataMap::Test() const
     for (DataMap::const_iterator it = begin() ; it != end() ; ++it)
     {
         //Variable utilisé et non déclaré - Test 6.4
-        if (it->second.exist)
-            result << "Error : Use of undeclared identifier '" << it->first << "''" << endl;
+        if (!it->second.exist)
+            result << "Error : Use of undeclared identifier '" << it->first << "'" << endl;
         //Constante réaffecté - Test 6.5
         if (it->second.cst && it->second.set)
             result << "Error : read-only variable '" << it->first << "' is not assignable" << endl;

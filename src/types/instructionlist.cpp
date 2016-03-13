@@ -41,6 +41,7 @@ void InstructionList::MergeSymbols()
 void InstructionList::EndInstruction()
 {
     push_back(_currentInstr);
+
     // reset des variables (buffers) internes
     _currentInstr = Instruction();
     _symbols.clear();
