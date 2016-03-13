@@ -3,6 +3,7 @@
 #include <string>
 #include <stdlib.h>
 #include <sstream>
+#include <iostream>
 
 DataMap::DataMap() :
     map<string, Data>()
@@ -43,7 +44,8 @@ void DataMap::EndData()
     {   insert(make_pair(_currentIdentifier, _currentData));
     }
     else
-    {   d->second.multdecl = true; // on lève le flag de déclarations multiples
+    {   //std::cerr << "Warning : redefinition of ’" << d->first << "’"<< endl; \todo
+        d->second.multdecl = true; // on lève le flag de déclarations multiples
     }
     // on reset les variables (buffers) internes
     _currentIdentifier = "";

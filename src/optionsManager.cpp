@@ -35,6 +35,12 @@ int OptionsManager::CheckOptions(int argc, char *argv[])
 
 void OptionsManager::Execute()
 {
+    for (DataMap::iterator it = _dataMap.begin() ; it != _dataMap.end() ; ++it)
+    {
+        if (it->second.multdecl)
+            std::cerr << "Warning : redefinition of ’" << it->first << "’"<< endl;
+    }
+
     if (_display)
         print();
     else if (_transform)
