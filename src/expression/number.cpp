@@ -11,6 +11,10 @@ Number::Number(Number &other) :
 {
 }
 
+void Number::GetUsedVariables(set<string> &)
+{
+}
+
 double Number::Eval(DataMap &, bool &ok)
 {
     ok = true;

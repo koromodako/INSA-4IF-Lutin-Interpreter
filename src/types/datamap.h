@@ -65,7 +65,7 @@ public:
      * @brief Cette méthode vérifie l'intégrité de la structure en réalisant les tests suivant :
      *      + les variables utilisées existent
      *      + les variables déclarées sont utilisées
-     *      + les constantes ne sont pas utilisées en partie gauche d'une affectation
+     *      + les variables déclarées sont initialisées et utilisées
      *
      * @return les erreurs trouvées sous forme de chaine de charactère
      */

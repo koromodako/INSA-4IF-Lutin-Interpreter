@@ -47,6 +47,15 @@ public:
      */
     string Stringify() const;
 
+    /**
+     * @brief Cette méthode vérifie l'intégrité de la structure en réalisant les tests suivant :
+     *      + les variables déclarées sont utilisées mais pas initialisé
+     *      + les constantes ne sont pas utilisées en partie gauche d'une affectation
+     *
+     * @return les erreurs trouvées sous forme de chaine de charactère
+     */
+    string Test(DataMap &map);
+
 private:
     Instruction _currentInstr;
     SymbolList _symbols;

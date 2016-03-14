@@ -27,6 +27,12 @@ public:
     inline bool IsBinaryExpression() { return true; }
 
     /**
+     * @brief Rempli la liste avec toutes les variables utilisées dans l'expression
+     * @param list
+     */
+    void GetUsedVariables(set<string> &list);
+
+    /**
      * @override
      * @see AbstractExpression::eval()
      */

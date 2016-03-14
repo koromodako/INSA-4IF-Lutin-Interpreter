@@ -31,6 +31,12 @@ BinaryExpression::BinaryExpression(BinaryExpression &other) :
     DEEP_COPY(other._right, _right)
 }
 
+void BinaryExpression::GetUsedVariables(set<string> &list)
+{
+    _left->GetUsedVariables(list);
+    _right->GetUsedVariables(list);
+}
+
 double BinaryExpression::Eval(DataMap &dmap, bool & ok)
 {
     double value(0);

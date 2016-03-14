@@ -2,6 +2,7 @@
 #include "src/expression/expressionfactory.h"
 #include "../debug.h"
 
+#include <sstream>
 #include <iostream>
 
 InstructionList::InstructionList() :
@@ -84,4 +85,39 @@ string InstructionList::Stringify() const
         instructions += ";\n";
 	}
     return instructions;
+}
+
+string InstructionList::Test(DataMap &dataMap)
+{
+    stringstream result;
+    for (InstructionList::iterator it = begin() ; it != end() ; ++it)
+    {
+        DataMap::iterator itData = dataMap.find(it->identifier);
+        if (it->identifier != "" && itData == dataMap.end())
+            itData = dataMap.insert(make_pair(it->identifier, Data())).first;
+
+        //Constante réaffectée - Test 6.5
+        if ((it->code == ICODE_SET || it->code == ICODE_READ) && itData->second.cst)
+        {
+            result << "Error : read-only variable '" << it->identifier << "' is not assignable" << endl;
+            itData->second.used = true;
+        }
+        else
+            itData->second.set = true;
+
+        if (it->code == ICODE_READ || it->expr == NULL)
+            continue;
+
+        //Déclaré, utilisé, mais pas initialisé -- Test 6.1
+        set<string> usedVar;
+        it->expr->GetUsedVariables(usedVar);
+        for (set<string>::iterator itVar = usedVar.begin() ; itVar != usedVar.end() ; ++itVar)
+        {
+            itData = dataMap.find(*itVar);
+            itData->second.used = true;
+            if (!itData->second.cst && !itData->second.set)
+                result << "Error : '" <<  itData->first << "' used but not initialized" << endl;
+        }
+    }
+    return result.str();
 }

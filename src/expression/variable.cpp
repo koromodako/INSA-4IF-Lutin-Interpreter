@@ -12,6 +12,11 @@ Variable::Variable(Variable &other) :
 {
 }
 
+void Variable::GetUsedVariables(set<string> &list)
+{
+    list.insert(_identifier);
+}
+
 double Variable::Eval(DataMap &dmap, bool &ok)
 {
     ok = false;
