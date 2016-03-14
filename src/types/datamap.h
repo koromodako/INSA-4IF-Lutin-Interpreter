@@ -16,11 +16,12 @@ struct Data {
     bool set;       ///< la mémoire est écrite ou non. Si la mémoire est constante, set est true
     bool multdecl;  ///< si elle a été déclarée plus d'une fois
     bool used;      ///< la mémoire est lue ou non
+    bool isKnown;   ///< utilisé pour la propagation des constantes
     double value;   ///< la valeur stockée dans la mémoire
     Data(bool _exist = false, bool _cst = false, bool _set = false,
          bool _multdecl = false, bool _used = false, double _value = -1) :
         exist(_exist), cst(_cst), set(_set), multdecl(_multdecl),
-        used(_used), value(_value)
+        used(_used), isKnown(false), value(_value)
     {}
 };
 

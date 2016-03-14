@@ -113,6 +113,19 @@ void OptionsManager::transform()
         {
             delete itIns->expr;
             itIns->expr = expr;
+            if (expr->IsNumber() && itIns->code == ICODE_SET)
+            {
+                bool ok;
+                double val = expr->Eval(_dataMap, ok);
+                if (ok)
+                {
+                    _dataMap[itIns->identifier].value = val;
+                    _dataMap[itIns->identifier].isKnown = true;
+                }
+            }
+            else if (itIns->code != ICODE_PRINT)
+                _dataMap[itIns->identifier].isKnown = false;
+
         }
     }
 }
