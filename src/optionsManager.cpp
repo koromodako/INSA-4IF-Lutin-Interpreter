@@ -101,12 +101,13 @@ void OptionsManager::transform()
 {
     AbstractExpression *expr = NULL;
     list<Instruction>::iterator itIns;
-    bool ok;
+    bool ok, skip;
 
     //Pour chaque expression
     for (itIns = _instructionList.begin() ; itIns != _instructionList.end() ; ++itIns)
     {
         ok = false;
+        skip = false;
         if (itIns->expr != NULL)
             expr = itIns->expr->Simplify(_dataMap, ok);
         if (ok && expr != NULL)//Si une simplification a eu lieu...
@@ -115,17 +116,16 @@ void OptionsManager::transform()
             itIns->expr = expr;
             if (expr->IsNumber() && itIns->code == ICODE_SET)
             {
-                bool ok;
                 double val = expr->Eval(_dataMap, ok);
                 if (ok)
                 {
+                    skip = true;
                     _dataMap[itIns->identifier].value = val;
                     _dataMap[itIns->identifier].isKnown = true;
                 }
             }
-            else if (itIns->code != ICODE_PRINT)
-                _dataMap[itIns->identifier].isKnown = false;
-
         }
+        if (!skip && itIns->code != ICODE_PRINT)
+            _dataMap[itIns->identifier].isKnown = false;
     }
 }

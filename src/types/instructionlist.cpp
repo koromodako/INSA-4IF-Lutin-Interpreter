@@ -102,7 +102,7 @@ string InstructionList::Test(DataMap &dataMap)
             result << "Error : read-only variable '" << it->identifier << "' is not assignable" << endl;
             itData->second.used = true;
         }
-        else
+        else if (it->code == ICODE_SET || it->code == ICODE_READ)
             itData->second.set = true;
 
         if (it->code == ICODE_READ || it->expr == NULL)
