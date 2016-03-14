@@ -25,7 +25,7 @@ AbstractState::TransitionResult PS3::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::PILED_UP;
         break;
     case S_EOF:///< $
-        machine.Reduce(Symbol(S_EOF), RULE_1);
+        machine.Reduce(SYM_EOF, RULE_1);
         ret = AbstractState::ACCEPT;
         break;
     case S_I:///< instruction

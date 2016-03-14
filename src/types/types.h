@@ -110,5 +110,6 @@ typedef list<Symbol> SymbolList;
 #define SYM_A   Symbol(S_A, "A")
 #define SYM_T   Symbol(S_T, "T")
 #define SYM_F   Symbol(S_F, "F")
+#define SYM_EOF Symbol(S_EOF, "EOF")
 
 #endif // TYPES_H
