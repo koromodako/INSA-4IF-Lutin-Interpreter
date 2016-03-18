@@ -96,7 +96,7 @@ AbstractExpression *BinaryExpression::Simplify(DataMap &dmap, bool &ok)
             {   // on simplifie le calcul en évaluant ce dernier
                 double value = Eval(dmap, ok);
                 // si l'évaluation s'est bien déroulée
-                if(ok)
+                if(ok && value > 0)
                 {   simplified = new Number(value);
                 }
             }
