@@ -53,7 +53,8 @@ void OptionsManager::Execute()
 
 void OptionsManager::analysis() const
 {
-    cerr << _instructionList.Test(_dataMap) << _dataMap.Test();
+    cerr << _instructionList.Test(_dataMap);
+    cerr << _dataMap.Test();
 }
 
 void OptionsManager::execute() const
