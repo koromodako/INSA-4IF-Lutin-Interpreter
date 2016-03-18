@@ -22,7 +22,7 @@ void LexerTests::nominal_test()
         return;
     }
     Lexer lexer(ifs);
-    list<Symbol> symbols;
+    SymbolList symbols;
     Symbol symbol;
     lexer.MoveForward(); // commence à lire en placant la tete de lecture au debut du flux
     symbol = lexer.GetNext();
@@ -52,7 +52,7 @@ void LexerTests::nominal_test()
      * 8. e := b+d;
      * 9. ecrire e;
      */
-    list<Symbol> expectedSymbols;
+    SymbolList expectedSymbols;
 #define PUSH_SYM(symbolcode, value) expectedSymbols.push_back(Symbol(symbolcode, value));
     // ligne 1
     PUSH_SYM(S_VAR,"var");PUSH_SYM(S_ID,"a");PUSH_SYM(S_V,",");PUSH_SYM(S_ID,"b");PUSH_SYM(S_PV,";");

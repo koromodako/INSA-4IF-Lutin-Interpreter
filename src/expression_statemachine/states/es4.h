@@ -2,13 +2,13 @@
 #define ES4_H
 
 
-#include "src/expression_statemachine/abstractes.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief Etat définissant le comportement par defaut pour les Transitions des états de
  *      la machine à état qui analyse les expressions arithmétiques.
  */
-class ES4 : public AbstractES
+class ES4 : public AbstractState
 {
 public:
     ES4();
@@ -20,7 +20,7 @@ public:
      * @param symbol
      * @return
      */
-    virtual int Transition(ExpressionStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
 
 };
 

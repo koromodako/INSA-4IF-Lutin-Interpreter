@@ -6,38 +6,46 @@
 #include "es14.h"
 #include "es16.h"
 
-int ES11::Transition(ExpressionStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult ES11::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
-    int ret = 0;
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_ID:
+        machine.GetInstructionList().AppendSymbol(symbol); // on ajoute le symbole ID
         machine.PileUp(symbol, new ES9);
+        ret = AbstractState::PILED_UP;
         break;
     case S_NUM:
+        machine.GetInstructionList().AppendSymbol(symbol); // on ajoute le symbole NUM
         machine.PileUp(symbol, new ES10);
+        ret = AbstractState::PILED_UP;
         break;
-    case S_PF:
+    case S_PO:
+        machine.GetInstructionList().AppendSymbol(symbol); // on ajoute le symbole parenthèse ouvrante
         machine.PileUp(symbol, new ES11);
+        ret = AbstractState::PILED_UP;
         break;
     case S_A:
         machine.PileUp(symbol, new ES14);
+        ret = AbstractState::PILED_UP;
         break;
     case S_T:
         machine.PileUp(symbol, new ES16);
+        ret = AbstractState::PILED_UP;
         break;
     case S_F:
         machine.PileUp(symbol, new ES12);
+        ret = AbstractState::PILED_UP;
         break;
     default:
         machine.Unexpected(symbol);
-        ret = -1;
         break;
     }
     return ret;
 }
 
 ES11::ES11() :
-    AbstractES("ES11")
+    AbstractState("ES11")
 {
 
 }

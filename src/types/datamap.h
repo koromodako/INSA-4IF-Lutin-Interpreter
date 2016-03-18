@@ -14,19 +14,14 @@ struct Data {
     bool exist;     ///< la mémoire existe (au sens a été déclarée à l'aide de 'const' ou 'var')
     bool cst;       ///< la mémoire est constante ou non
     bool set;       ///< la mémoire est écrite ou non. Si la mémoire est constante, set est true
-                    ///< si elle a été réafféctée après sa création
+    bool multdecl;  ///< si elle a été déclarée plus d'une fois
     bool used;      ///< la mémoire est lue ou non
+    bool isKnown;   ///< utilisé pour la propagation des constantes
     double value;   ///< la valeur stockée dans la mémoire
-    Data(bool _exist = false,
-         bool _cst = false,
-         bool _set = false,
-         bool _used = false,
-         double _value = -1) :
-        exist(_exist),
-        cst(_cst),
-        set(_set),
-        used(_used),
-        value(_value)
+    Data(bool _exist = false, bool _cst = false, bool _set = false,
+         bool _multdecl = false, bool _used = false, double _value = -1) :
+        exist(_exist), cst(_cst), set(_set), multdecl(_multdecl),
+        used(_used), isKnown(false), value(_value)
     {}
 };
 
@@ -47,19 +42,21 @@ public:
      * @brief Commence l'ajout d'une nouvelle variable
      * @param identifier
      *      Identifiant de la variable
+     * @return vrai si c'est la première déclaration de la variable
      */
-    void StartVar(const string & identifier);
+    void AppendVar(const string & identifier);
     /**
      * @brief Donne la valeur de la donnée (constante ou la variable) en cours d'ajout
      * @param value
      *      Valeur à donner à la donnée
      */
     void SetDataValue(double value);
+    void SetDataValue(string value);
     /**
      * @brief Termine l'ajout de la nouvelle donnée (constante ou variable)
      * return true si la donnée a pu être ajouté, false sinon (en cas de double déclaration).
      */
-    bool EndData();
+    void EndData();
     /**
      * @brief Stringify
      * @return la structure de donnée sous forme de string à restituer
@@ -69,15 +66,15 @@ public:
      * @brief Cette méthode vérifie l'intégrité de la structure en réalisant les tests suivant :
      *      + les variables utilisées existent
      *      + les variables déclarées sont utilisées
-     *      + les constantes ne sont pas utilisées en partie gauche d'une affectation
+     *      + les variables déclarées sont initialisées et utilisées
      *
      * @return les erreurs trouvées sous forme de chaine de charactère
      */
     string Test() const;
 
 private:
-    string _current_identifier;
-    Data _current_data;
+    string _currentIdentifier;
+    Data _currentData;
 };
 
 #endif // DATAMAP_H

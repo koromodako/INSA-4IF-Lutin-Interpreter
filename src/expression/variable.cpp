@@ -12,6 +12,11 @@ Variable::Variable(Variable &other) :
 {
 }
 
+void Variable::GetUsedVariables(set<string> &list)
+{
+    list.insert(_identifier);
+}
+
 double Variable::Eval(DataMap &dmap, bool &ok)
 {
     ok = false;
@@ -32,7 +37,7 @@ AbstractExpression * Variable::Simplify(DataMap &dmap, bool & ok)
     DataMap::iterator d = dmap.find(_identifier);
     if(d != dmap.end()) {
         // si la donnée est une constante on remplace la donnée par un nombre
-        if(d->second.cst) {
+        if(d->second.cst || d->second.isKnown) {
             simplified = new Number(d->second.value);
         }
         // on retourne vrai car la valeur existe dans le dictionnaire des mémoires

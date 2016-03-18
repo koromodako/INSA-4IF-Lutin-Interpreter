@@ -1,6 +1,6 @@
 #include "optionsManager.h"
-#include "src/types.h"
-#include "src/interfaces/abstractexpression.h"
+#include "types/types.h"
+#include "interfaces/abstractexpression.h"
 
 #include <iostream>
 
@@ -14,9 +14,9 @@ OptionsManager::OptionsManager(DataMap &dataMap, InstructionList &instructionLis
 {
 }
 
-bool OptionsManager::CheckOptions(int argc, char *argv[])
+int OptionsManager::CheckOptions(int argc, char *argv[])
 {
-    for (int i = 2 ; i < argc; ++i)
+    for (int i = 1 ; i < argc; ++i)
     {
         if (string(argv[i]) == "-o")
             _transform = true;
@@ -26,27 +26,34 @@ bool OptionsManager::CheckOptions(int argc, char *argv[])
             _analysis = true;
         else if (string(argv[i]) == "-e")
             _execute = true;
-        else
-            return false;
+        else if (argv[i][0] == '-')
+            return -1;
+        else return i;
     }
-    return true;
+    return argc;
 }
 
 void OptionsManager::Execute()
 {
+    for (DataMap::iterator it = _dataMap.begin() ; it != _dataMap.end() ; ++it)
+    {
+        if (it->second.multdecl)
+            std::cerr << "Warning : redefinition of ’" << it->first << "’"<< endl;
+    }
+
+    if (_transform)
+        transform();
+    if (_analysis)
+        analysis();
+    if (_execute)
+        execute();
     if (_display)
         print();
-    else if (_transform)
-        transform();
-    else if (_analysis)
-        analysis();
-    else if (_execute)
-        execute();
 }
 
 void OptionsManager::analysis() const
 {
-    cout << _dataMap.Test();
+    cerr << _instructionList.Test(_dataMap) << _dataMap.Test();
 }
 
 void OptionsManager::execute() const
@@ -87,25 +94,38 @@ void OptionsManager::execute() const
 
 void OptionsManager::print() const
 {
-    _dataMap.Stringify();
-    _instructionList.Stringify();
+    cout << _dataMap.Stringify() << _instructionList.Stringify();
 }
 
 void OptionsManager::transform()
 {
     AbstractExpression *expr = NULL;
     list<Instruction>::iterator itIns;
-    bool ok;
+    bool ok, skip;
 
     //Pour chaque expression
     for (itIns = _instructionList.begin() ; itIns != _instructionList.end() ; ++itIns)
     {
         ok = false;
-        expr = itIns->expr->Simplify(_dataMap, ok);
+        skip = false;
+        if (itIns->expr != NULL)
+            expr = itIns->expr->Simplify(_dataMap, ok);
         if (ok && expr != NULL)//Si une simplification a eu lieu...
         {
             delete itIns->expr;
             itIns->expr = expr;
+            if (expr->IsNumber() && itIns->code == ICODE_SET)
+            {
+                double val = expr->Eval(_dataMap, ok);
+                if (ok)
+                {
+                    skip = true;
+                    _dataMap[itIns->identifier].value = val;
+                    _dataMap[itIns->identifier].isKnown = true;
+                }
+            }
         }
+        if (!skip && itIns->code != ICODE_PRINT)
+            _dataMap[itIns->identifier].isKnown = false;
     }
 }

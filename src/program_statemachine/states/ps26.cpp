@@ -1,24 +1,27 @@
 #include "ps26.h"
 #include "../rules.h"
 
-int PS26::Transition(ProgramStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS26::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
         case S_V:///< ','
-            machine.Reduce(RULE_8);
+            machine.Reduce(Symbol(S_LEXER_ERROR), RULE_8);
+            ret = AbstractState::REDUCED;
             break;
         case S_PV:///< ';'
-            machine.Reduce(RULE_8);
+            machine.Reduce(Symbol(S_LEXER_ERROR), RULE_8);
+            ret = AbstractState::REDUCED;
             break;
         default:
             machine.Unexpected(symbol);
             break;
     }
-    return -1;
+    return ret;
 }
 
 PS26::PS26() :
-    AbstractPS("PS26")
+    AbstractState("PS26")
 {
 
 }

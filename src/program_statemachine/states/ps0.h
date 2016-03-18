@@ -2,21 +2,19 @@
 #define PS0_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
  * const, var, lire, ecrire, id -> R3
  * LD->PS1
  */
-class PS0 : public AbstractPS
+class PS0 : public AbstractState
 {
 public:
     ~PS0(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
-
-protected:
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
     PS0();
 };
 

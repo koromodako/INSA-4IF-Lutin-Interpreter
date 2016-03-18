@@ -2,26 +2,31 @@
 #define ABSTRACTSTATEMACHINE_H
 
 #include "abstractstate.h"
-#include "src/lexer/lexer.h"
-#include "src/program_statemachine/instructionlist.h"
+#include "../lexer/lexer.h"
+#include "../types/instructionlist.h"
 #include <stack>
 
 using namespace std;
-
+class AbstractState;
 /**
  * @brief Cette classe abstraite représente une machine à états pour l'analyse syntaxique quelconque
  */
 class AbstractStateMachine
 {
 public:
-    virtual ~AbstractStateMachine(){}
+    virtual ~AbstractStateMachine();
+
+    /**
+     * @brief Execute la machine à état en utilisant le lexer
+     */
+    virtual void Run(AbstractState * initialState);
 
     /**
      * @brief Effectue la reduction souhaitée
      * @param size
      *      Taille de la réduction (en nombre d'états)
      */
-    void Reduce(int size);
+    void Reduce(Symbol symbol, int size);
 
     /**
      * @brief Effectue la transition vers l'état suivant
@@ -42,22 +47,19 @@ public:
     void Unexpected(Symbol symbol);
 
     inline InstructionList & GetInstructionList() { return _instructions; } // inline explicite
-    inline DataMap & GetDataMap() { return _dmap; }
+    inline DataMap & GetDataMap() { return _dMap; }
     inline Lexer & GetLexer() {return _lexer;}
 
 protected:
     AbstractStateMachine(Lexer & lexer, DataMap & dmap, InstructionList & instructions);
 
-    inline Lexer & lexer() { return _lexer; }                               // inline explicite
-                             // inline explicite
-
 private:
     Lexer & _lexer;
-    DataMap & _dmap; // cet automate doit remplir cette structure avec les déclarations de variables et constantes
+    DataMap & _dMap; // cet automate doit remplir cette structure avec les déclarations de variables et constantes
     InstructionList & _instructions;
-    stack<string> _error_stack;         // pile des erreurs
-    stack<Symbol> _symbols_stack;          // pile des symboles
-    stack<AbstractState*> _state_stack; // pile des états
+    stack<string> _errorsStack;         // pile des erreurs
+    SymbolStack _symbolsStack;          // pile des symboles
+    stack<AbstractState*> _statesStack; // pile des états
 };
 
 #endif // ABSTRACTSTATEMACHINE_H

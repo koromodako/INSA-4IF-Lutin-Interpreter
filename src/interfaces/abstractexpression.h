@@ -1,8 +1,10 @@
 #ifndef ABSTRACTEXPRESSION_H
 #define ABSTRACTEXPRESSION_H
 
-#include "src/types.h"
-#include "src/program_statemachine/datamap.h"
+#include "src/types/types.h"
+#include "src/types/datamap.h"
+
+#include <set>
 using namespace std;
 
 /**
@@ -19,6 +21,12 @@ public:
     virtual bool IsNumber() = 0;
     virtual bool IsBinaryExpression() = 0;
     virtual bool IsVariable() = 0;
+
+    /**
+     * @brief Rempli la liste avec toutes les variables utilisées dans l'expression
+     * @param list
+     */
+    virtual void GetUsedVariables(set<string> &list) = 0;
 
     /**
      * @brief Retourne la valeur calculée à partir de l'évaluation
@@ -46,9 +54,13 @@ public:
      */
     virtual string Stringify() = 0;
 
+    inline void SetRequireParenthesis() { _requireParenthesis = true; }
+
 protected:
     AbstractExpression();
 
+protected:
+    bool _requireParenthesis;
 };
 
 #endif // ABSTRACTEXPRESSION_H

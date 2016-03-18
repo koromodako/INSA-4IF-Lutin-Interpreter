@@ -19,12 +19,18 @@ public:
      * @param right
      *      Operande droite
      */
-    BinaryExpression(BinaryOperator op, AbstractExpression * left, AbstractExpression * right, bool hasParenthesisAround = false);
+    BinaryExpression(BinaryOperator op, AbstractExpression * left, AbstractExpression * right);
     BinaryExpression(BinaryExpression & other);
 
     inline bool IsNumber() { return false; }
     inline bool IsVariable() { return false; }
     inline bool IsBinaryExpression() { return true; }
+
+    /**
+     * @brief Rempli la liste avec toutes les variables utilisées dans l'expression
+     * @param list
+     */
+    void GetUsedVariables(set<string> &list);
 
     /**
      * @override
@@ -43,7 +49,6 @@ public:
     string Stringify();
 
 private:
-    bool _hasParenthesisAround;
     BinaryOperator _op;            // opérateur
     AbstractExpression * _left;    // opérande à gauche
     AbstractExpression * _right;   // opérande à droite

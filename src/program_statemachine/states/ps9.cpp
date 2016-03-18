@@ -2,21 +2,23 @@
 
 #include "ps10.h"
 
-int PS9::Transition(ProgramStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS9::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_AFFECT:///< ':='
         machine.PileUp(symbol, new PS10());
+        ret = AbstractState::PILED_UP;
         break;
     default:
         machine.Unexpected(symbol);
         break;
     }
-    return -1;
+    return ret;
 }
 
 PS9::PS9() :
-    AbstractPS("PS9")
+    AbstractState("PS09")
 {
 
 }

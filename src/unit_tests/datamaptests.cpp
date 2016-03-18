@@ -1,7 +1,7 @@
 #include "datamaptests.h"
 
 #include "test_macros.h"
-#include "src/program_statemachine/datamap.h"
+#include "../types/datamap.h"
 
 DataMapTests::DataMapTests()
 {

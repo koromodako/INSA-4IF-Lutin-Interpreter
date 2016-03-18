@@ -18,8 +18,8 @@ BinaryExpression::~BinaryExpression()
     delete _right;
 }
 
-BinaryExpression::BinaryExpression(BinaryOperator op, AbstractExpression * left, AbstractExpression * right, bool hasParenthesisAround) :
-    AbstractExpression(), _hasParenthesisAround(hasParenthesisAround), _op(op), _left(left), _right(right)
+BinaryExpression::BinaryExpression(BinaryOperator op, AbstractExpression * left, AbstractExpression * right) :
+    AbstractExpression(), _op(op), _left(left), _right(right)
 {}
 
 BinaryExpression::BinaryExpression(BinaryExpression &other) :
@@ -29,6 +29,12 @@ BinaryExpression::BinaryExpression(BinaryExpression &other) :
     DEEP_COPY(other._left, _left)
     // copie profonde de l'opérande à droite !
     DEEP_COPY(other._right, _right)
+}
+
+void BinaryExpression::GetUsedVariables(set<string> &list)
+{
+    _left->GetUsedVariables(list);
+    _right->GetUsedVariables(list);
 }
 
 double BinaryExpression::Eval(DataMap &dmap, bool & ok)
@@ -90,7 +96,7 @@ AbstractExpression *BinaryExpression::Simplify(DataMap &dmap, bool &ok)
             {   // on simplifie le calcul en évaluant ce dernier
                 double value = Eval(dmap, ok);
                 // si l'évaluation s'est bien déroulée
-                if(ok)
+                if(ok && value > 0)
                 {   simplified = new Number(value);
                 }
             }
@@ -139,7 +145,7 @@ AbstractExpression *BinaryExpression::Simplify(DataMap &dmap, bool &ok)
 string BinaryExpression::Stringify()
 {
     stringstream ss("");
-    if (_hasParenthesisAround)
+    if (_requireParenthesis)
         ss << "(";
 
     ss << _left->Stringify();
@@ -150,7 +156,7 @@ string BinaryExpression::Stringify()
     case BOP_DIV:   ss << '/'; break;
     }
     ss << _right->Stringify();
-    if (_hasParenthesisAround)
+    if (_requireParenthesis)
         ss << ")";
 
     return ss.str();

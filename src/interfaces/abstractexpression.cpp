@@ -1,4 +1,5 @@
 #include "abstractexpression.h"
 
-AbstractExpression::AbstractExpression()
+AbstractExpression::AbstractExpression() :
+    _requireParenthesis(false)
 {}

@@ -2,19 +2,18 @@
 #define PS26_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
- * ,, ;->R8
+ * ,, ;->R6
 **/
-class PS26 : public AbstractPS
+class PS26 : public AbstractState
 {
 public:
     ~PS26(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
-
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
     PS26();
 };
 

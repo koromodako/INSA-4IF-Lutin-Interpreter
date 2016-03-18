@@ -11,6 +11,8 @@ macx {
 TARGET = lut
 LIBS += -lboost_regex
 
+QMAKE_CXXFLAGS += -Wall -Werror
+
 SOURCES += \
     src/main.cpp \
     src/interfaces/abstractstate.cpp \
@@ -21,8 +23,6 @@ SOURCES += \
     src/expression/binaryexpression.cpp \
     src/program_statemachine/programstatemachine.cpp \
     src/expression_statemachine/expressionstatemachine.cpp \
-    src/expression_statemachine/abstractes.cpp \
-    src/program_statemachine/abstractps.cpp \
     src/expression_statemachine/states/es0.cpp \
     src/program_statemachine/states/ps0.cpp \
     src/expression_statemachine/states/es1.cpp \
@@ -71,28 +71,28 @@ SOURCES += \
     src/program_statemachine/states/ps27.cpp \
     src/program_statemachine/states/ps28.cpp \
     src/program_statemachine/states/ps29.cpp \
-    src/program_statemachine/datamap.cpp \
-    src/program_statemachine/instructionlist.cpp \
+    src/types/datamap.cpp \
+    src/types/instructionlist.cpp \
     src/lexer/lexer.cpp \
     src/optionsManager.cpp \
     src/unit_tests/abstractexpressiontests.cpp \
     src/unit_tests/lexertests.cpp \
     src/unit_tests/instructionlisttests.cpp \
-    src/unit_tests/datamaptests.cpp
+    src/unit_tests/datamaptests.cpp \
+    src/expression/expressionfactory.cpp \
+    src/unit_tests/expressionfactorytests.cpp
 
 
 HEADERS += \
     src/interfaces/abstractstate.h \
     src/interfaces/abstractstatemachine.h \
     src/interfaces/abstractexpression.h \
-    src/types.h \
+    src/types/types.h \
     src/expression/variable.h \
     src/expression/number.h \
     src/expression/binaryexpression.h \
     src/program_statemachine/programstatemachine.h \
     src/expression_statemachine/expressionstatemachine.h \
-    src/expression_statemachine/abstractes.h \
-    src/program_statemachine/abstractps.h \
     src/expression_statemachine/states/es0.h \
     src/program_statemachine/states/ps0.h \
     src/expression_statemachine/states/es1.h \
@@ -141,8 +141,8 @@ HEADERS += \
     src/program_statemachine/states/ps27.h \
     src/program_statemachine/states/ps28.h \
     src/program_statemachine/states/ps29.h \
-    src/program_statemachine/instructionlist.h \
-    src/program_statemachine/datamap.h \
+    src/types/instructionlist.h \
+    src/types/datamap.h \
     src/lexer/lexer.h \
     src/optionsManager.h \
     src/config.h \
@@ -153,7 +153,9 @@ HEADERS += \
     src/unit_tests/instructionlisttests.h \
     src/unit_tests/datamaptests.h \
     src/expression_statemachine/rules.h \
-    src/program_statemachine/rules.h
+    src/program_statemachine/rules.h \
+    src/expression/expressionfactory.h \
+    src/unit_tests/expressionfactorytests.h
 
 DISTFILES += \
     src/make_states.sh \

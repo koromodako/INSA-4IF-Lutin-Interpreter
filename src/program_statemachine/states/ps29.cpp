@@ -2,35 +2,38 @@
 #include "../rules.h"
 #include "../../expression_statemachine/expressionstatemachine.h"
 
-int PS29::Transition(ProgramStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS29::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
-    ExpressionStateMachine* expStateMachine = new ExpressionStateMachine(
-                machine.GetLexer(), machine.GetDataMap(),
-                machine.GetInstructionList());
-    //expStateMachine.Run();
-    delete(expStateMachine);
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
         case S_READ:///< 'lire'
-            machine.Reduce(RULE_10);
+            machine.GetInstructionList().EndInstruction();
+            machine.Reduce(SYM_I, RULE_10);
+            ret = AbstractState::REDUCED;
             break;
         case S_WRITE:///< 'ecrire'
-            machine.Reduce(RULE_10);
+            machine.GetInstructionList().EndInstruction();
+            machine.Reduce(SYM_I, RULE_10);
+            ret = AbstractState::REDUCED;
             break;
         case S_ID:///< identifiant '\w[\w\d]*'
-            machine.Reduce(RULE_10);
+            machine.GetInstructionList().EndInstruction();
+            machine.Reduce(SYM_I, RULE_10);
+            ret = AbstractState::REDUCED;
             break;
         case S_EOF:///< $
-            machine.Reduce(RULE_10);
+            machine.GetInstructionList().EndInstruction();
+            machine.Reduce(SYM_I, RULE_10);
+            ret = AbstractState::REDUCED;
             break;
         default:
             machine.Unexpected(symbol);
             break;
     }
-    return -1;
+    return ret;
 }
 
 PS29::PS29() :
-    AbstractPS("PS29")
+    AbstractState("PS29")
 {
-
 }

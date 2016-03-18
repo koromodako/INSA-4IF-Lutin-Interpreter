@@ -1,8 +1,8 @@
 #ifndef PROGRAMSTATEMACHINE_H
 #define PROGRAMSTATEMACHINE_H
 
-#include "src/types.h"
-#include "src/interfaces/abstractstatemachine.h"
+#include "../types/types.h"
+#include "../interfaces/abstractstatemachine.h"
 
 #include <list>
 
@@ -16,6 +16,8 @@ class ProgramStateMachine : public AbstractStateMachine
 public:
     ~ProgramStateMachine(){}
     ProgramStateMachine(Lexer & lexer, DataMap & dmap, InstructionList & instructions);
+
+    void Run(AbstractState * initialState = NULL);
 
 private:
 

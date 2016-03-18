@@ -1,21 +1,26 @@
 #include "ps11.h"
 #include "ps12.h"
 
-int PS11::Transition(ProgramStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS11::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
-    case S_WRITE:///< 'ecrire'
+    case S_ID:///< 'id'
+        // on ajoute la nouvelle variable
+        machine.GetDataMap().AppendVar(symbol.buf);
         machine.PileUp(symbol, new PS12());
+        ret = AbstractState::PILED_UP;
         break;
     default:
         machine.Unexpected(symbol);
         break;
     }
-    return -1;
+    return ret;
+
 }
 
 PS11::PS11() :
-    AbstractPS("PS11")
+    AbstractState("PS11")
 {
 
 }

@@ -2,18 +2,18 @@
 #define PS16_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
- * const, var, lire, ecrire, id, $->R6
+ * const, var, lire, ecrire, id, $->R2
 */
-class PS16 : public AbstractPS
+class PS16 : public AbstractState
 {
 public:
     ~PS16(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
     PS16();
 };
 

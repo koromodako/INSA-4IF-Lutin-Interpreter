@@ -2,20 +2,19 @@
 #define PS22_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
  * ,->PS23
  * ;->PS27
 */
-class PS22 : public AbstractPS
+class PS22 : public AbstractState
 {
 public:
     ~PS22(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
-
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
     PS22();
 };
 

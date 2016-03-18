@@ -2,18 +2,18 @@
 #define PS9_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
  * := ->PS10
 */
-class PS9 : public AbstractPS
+class PS9 : public AbstractState
 {
 public:
     ~PS9(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
 
     PS9();
 };

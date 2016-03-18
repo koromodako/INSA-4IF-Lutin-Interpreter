@@ -1,7 +1,7 @@
 #ifndef RULES_H
 #define RULES_H
 
-#define RULE_1      1
+#define RULE_1      2
 #define RULE_2      3
 #define RULE_3      3
 #define RULE_4      1

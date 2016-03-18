@@ -1,21 +1,23 @@
 #include "ps19.h"
 #include "ps20.h"
 
-int PS19::Transition(ProgramStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS19::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
-    case S_NUM:///< nombre '\d+'
+    case S_EQ:///< nombre '\d+'
         machine.PileUp(symbol, new PS20());
+        ret = AbstractState::PILED_UP;
         break;
     default:
         machine.Unexpected(symbol);
         break;
     }
-    return -1;
+    return ret;
 }
 
 PS19::PS19() :
-    AbstractPS("PS19")
+    AbstractState("PS19")
 {
 
 }

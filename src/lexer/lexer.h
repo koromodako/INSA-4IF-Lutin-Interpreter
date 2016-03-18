@@ -1,7 +1,7 @@
 #ifndef ABSTRACTLEXER_H
 #define ABSTRACTLEXER_H
 
-#include "src/types.h"
+#include "../types/types.h"
 
 #include <fstream>
 

@@ -2,7 +2,7 @@
 #define PS1_H
 
 
-#include "src/program_statemachine/abstractps.h"
+#include "src/interfaces/abstractstate.h"
 
 /**
  * @brief
@@ -14,12 +14,12 @@
  * D->PS17
  * I->PS2
 */
-class PS1 : public AbstractPS
+class PS1 : public AbstractState
 {
 public:
     ~PS1(){}
 
-    virtual int Transition(ProgramStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
     PS1();
 };
 

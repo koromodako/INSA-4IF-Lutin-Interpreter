@@ -1,41 +1,47 @@
 #include "es9.h"
 #include "../rules.h"
 
-int ES9::Transition(ExpressionStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult ES9::Transition(AbstractStateMachine &machine, Symbol symbol)
 {
-    int ret = 0;
+    AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {
     case S_EOF:
-        machine.Reduce(RULE_8);
+        machine.Reduce(SYM_F, RULE_8);
+        ret = AbstractState::REDUCED;
         break;
     case S_PF:
-        machine.Reduce(RULE_8);
+        machine.Reduce(SYM_F, RULE_8);
+        ret = AbstractState::REDUCED;
         break;
     case S_PLUS:
-        machine.Reduce(RULE_8);
+        machine.Reduce(SYM_F, RULE_8);
+        ret = AbstractState::REDUCED;
         break;
     case S_MINUS:
-        machine.Reduce(RULE_8);
+        machine.Reduce(SYM_F, RULE_8);
+        ret = AbstractState::REDUCED;
         break;
     case S_MULT:
-        machine.Reduce(RULE_8);
+        machine.Reduce(SYM_F, RULE_8);
+        ret = AbstractState::REDUCED;
         break;
     case S_DIV:
-        machine.Reduce(RULE_8);
+        machine.Reduce(SYM_F, RULE_8);
+        ret = AbstractState::REDUCED;
         break;
     case S_PV:
-        machine.Reduce(RULE_8);
+        machine.Reduce(SYM_F, RULE_8);
+        ret = AbstractState::REDUCED;
         break;
     default:
         machine.Unexpected(symbol);
-        ret = -1;
         break;
     }
     return ret;
 }
 
 ES9::ES9() :
-    AbstractES("ES9")
+    AbstractState("ES09")
 {
 
 }
