@@ -84,12 +84,23 @@ void AbstractStateMachine::PileUp(Symbol symbol, AbstractState *state)
     _symbolsStack.push(symbol);
 }
 
-void AbstractStateMachine::Unexpected(Symbol symbol)
+void AbstractStateMachine::Unexpected(ErrorType type, Symbol symbol)
 {
     /// \todo implement here
     // -- DEBUG -------------------------------------------------------------------
     ERROR("unexpected symbol in '"<< _statesStack.top()->name() <<"' : symbol(code='"<<symbol.code<<"',buf='"<<symbol.buf<<"')");
     // -- DEBUG -------------------------------------------------------------------
+    switch(type)
+    {
+    case LEXICAL_ERROR:
+        break;
+    case SYNTAX_ERROR:
+        break;
+    case WARNING:
+        break;
+    default:
+        break;
+    }
 }
 
 AbstractStateMachine::AbstractStateMachine(Lexer &lexer, DataMap &dmap, InstructionList &instructions) :
