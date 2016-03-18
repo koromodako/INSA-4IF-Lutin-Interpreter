@@ -28,7 +28,7 @@ AbstractState::TransitionResult ES5::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(symbol);
+        machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR,S_ID);
         break;
     }
     return ret;

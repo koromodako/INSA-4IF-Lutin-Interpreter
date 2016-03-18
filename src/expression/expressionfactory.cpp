@@ -1,5 +1,7 @@
+#include <stdlib.h>
 #include "expressionfactory.h"
 #include "src/debug.h"
+
 
 AbstractExpression* ExpressionFactory::MakeExpression(SymbolList &symbols)
 {   // -- DEBUG -------------------------------------------
