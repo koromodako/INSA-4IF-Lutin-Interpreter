@@ -8,22 +8,22 @@ AbstractState::TransitionResult PS8::Transition(AbstractStateMachine &machine, S
     switch (symbol.code) {
     case S_READ:///< 'lire'
         machine.GetInstructionList().EndInstruction();
-        machine.Reduce(SYM_I, RULE_8);
+        machine.Reduce(SYM_I, RULE_11);
         ret = AbstractState::REDUCED;
         break;
     case S_WRITE:///< 'ecrire'
         machine.GetInstructionList().EndInstruction();
-        machine.Reduce(SYM_I, RULE_8);
+        machine.Reduce(SYM_I, RULE_11);
         ret = AbstractState::REDUCED;
         break;
     case S_ID:///< identifiant '\w[\w\d]*'
         machine.GetInstructionList().EndInstruction();
-        machine.Reduce(SYM_I, RULE_8);
+        machine.Reduce(SYM_I, RULE_11);
         ret = AbstractState::REDUCED;
         break;
     case S_EOF:///< $
         machine.GetInstructionList().EndInstruction();
-        machine.Reduce(SYM_I, RULE_8);
+        machine.Reduce(SYM_I, RULE_11);
         ret = AbstractState::REDUCED;
         break;
     default:

@@ -49,20 +49,23 @@ Lexer::Lexer(ifstream & stream) :
 #define TRIM_BUF(buffer)  while(buffer[0] == ' ' || buffer[0] == '\t'){buffer.erase(0,1); _col++;}
 
 void Lexer::MoveForward()
-{   //DEBUG("Lexer : MoveForward called.");
+{   DEBUG("Lexer : MoveForward called.");
     // si le buffer est vide
-    if(_buf.length() == 0)
-    {   //DEBUG("Lexer : buffer is empty, loading next line.");
+    if(_buf.empty())
+    {   DEBUG("Lexer : buffer is empty, loading next line.");
         // on va chercher la prochaine ligne
         getline(_stream, _buf);
         _line++;
         // on trim le buffer
         TRIM_BUF(_buf);
         // debug
-        //DEBUG("Lexer : buffer content is : '" << _buf << "'");
+        DEBUG("Lexer : buffer content is : '" << _buf << "'");
+        if(_buf.empty() && !_stream.eof())
+        {   MoveForward();
+        }
     }
     else //sinon
-    {   //DEBUG("Lexer : deleting latest symbol.");
+    {   DEBUG("Lexer : deleting latest symbol.");
         // on supprime le dernier token lu
         _buf.erase(0,_matched_length);
         _col++;
@@ -75,7 +78,11 @@ void Lexer::MoveForward()
 }
 
 Symbol Lexer::GetNext()
-{   //DEBUG("Lexer : GetNext called.");
+{   DEBUG("Lexer : GetNext called.");
+    if(_stream.eof())
+    {   // test fin de fichier
+        return SYM_EOF;
+    }
     // on initialise le match avec une chaine vide
     string matched("");
     // on initialise le symbole avec une lexer error
@@ -85,15 +92,15 @@ Symbol Lexer::GetNext()
     // on teste toutes les regex une par une pour trouver celle qui
     for(DictRegexSymbolCode::iterator p = REGEX.begin(); p != REGEX.end(); ++p)
     {
-        //DEBUG("Lexer : testing regexp '" << p->first.expression() << "' against '" << _buf << "'");
+        DEBUG("Lexer : testing regexp '" << p->first.expression() << "' against '" << _buf << "'");
         //
         match_results<string::const_iterator> matches;
         // si la regexp match en debut de chaine
         if(regex_search(_buf, matches, p->first, format_first_only))
         {   size_t currentIndex = _buf.find_first_of(matches[0]);
-            //DEBUG("Lexer : regex '" << p->first.expression() << "' has matched : '" << matches[0] << "' at index '" << currentIndex << "' minMatch is '" << minMatch << "'");
+            DEBUG("Lexer : regex '" << p->first.expression() << "' has matched : '" << matches[0] << "' at index '" << currentIndex << "' minMatch is '" << minMatch << "'");
             if(currentIndex < minMatch)
-            {   //DEBUG("Lexer : update min_match ! new matched is '" << matches[0] << "'");
+            {   DEBUG("Lexer : update min_match ! new matched is '" << matches[0] << "'");
                 // maj min match
                 minMatch = currentIndex;
                 // maj matched
@@ -107,17 +114,15 @@ Symbol Lexer::GetNext()
     }
     // si le symbole est différent de lexer error après la boucle précédente c'est qu'on a un match
     if(symbol.code != S_LEXER_ERROR)
-    {   //DEBUG("Lexer : finally returning match '" << matched << "'");
+    {   DEBUG("Lexer : finally returning match '" << matched << "'");
         symbol.buf = matched;
         _matched_length = matched.length();
     }
     else
-    {   // si le buffer est vide c'est la fin du fichier
-        if(_buf.empty())
-        {   symbol.code = S_EOF;
-        }
+    {
+        symbol.buf= _buf;
         // sinon c'est une lexer error donc on ne fait rien
-        //DEBUG("Lexer : no regex match found. It might be an error in input file");
+        DEBUG("Lexer : no regex match found. It might be an error in input file");
     }
     return symbol;
 }
