@@ -19,7 +19,7 @@ AbstractState::TransitionResult PS25::Transition(AbstractStateMachine &machine, 
             }
             break;
         default:
-            machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, symbol);
+            machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, SYM_NUM);
             break;
     }
     return ret;

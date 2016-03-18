@@ -35,7 +35,7 @@ AbstractState::TransitionResult PS0::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::ACCEPT;
         break;
     default:
-        machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, symbol);
+        machine.Unexpected(AbstractStateMachine::ERROR, "Program must begin with one of the following keywords 'const', 'var' or 'ecrire'");
         break;
     }
     return ret;

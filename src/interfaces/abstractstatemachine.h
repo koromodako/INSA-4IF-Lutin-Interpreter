@@ -17,7 +17,8 @@ public:
     enum ErrorType{
         WARNING,
         SYNTAX_ERROR,
-        LEXICAL_ERROR
+        LEXICAL_ERROR,
+        ERROR
     };
 
     virtual ~AbstractStateMachine();
