@@ -4,7 +4,6 @@
 #include <string>
 #include "../types/types.h"
 #include "abstractstatemachine.h"
-#include "abstractstatemachine.h"
 
 
 using namespace std;
