@@ -12,6 +12,7 @@ class InstructionList: public list<Instruction>
 {
 public:
     InstructionList();
+    virtual ~InstructionList();
     /**
      * @brief Ajoute une instruction de lecture sur l'entrée standard
      * @param identifier

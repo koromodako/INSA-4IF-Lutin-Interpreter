@@ -94,7 +94,7 @@ void AbstractStateMachine::Unexpected(ErrorType type, Symbol symbol)
     switch(type)
     {
     case LEXICAL_ERROR:
-        cerr<<"Lexical Error: ("<<_lexer.GetLine()<<" : "<<_lexer.GetCol()<<") unexpected symbol "<<symbol.buf<<endl;
+        cerr<<"Lexical Error: ("<<_lexer.GetLine()<<" : "<<_lexer.GetCol()<<") unexpected symbol "<<symbol.buf<< " / " << symbol.code<<endl;
         break;
     case SYNTAX_ERROR:
         cerr<<"Syntax Error: ("<<_lexer.GetLine()<<" : "<<_lexer.GetCol()<<") expected symbol "<<symbol.buf<<endl;
