@@ -26,6 +26,11 @@ void AbstractStateMachine::Run(AbstractState * initialState)
     {
         symbol = _lexer.GetNext();
 
+        if(symbol.code==S_LEXER_ERROR){
+            Unexpected(LEXICAL_ERROR, symbol);
+            break;
+        }
+
         switch(_statesStack.top()->Transition(*this, symbol))
         {
         case AbstractState::UNEXPECTED: ok = false; break;

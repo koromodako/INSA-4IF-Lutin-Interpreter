@@ -115,7 +115,9 @@ Symbol Lexer::GetNext()
         _matched_length = matched.length();
     }
     else
-    {   // sinon c'est une lexer error donc on ne fait rien
+    {
+        symbol.buf= _buf;
+        // sinon c'est une lexer error donc on ne fait rien
         DEBUG("Lexer : no regex match found. It might be an error in input file");
     }
     return symbol;
