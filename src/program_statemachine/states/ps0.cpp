@@ -35,7 +35,7 @@ AbstractState::TransitionResult PS0::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::ACCEPT;
         break;
     default:
-        machine.Unexpected(symbol);
+        machine.Unexpected(AbstractStateMachine::ErrorType::SYNTAX_ERROR, symbol);
         break;
     }
     return ret;

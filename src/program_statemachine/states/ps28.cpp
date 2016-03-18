@@ -26,7 +26,7 @@ AbstractState::TransitionResult PS28::Transition(AbstractStateMachine &machine, 
             machine.Reduce(SYM_I, RULE_12);
             break;
         default:
-            machine.Unexpected(symbol);
+            machine.Unexpected(AbstractStateMachine::ErrorType::SYNTAX_ERROR, symbol);
             break;
     }
     return ret;
