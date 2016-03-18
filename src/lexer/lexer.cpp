@@ -42,9 +42,11 @@ Lexer::Lexer(ifstream & stream) :
     _stream(stream)
 {
     init();
+    _line=0;
+    _col=0;
 }
 
-#define TRIM_BUF(buffer)  while(buffer[0] == ' ' || buffer[0] == '\t' || buffer[0] == '\n' || buffer[0] == '\r'){buffer.erase(0,1);}
+#define TRIM_BUF(buffer)  while(buffer[0] == ' ' || buffer[0] == '\t'){buffer.erase(0,1); _col++;}
 
 void Lexer::MoveForward()
 {   DEBUG("Lexer : MoveForward called.");
@@ -53,6 +55,7 @@ void Lexer::MoveForward()
     {   DEBUG("Lexer : buffer is empty, loading next line.");
         // on va chercher la prochaine ligne
         getline(_stream, _buf);
+        _line++;
         // on trim le buffer
         TRIM_BUF(_buf);
         // debug
@@ -65,6 +68,7 @@ void Lexer::MoveForward()
     {   DEBUG("Lexer : deleting latest symbol.");
         // on supprime le dernier token lu
         _buf.erase(0,_matched_length);
+        _col++;
         // on trim le buffer
         TRIM_BUF(_buf)
         if(_buf.empty())

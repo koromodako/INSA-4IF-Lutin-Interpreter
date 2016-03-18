@@ -91,21 +91,25 @@ void AbstractStateMachine::PileUp(Symbol symbol, AbstractState *state)
 
 void AbstractStateMachine::Unexpected(ErrorType type, Symbol symbol)
 {
-    /// \todo implement here
-    // -- DEBUG -------------------------------------------------------------------
-    ERROR("unexpected symbol in '"<< _statesStack.top()->name() <<"' : symbol(code='"<<symbol.code<<"',buf='"<<symbol.buf<<"')");
-    // -- DEBUG -------------------------------------------------------------------
     switch(type)
     {
     case LEXICAL_ERROR:
+        cerr<<"Lexical Error: ("<<_lexer.GetLine()<<" : "<<_lexer.GetCol()<<") unexpected symbol "<<symbol.buf<<endl;
         break;
     case SYNTAX_ERROR:
-        break;
-    case WARNING:
-        break;
+        cerr<<"Syntax Error: ("<<_lexer.GetLine()<<" : "<<_lexer.GetCol()<<") expected symbol "<<symbol.buf<<endl;
+        break;    
     default:
         break;
     }
+}
+
+void AbstractStateMachine::Unexpected(ErrorType type, string message)
+{
+   if(type == WARNING)
+   {
+        cerr<<"Warning :"<<message<<endl;
+   }
 }
 
 AbstractStateMachine::AbstractStateMachine(Lexer &lexer, DataMap &dmap, InstructionList &instructions) :

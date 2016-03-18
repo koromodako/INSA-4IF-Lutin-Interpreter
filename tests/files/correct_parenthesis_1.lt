@@ -1,0 +1,2 @@
+var a=2, b=3, c=2, d=1, e=1, f=2, g=2, k=1;
+ecrire ((a+b)*(c-d))%((e+f)*g-k)
