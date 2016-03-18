@@ -46,7 +46,7 @@ Lexer::Lexer(ifstream & stream) :
     _col=0;
 }
 
-#define TRIM_BUF(buffer)  while(buffer[0] == ' ' || buffer[0] == '\t'){buffer.erase(0,1); _col++;}
+#define TRIM_BUF(buffer)  while(buffer[0] == ' ' || buffer[0] == '\t'|| buffer[0] == '\n'|| buffer[0] == '\r'){buffer.erase(0,1); _col++;}
 
 void Lexer::MoveForward()
 {   DEBUG("Lexer : MoveForward called.");
@@ -79,7 +79,7 @@ void Lexer::MoveForward()
 
 Symbol Lexer::GetNext()
 {   DEBUG("Lexer : GetNext called.");
-    if(_stream.eof())
+    if(_stream.eof() && _buf.empty())
     {   // test fin de fichier
         return SYM_EOF;
     }
