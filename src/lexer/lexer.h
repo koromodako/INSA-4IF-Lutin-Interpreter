@@ -24,11 +24,33 @@ public:
      * @return
      */
     Symbol GetNext();
+    /**
+     * @brief Retourne la ligne courante du lexer
+     * @return
+     */
+    inline int GetLine() const;
+    /**
+     * @brief Retourne la colonne courante du lexer
+     * @return
+     */
+    inline int GetCol() const;
 
 private:
     string _buf;
     size_t _matched_length;
     ifstream & _stream;
+    int _line;
+    int _col;
 };
+
+inline int Lexer::GetLine() const
+{
+    return _line;
+}
+
+inline int Lexer::GetCol() const
+{
+    return _col;
+}
 
 #endif // ABSTRACTLEXER_H
