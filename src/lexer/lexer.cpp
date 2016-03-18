@@ -56,6 +56,7 @@ void Lexer::MoveForward()
         // on va chercher la prochaine ligne
         getline(_stream, _buf);
         _line++;
+        _col = 1;
         // on trim le buffer
         TRIM_BUF(_buf);
         // debug
@@ -68,7 +69,7 @@ void Lexer::MoveForward()
     {   DEBUG("Lexer : deleting latest symbol.");
         // on supprime le dernier token lu
         _buf.erase(0,_matched_length);
-        _col++;
+        _col += _matched_length;
         // on trim le buffer
         TRIM_BUF(_buf)
         if(_buf.empty())
@@ -87,8 +88,6 @@ Symbol Lexer::GetNext()
     string matched("");
     // on initialise le symbole avec une lexer error
     Symbol symbol;
-    // match en premiere sur la ligne contenue dans le buffer
-    size_t minMatch = _buf.length();   // on initialise le min a la fin du buffer
     // on teste toutes les regex une par une pour trouver celle qui
     for(DictRegexSymbolCode::iterator p = REGEX.begin(); p != REGEX.end(); ++p)
     {
@@ -98,17 +97,15 @@ Symbol Lexer::GetNext()
         // si la regexp match en debut de chaine
         if(regex_search(_buf, matches, p->first, format_first_only))
         {   size_t currentIndex = _buf.find_first_of(matches[0]);
-            DEBUG("Lexer : regex '" << p->first.expression() << "' has matched : '" << matches[0] << "' at index '" << currentIndex << "' minMatch is '" << minMatch << "'");
-            if(currentIndex < minMatch)
-            {   DEBUG("Lexer : update min_match ! new matched is '" << matches[0] << "'");
-                // maj min match
-                minMatch = currentIndex;
+            DEBUG("Lexer : regex '" << p->first.expression() << "' has matched : '" << matches[0] << "' at index '" << currentIndex << "'");
+            if(currentIndex == 0)
+            {   DEBUG("Lexer : first to match is '" << matches[0] << "'");
                 // maj matched
                 matched = matches[0];
                 // maj symbole
                 symbol.code = p->second;
                 // optimisation
-                if(currentIndex == 0) { break; }
+                break;
             }
         }
     }
@@ -120,9 +117,12 @@ Symbol Lexer::GetNext()
     }
     else
     {
-        symbol.buf= _buf;
-        // sinon c'est une lexer error donc on ne fait rien
-        DEBUG("Lexer : no regex match found. It might be an error in input file");
+        for(unsigned int i = 0 ; i<_buf.length() && _buf[i] != ' ' && _buf[i] != '\n' && _buf[i] != '\r' && _buf[i] != '\t'; i++)
+        {
+            symbol.buf += _buf[i];
+            // sinon c'est une lexer error donc on ne fait rien
+            DEBUG("Lexer : no regex match found. It might be an error in input file");
+        }
     }
     return symbol;
 }

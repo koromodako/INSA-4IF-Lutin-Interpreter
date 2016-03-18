@@ -92,52 +92,52 @@ AbstractExpression *BinaryExpression::Simplify(DataMap &dmap, bool &ok)
             }
             // on essaie ensuite de simplifier le calcul -> non surtout pas
             // si les deux opérandes sont des nombres
-            //if(_left->IsNumber() && _right->IsNumber())
-            //{   // on simplifie le calcul en évaluant ce dernier
-            //    double value = Eval(dmap, ok);
-            //    // si l'évaluation s'est bien déroulée
-            //    if(ok && value > 0)
-            //    {   simplified = new Number(value);
-            //    }
-            //}
-            //else // sinon on cherche les éléments neutres
-            //{
-            bool useless_ok;
-            switch (_op) {
-            case BOP_PLUS:
-                if(_left->IsNumber() && _left->Eval(dmap, useless_ok) == 0)
-                {   // copie profonde
-                    DEEP_COPY(_right, simplified)
+            if(_left->IsNumber() && _right->IsNumber())
+            {   // on simplifie le calcul en évaluant ce dernier
+                double value = Eval(dmap, ok);
+                // si l'évaluation s'est bien déroulée
+                if(ok)
+                {   simplified = new Number(value);
                 }
-                else if(_right->IsNumber() && _right->Eval(dmap, useless_ok) == 0)
-                {   // copie profonde
-                    DEEP_COPY(_left, simplified)
-                }
-                break;
-            case BOP_MINUS:
-                if(_right->IsNumber() && _right->Eval(dmap, useless_ok) == 0)
-                {   // copie profonde
-                    DEEP_COPY(_left, simplified)
-                }
-                break;
-            case BOP_MULT:
-                if(_left->IsNumber() && _left->Eval(dmap, useless_ok) == 1)
-                {   // copie profonde
-                    DEEP_COPY(_right, simplified)
-                }
-                else if(_right->IsNumber() && _right->Eval(dmap, useless_ok) == 1)
-                {   // copie profonde
-                    DEEP_COPY(_left, simplified)
-                }
-                break;
-            case BOP_DIV:
-                if(_right->IsNumber() && _right->Eval(dmap, useless_ok) == 1)
-                {   // copie profonde
-                    DEEP_COPY(_left, simplified)
-                }
-                break;
             }
-            //}
+            else // sinon on cherche les éléments neutres
+            {
+                bool useless_ok;
+                switch (_op) {
+                case BOP_PLUS:
+                    if(_left->IsNumber() && _left->Eval(dmap, useless_ok) == 0)
+                    {   // copie profonde
+                        DEEP_COPY(_right, simplified)
+                    }
+                    else if(_right->IsNumber() && _right->Eval(dmap, useless_ok) == 0)
+                    {   // copie profonde
+                        DEEP_COPY(_left, simplified)
+                    }
+                    break;
+                case BOP_MINUS:
+                    if(_right->IsNumber() && _right->Eval(dmap, useless_ok) == 0)
+                    {   // copie profonde
+                        DEEP_COPY(_left, simplified)
+                    }
+                    break;
+                case BOP_MULT:
+                    if(_left->IsNumber() && _left->Eval(dmap, useless_ok) == 1)
+                    {   // copie profonde
+                        DEEP_COPY(_right, simplified)
+                    }
+                    else if(_right->IsNumber() && _right->Eval(dmap, useless_ok) == 1)
+                    {   // copie profonde
+                        DEEP_COPY(_left, simplified)
+                    }
+                    break;
+                case BOP_DIV:
+                    if(_right->IsNumber() && _right->Eval(dmap, useless_ok) == 1)
+                    {   // copie profonde
+                        DEEP_COPY(_left, simplified)
+                    }
+                    break;
+                }
+            }
         }
     }
     return simplified;
