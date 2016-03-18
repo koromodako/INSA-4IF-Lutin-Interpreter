@@ -7,9 +7,15 @@ AbstractState::TransitionResult PS14::Transition(AbstractStateMachine &machine, 
     switch (symbol.code) {
     case S_ID:///< identifiant '\w[\w\d]*'
         // on ajoute la nouvelle variable
-        machine.GetDataMap().AppendVar(symbol.buf);
-        machine.PileUp(symbol, new PS15());
-        ret = AbstractState::PILED_UP;
+        if(machine.GetDataMap().AppendVar(symbol.buf))
+        {
+            machine.PileUp(symbol, new PS15());
+            ret = AbstractState::PILED_UP;
+        }
+        else
+        {
+            machine.Unexpected(AbstractStateMachine::WARNING,machine.GetDataMap().GetLastError());
+        }
         break;
     default:
         machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, symbol);

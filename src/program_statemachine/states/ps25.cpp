@@ -8,9 +8,15 @@ AbstractState::TransitionResult PS25::Transition(AbstractStateMachine &machine, 
         case S_NUM:///< nombre '\d+'
             // on affecte la variable en cours d'ajout ce qui a pour effet de terminer
             // la transaction d'insertion (initiée dans l'état 23) au niveau de DataMap
-            machine.GetDataMap().SetDataValue(symbol.buf);
-            machine.PileUp(symbol, new PS26());
-            ret = AbstractState::PILED_UP;
+            if(machine.GetDataMap().SetDataValue(symbol.buf))
+            {
+                machine.PileUp(symbol, new PS26());
+                ret = AbstractState::PILED_UP;
+            }
+            else
+            {
+                machine.Unexpected(AbstractStateMachine::WARNING,machine.GetDataMap().GetLastError());
+            }
             break;
         default:
             machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, symbol);

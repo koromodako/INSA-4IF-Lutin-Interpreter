@@ -51,6 +51,14 @@ public:
      *      Nouvel état
      */
     void Unexpected(ErrorType type, Symbol symbol);
+    /**
+     * @brief Effectue la recupération sur erreur s'il y a lieu ou place la machine à état dans un état d'erreur
+     * @param symbole
+     *      Symbole courant
+     * @param state
+     *      Nouvel état
+     */
+    void Unexpected(ErrorType type, string message);
 
     inline InstructionList & GetInstructionList() { return _instructions; } // inline explicite
     inline DataMap & GetDataMap() { return _dMap; }

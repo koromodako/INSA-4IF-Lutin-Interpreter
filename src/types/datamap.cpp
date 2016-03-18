@@ -16,42 +16,44 @@ void DataMap::StartConst(const string &identifier)
     _currentData = Data(true, true);
 }
 
-void DataMap::AppendVar(const string &identifier)
+bool DataMap::AppendVar(const string &identifier)
 {
     _currentIdentifier = identifier;
     _currentData = Data(true);
-    EndData();
+    return EndData();
 }
 
-void DataMap::SetDataValue(double value)
+bool DataMap::SetDataValue(double value)
 {
     if (!_currentData.cst)
         _currentData.set = true;
     _currentData.value = value;
-    EndData();
+    return EndData();
 }
 
-void DataMap::SetDataValue(string value)
+bool DataMap::SetDataValue(string value)
 {
     if (!_currentData.cst)
         _currentData.set = true;
     _currentData.value = atof(value.c_str());
-    EndData();
+    return EndData();
 }
 
-void DataMap::EndData()
+bool DataMap::EndData()
 {
+    bool ok = true;
     DataMap::iterator d = find(_currentIdentifier);
     if (d == end())
     {   insert(make_pair(_currentIdentifier, _currentData));
     }
     else
-    {   //std::cerr << "Warning : redefinition of ’" << d->first << "’"<< endl; \todo
-        d->second.multdecl = true; // on lève le flag de déclarations multiples
+    {   _lastError = "redefinition of ’"+ d->first+"’";
+       ok = false;
     }
     // on reset les variables (buffers) internes
     _currentIdentifier = "";
     _currentData = Data();
+    return ok;
 }
 
 /**

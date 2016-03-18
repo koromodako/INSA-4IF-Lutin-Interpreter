@@ -44,19 +44,19 @@ public:
      *      Identifiant de la variable
      * @return vrai si c'est la première déclaration de la variable
      */
-    void AppendVar(const string & identifier);
+    bool AppendVar(const string & identifier);
     /**
      * @brief Donne la valeur de la donnée (constante ou la variable) en cours d'ajout
      * @param value
      *      Valeur à donner à la donnée
      */
-    void SetDataValue(double value);
-    void SetDataValue(string value);
+    bool SetDataValue(double value);
+    bool SetDataValue(string value);
     /**
      * @brief Termine l'ajout de la nouvelle donnée (constante ou variable)
-     * return true si la donnée a pu être ajouté, false sinon (en cas de double déclaration).
+     * @return true si la donnée a pu être ajouté, false sinon (en cas de double déclaration).
      */
-    void EndData();
+    bool EndData();
     /**
      * @brief Stringify
      * @return la structure de donnée sous forme de string à restituer
@@ -71,10 +71,21 @@ public:
      * @return les erreurs trouvées sous forme de chaine de charactère
      */
     string Test() const;
+    /**
+     * @brief GetLastError
+     * @return la dernière erreur identifiée
+     */
+    inline const string &GetLastError() const;
 
 private:
     string _currentIdentifier;
     Data _currentData;
+    string _lastError;
 };
+
+inline const string & DataMap::GetLastError() const
+{
+    return _lastError;
+}
 
 #endif // DATAMAP_H

@@ -35,11 +35,11 @@ int OptionsManager::CheckOptions(int argc, char *argv[])
 
 void OptionsManager::Execute()
 {
-    for (DataMap::iterator it = _dataMap.begin() ; it != _dataMap.end() ; ++it)
+    /*for (DataMap::iterator it = _dataMap.begin() ; it != _dataMap.end() ; ++it)
     {
         if (it->second.multdecl)
             std::cerr << "Warning : redefinition of ’" << it->first << "’"<< endl;
-    }
+    }*/
 
     if (_transform)
         transform();
@@ -53,7 +53,8 @@ void OptionsManager::Execute()
 
 void OptionsManager::analysis() const
 {
-    cerr << _instructionList.Test(_dataMap) << _dataMap.Test();
+    cerr << _instructionList.Test(_dataMap);
+    cerr << _dataMap.Test();
 }
 
 void OptionsManager::execute() const
