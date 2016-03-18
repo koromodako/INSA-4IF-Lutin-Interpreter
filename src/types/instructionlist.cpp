@@ -11,6 +11,15 @@ InstructionList::InstructionList() :
 {
 }
 
+InstructionList::~InstructionList()
+{   // Libération de la mémoire réservée pour les expressions dans les instructions
+    for(InstructionList::iterator instr = begin(); instr != end(); instr++)
+    {   if(instr->expr != NULL)
+        {   delete instr->expr;
+        }
+    }
+}
+
 void InstructionList::StartRead(string &identifier)
 {
     _currentInstr = Instruction(ICODE_READ, identifier);
