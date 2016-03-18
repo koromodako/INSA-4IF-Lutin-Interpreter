@@ -27,7 +27,7 @@ AbstractState::TransitionResult ES1::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::ACCEPT;
         break;
     default:
-        machine.Unexpected(symbol);
+        machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR,S_PLUS);
         break;
     }
     return ret;
