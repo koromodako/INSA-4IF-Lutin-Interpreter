@@ -14,6 +14,12 @@ class AbstractState;
 class AbstractStateMachine
 {
 public:
+    enum ErrorType{
+        WARNING,
+        SYNTAX_ERROR,
+        LEXICAL_ERROR
+    };
+
     virtual ~AbstractStateMachine();
 
     /**
@@ -44,7 +50,7 @@ public:
      * @param state
      *      Nouvel état
      */
-    void Unexpected(Symbol symbol);
+    void Unexpected(ErrorType type, Symbol symbol);
 
     inline InstructionList & GetInstructionList() { return _instructions; } // inline explicite
     inline DataMap & GetDataMap() { return _dMap; }

@@ -12,7 +12,7 @@ AbstractState::TransitionResult PS14::Transition(AbstractStateMachine &machine, 
         ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(symbol);
+        machine.Unexpected(AbstractStateMachine::ErrorType::SYNTAX_ERROR, symbol);
         break;
     }
     return ret;
