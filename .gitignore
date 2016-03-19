@@ -1,9 +1,10 @@
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
 
-html*
-build*
-*.user
+*.csv
+*lut*
+*build*
+*html*
 *~
 *.autosave
 *.a
@@ -37,7 +38,6 @@ Thumbs.db
 *.rc
 /.qmake.cache
 /.qmake.stash
-tests/lut
 
 # qtcreator generated files
 *.pro.user*
@@ -75,5 +75,3 @@ tests/lut
 *.dll
 *.exe
 
-
-*.csv
