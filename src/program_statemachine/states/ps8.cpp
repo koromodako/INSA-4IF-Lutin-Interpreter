@@ -27,7 +27,7 @@ AbstractState::TransitionResult PS8::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::REDUCED;
         break;
     default:
-        machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, symbol);
+        machine.Unexpected(AbstractStateMachine::ERROR, "Illegal instruction");
         break;
     }
     return ret;

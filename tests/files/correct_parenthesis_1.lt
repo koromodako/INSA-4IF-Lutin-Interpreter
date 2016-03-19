@@ -1,2 +1,11 @@
-var a=2, b=3, c=2, d=1, e=1, f=2, g=2, k=1;
-ecrire ((a+b)*(c-d))%((e+f)*g-k)
+var a, b, c, d, e, f, g, k;
+a:=2;
+b:=3;
+c:=2;
+d:=1;
+e:=1;
+f:=2;
+g:=2;
+k:=1;
+ecrire (a+b)*(c-d)/((e+f)*g-k);
+ecrire ((a+b)*(c-d)/((e+f)*g-k));

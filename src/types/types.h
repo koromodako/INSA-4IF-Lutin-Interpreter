@@ -111,5 +111,22 @@ typedef list<Symbol> SymbolList;
 #define SYM_T   Symbol(S_T, "T")
 #define SYM_F   Symbol(S_F, "F")
 #define SYM_EOF Symbol(S_EOF, "EOF")
+// -- terminal symbols
+#define SYM_CONST         Symbol(S_CONST, "const")
+#define SYM_VAR           Symbol(S_VAR, "var")
+#define SYM_NUM           Symbol(S_NUM, "numeric value")
+#define SYM_EQ            Symbol(S_EQ, "=")
+#define SYM_AFFECT        Symbol(S_AFFECT, ":=")
+#define SYM_V             Symbol(S_V, ",")
+#define SYM_PV            Symbol(S_PV, ";")
+#define SYM_READ          Symbol(S_READ, "lire")
+#define SYM_WRITE         Symbol(S_WRITE, "ecrire")
+#define SYM_ID            Symbol(S_ID, "identifier")
+#define SYM_PO            Symbol(S_PO, "(")
+#define SYM_PF            Symbol(S_PF, ")")
+#define SYM_PLUS          Symbol(S_PLUS, "+")
+#define SYM_MINUS         Symbol(S_MINUS, "-")
+#define SYM_MULT          Symbol(S_MULT, "*")
+#define SYM_DIV           Symbol(S_DIV, "/")
 
 #endif // TYPES_H

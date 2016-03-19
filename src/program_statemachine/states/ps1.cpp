@@ -44,7 +44,7 @@ AbstractState::TransitionResult PS1::Transition(AbstractStateMachine &machine, S
         ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, symbol);
+        machine.Unexpected(AbstractStateMachine::ERROR, "Program must be declaration then intruction");
         break;
     }
     return ret;
