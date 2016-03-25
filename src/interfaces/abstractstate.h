@@ -56,7 +56,7 @@ private:
         }
 #else
 #   define SYNTAX_ERROR_HANDLER(expectedSymbol) \
-        machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, expectedSymbol)
+        machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, expectedSymbol);
 #endif
 
 #endif // ABSTRACTSTATE_H
