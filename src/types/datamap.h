@@ -39,7 +39,8 @@ public:
     void StartConst(const string & identifier);
 
     /**
-     * @brief Ajoute une donnée
+     * @brief Ajoute une variable avec le nom donné si elle
+     *        n'est pas déjà dans la map.
      * @param identifier
      *      Identifiant de la variable
      */
@@ -77,7 +78,7 @@ public:
      *
      * @return les erreurs trouvées sous forme de chaîne de caractères
      */
-    string Test() const;
+    string Test(bool &ok) const;
     /**
      * @brief Retourne la dernière erreur
      * @return la dernière erreur rencontrée

@@ -81,7 +81,7 @@ string DataMap::Stringify() const
 }
 
 
-string DataMap::Test() const
+string DataMap::Test(bool &ok) const
 {
     stringstream result;
     for (DataMap::const_iterator it = begin() ; it != end() ; ++it)
@@ -90,6 +90,7 @@ string DataMap::Test() const
         if (!it->second.exist)
         {
             result << "Error : Use of undeclared identifier '" << it->first << "'" << endl;
+            ok = false;
             continue;
         }
 

@@ -51,7 +51,7 @@ void OptionsManager::Execute()
 void OptionsManager::analysis(bool &ok) const
 {
     cerr << _instructionList.Test(_dataMap, ok);
-    cerr << _dataMap.Test();
+    cerr << _dataMap.Test(ok);
 }
 
 void OptionsManager::execute() const

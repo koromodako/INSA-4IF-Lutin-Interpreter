@@ -32,7 +32,7 @@ AbstractState::TransitionResult PS1::Transition(AbstractStateMachine &machine, c
         // on commence l'ajout d'une instruction d'affectation
         machine.GetInstructionList().StartSet(symbol.buf);
         // cette affectation sera validée après la lecture de l'expression dans l'état 10 et la validation finale dans l'état 28
-        machine.PileUp(symbol, new PS9()); /// \todo correction table transition nécessaire ! PS3 -> PS9 in PS1 for id
+        machine.PileUp(symbol, new PS9());
         ret = AbstractState::PILED_UP;
         break;
     case S_D:///< déclaration

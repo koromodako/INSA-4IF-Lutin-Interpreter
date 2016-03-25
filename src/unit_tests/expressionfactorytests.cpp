@@ -22,6 +22,5 @@ bool operator== (const Symbol & a, const Symbol & b) {
 
 void ExpressionFactoryTests::build_expr_test()
 {
-    /// \todo implement here
     FAILED("not implemented");
 }

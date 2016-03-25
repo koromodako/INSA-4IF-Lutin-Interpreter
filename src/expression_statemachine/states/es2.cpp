@@ -30,7 +30,7 @@ AbstractState::TransitionResult ES2::Transition(AbstractStateMachine &machine, c
         ret = AbstractState::PILED_UP;
         break;
     case S_F:
-        machine.PileUp(symbol, new ES12); /// \todo corriger la table de transitions
+        machine.PileUp(symbol, new ES12);
         ret = AbstractState::PILED_UP;
         break;
     default:
