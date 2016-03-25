@@ -10,7 +10,9 @@ AbstractState::TransitionResult ES17::Transition(AbstractStateMachine &machine, 
         ret = AbstractState::REDUCED;
         break;
     default:
-        machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR,S_EOF);
+        if(machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, SYM_EOF))
+        {   Transition(machine, SYM_EOF);
+        }
         break;
     }
     return ret;

@@ -45,10 +45,39 @@ Lexer::Lexer(ifstream & stream) :
     init();
 }
 
-#define TRIM_BUF(buffer) \
-    while(buffer[0] == ' ' || buffer[0] == '\t'|| buffer[0] == '\n'|| buffer[0] == '\r') \
+#define SKIP_INLINE_COMMENT(buffer) \
+    if(buffer.length() > 1 && buffer[0] == '/' && buffer[1] == '/') \
+    {   buffer.clear();\
+    }
+
+#define TRIM_BUF(buffer, col) \
+    while(!buffer.empty() && (buffer[0] == ' ' || buffer[0] == '\t'|| buffer[0] == '\n'|| buffer[0] == '\r') ) \
     { \
-        buffer.erase(0,1); _col++; \
+        buffer.erase(0,1); \
+        col++; \
+    }
+
+#define SKIP_MULTILINE_COMMENT(stream, buffer, line, col) \
+    if(buffer.length() > 1 && buffer[0] == '/' && buffer[1] == '*') \
+    {   bool stop(false); \
+        for(;;) \
+        {   if(buffer.empty()) \
+            {   getline(stream, buffer); \
+                line++; \
+                col = 1; \
+            } \
+            while(!buffer.empty()) \
+            {   if(buffer.length() > 1 && buffer[0] == '*' && buffer[1] == '/') \
+                {   stop = true; \
+                    buffer.erase(0,2); \
+                    col+=2; \
+                    break; \
+                } \
+                buffer.erase(0,1); \
+                col++; \
+            } \
+            if(stop) { break; } \
+        } \
     }
 
 void Lexer::MoveForward()
@@ -61,7 +90,11 @@ void Lexer::MoveForward()
         _line++;
         _col = 1;
         // on trim le buffer
-        TRIM_BUF(_buf);
+        TRIM_BUF(_buf, _col)
+#ifdef SOURCE_COMMENTS_SUPPORT
+        SKIP_INLINE_COMMENT(_buf)
+        SKIP_MULTILINE_COMMENT(_stream, _buf, _line, _col)
+#endif
         // debug
         DEBUG("Lexer : buffer content is : '" << _buf << "'");
         if(_buf.empty() && !_stream.eof())
@@ -74,7 +107,11 @@ void Lexer::MoveForward()
         _buf.erase(0,_matched_length);
         _col += _matched_length;
         // on trim le buffer
-        TRIM_BUF(_buf)
+        TRIM_BUF(_buf, _col)
+#ifdef SOURCE_COMMENTS_SUPPORT
+        SKIP_INLINE_COMMENT(_buf)
+        SKIP_MULTILINE_COMMENT(_stream, _buf, _line, _col)
+#endif
         if(_buf.empty())
         {   MoveForward();
         }

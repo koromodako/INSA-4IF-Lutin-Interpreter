@@ -14,7 +14,9 @@ AbstractState::TransitionResult PS6::Transition(AbstractStateMachine &machine, c
         ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, SYM_ID);
+        if(machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, SYM_ID))
+        {   Transition(machine, SYM_ID);
+        }
         break;
     }
     return ret;

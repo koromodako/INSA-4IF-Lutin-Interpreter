@@ -5,5 +5,7 @@
 //#define TEST
 // décommenter la ligne suivante pour afficher les sorties de debug
 //#define PRINT_DEBUG
+// décommenter la ligne suivante pour avoir le support des commentaires type C/C++ dans le code lutin
+#define SOURCE_COMMENTS_SUPPORT
 
 #endif // CONFIG_H
