@@ -25,7 +25,9 @@ int OptionsManager::CheckOptions(int argc, char *argv[])
         else if (string(argv[i]) == "-a")
             _analysis = true;
         else if (string(argv[i]) == "-e")
+        {   _analysis = true;
             _execute = true;
+        }
         else if (argv[i][0] == '-')
             return -1;
         else return i;
@@ -35,19 +37,20 @@ int OptionsManager::CheckOptions(int argc, char *argv[])
 
 void OptionsManager::Execute()
 {
+    bool ok = true;
     if (_transform)
         transform();
     if (_analysis)
-        analysis();
-    if (_execute)
+        analysis(ok);
+    if (_execute && ok)
         execute();
-    if (_display)
+    if (_display && ok)
         print();
 }
 
-void OptionsManager::analysis() const
+void OptionsManager::analysis(bool &ok) const
 {
-    cerr << _instructionList.Test(_dataMap);
+    cerr << _instructionList.Test(_dataMap, ok);
     cerr << _dataMap.Test();
 }
 

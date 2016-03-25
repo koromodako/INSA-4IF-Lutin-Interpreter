@@ -34,9 +34,11 @@ public:
 
 private:
     /**
+     * @param ok
+     *      Référence booléenne qui permet de faire remonter les erreurs d'analyse
      * @brief Analyse le programme donné de manière statique afin d'en extraire les erreurs
      */
-    void analysis() const;
+    void analysis(bool &ok) const;
 
     /**
      * @brief Interprète chacune des instructions du programme de manière interactive

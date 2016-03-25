@@ -75,7 +75,7 @@ public:
      *
      * @return les erreurs trouvées sous forme de chaîne de caractères
      */
-    string Test(DataMap &map) const;
+    string Test(DataMap &map, bool &ok) const;
 
 private:
     Instruction _currentInstr;

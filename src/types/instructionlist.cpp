@@ -96,7 +96,7 @@ string InstructionList::Stringify() const
     return instructions;
 }
 
-string InstructionList::Test(DataMap &dataMap) const
+string InstructionList::Test(DataMap &dataMap, bool &ok) const
 {
     stringstream result;
     for (InstructionList::const_iterator it = begin() ; it != end() ; ++it)
@@ -107,9 +107,9 @@ string InstructionList::Test(DataMap &dataMap) const
 
         //Constante réaffectée - Test 6.5
         if ((it->code == ICODE_SET || it->code == ICODE_READ) && itData->second.cst)
-        {
-            result << "Error : read-only variable '" << it->identifier << "' is not assignable" << endl;
+        {   result << "Error : read-only variable '" << it->identifier << "' is not assignable" << endl;
             itData->second.used = true;
+            ok = false;
         }
         else if (it->code == ICODE_SET || it->code == ICODE_READ)
             itData->second.set = true;
@@ -125,8 +125,11 @@ string InstructionList::Test(DataMap &dataMap) const
             itData = dataMap.find(*itVar);
             itData->second.used = true;
             if (!itData->second.cst && !itData->second.set)
-                result << "Error : '" <<  itData->first << "' used but not initialized" << endl;
+            {   result << "Error : '" <<  itData->first << "' used but not initialized" << endl;
+                ok = false;
+            }
         }
     }
+
     return result.str();
 }
