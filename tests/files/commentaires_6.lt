@@ -1,0 +1,3 @@
+var a;
+a/* Ceci est un commentaire au milieu d'une ligne de code */:= 2;
+ecrire a;

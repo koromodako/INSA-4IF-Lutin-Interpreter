@@ -1,0 +1,6 @@
+var a;
+/* Ceci est un commentaire 
+qui se balade sur plusieurs lignes
+de code différentes */
+a := 2;
+ecrire a;
