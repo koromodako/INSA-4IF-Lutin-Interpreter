@@ -1,0 +1,4 @@
+// Ceci est un commentaire
+var a;
+a := 2;
+ecrire a;
