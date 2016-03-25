@@ -4,7 +4,7 @@
 
 AbstractStateMachine::~AbstractStateMachine()
 {
-    // nettoyage de la stack des etats si non vide
+    // nettoyage de la pile des états si non vide
     while (!_statesStack.empty()) {
         delete _statesStack.top();
         _statesStack.pop();
@@ -13,13 +13,10 @@ AbstractStateMachine::~AbstractStateMachine()
 
 void AbstractStateMachine::Run(AbstractState * initialState)
 {
-    // -- DEBUG --------------------------------------------------------
     DEBUG("Running state machine with initial state '" << initialState->name() << "'");
-    // -- DEBUG --------------------------------------------------------
-
-    // -- initialize state machine
+    // initialisation de la machine à états
     _statesStack.push(initialState);
-    // -- run state machine
+    // boucle d'exécution principale
     Symbol symbol;
     bool ok(true), accept(false);
     while(!_statesStack.empty() && ok && !accept)
@@ -39,22 +36,14 @@ void AbstractStateMachine::Run(AbstractState * initialState)
         case AbstractState::ACCEPT: accept = true; break;
         }
 
-        // -- DEBUG --------------------------------------------------------
         DEBUG("is back to transition loop");
-        // -- DEBUG --------------------------------------------------------
-
     }
-
-    // -- DEBUG --------------------------------------------------------
     DEBUG("exiting transition loop");
-    // -- DEBUG --------------------------------------------------------
 }
 
-void AbstractStateMachine::Reduce(Symbol symbol, int size)
+void AbstractStateMachine::Reduce(const Symbol &symbol, int size)
 {
-    // -- DEBUG --------------------------------------------------------
     DEBUG("current state is '" << _statesStack.top()->name() << "' -> reducing with size=" << size);
-    // -- DEBUG --------------------------------------------------------
 
     while (size != 0 && !_statesStack.empty()) {
         delete _statesStack.top();
@@ -62,53 +51,45 @@ void AbstractStateMachine::Reduce(Symbol symbol, int size)
         _symbolsStack.pop();
         size--;
     }
-
-    // -- DEBUG --------------------------------------------------------
     DEBUG("applying direct transition on reduce");
-    // -- DEBUG --------------------------------------------------------
 
     // transition appliquée quand on arrive dans le nouvel état
     if(!_statesStack.empty())
     {
-        // -- DEBUG --------------------------------------------------------
         DEBUG("transition applied");
-        // -- DEBUG --------------------------------------------------------
-
         _statesStack.top()->Transition(*this, symbol);
     }
 }
 
-void AbstractStateMachine::PileUp(Symbol symbol, AbstractState *state)
+void AbstractStateMachine::PileUp(const Symbol &symbol, AbstractState *state)
 {
-    // -- DEBUG --------------------------------------------------------
     DEBUG("current state is '" << _statesStack.top()->name() << "' -> piling up : new state is '" <<
           state->name() << "' symbol(code='"<<symbol.code<<"',buf='"<<symbol.buf<<"')" );
-    // -- DEBUG --------------------------------------------------------
 
     _statesStack.push(state);
     _symbolsStack.push(symbol);
 }
 
-void AbstractStateMachine::Unexpected(ErrorType type, Symbol symbol)
+void AbstractStateMachine::Unexpected(ErrorType type, const Symbol &symbol)
 {
     switch(type)
     {
     case LEXICAL_ERROR:
-        cerr<<"Lexical error ("<<_lexer.GetLine()<<":"<<_lexer.GetCol()<<"): unexpected symbol '"<<symbol.buf<<"'"<<endl;
+        cerr << "Lexical error (" << _lexer.GetLine() << ":" << _lexer.GetCol() << "): unexpected symbol '" << symbol.buf << "'" << endl;
         break;
     case SYNTAX_ERROR:
-        cerr<<"Syntax error ("<<_lexer.GetLine()<<":"<<_lexer.GetCol()<<"): expected symbol '"<<symbol.buf<<"'"<<endl;
+        cerr << "Syntax error (" << _lexer.GetLine() << ":" << _lexer.GetCol() << "): expected symbol '" << symbol.buf << "'" << endl;
         break;    
     default:
         break;
     }
 }
 
-void AbstractStateMachine::Unexpected(ErrorType type, string message)
+void AbstractStateMachine::Unexpected(ErrorType type, const string & message)
 {
    if(type == WARNING)
    {
-        cerr<<"Warning :"<<message<<endl;
+        cerr << "Warning :" << message << endl;
    }
 }
 

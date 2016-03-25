@@ -10,9 +10,22 @@
 class ExpressionStateMachine : public AbstractStateMachine
 {
 public:
-    ~ExpressionStateMachine(){}
+    /**
+     * @brief Constructeur de la machine à états pour l'analyse des expressions
+     * @param lexer
+     *      Lexer pour l'analyse lexicale
+     * @param dmap
+     *      Dictionnaire des mémoires à remplir
+     * @param instructions
+     *      Liste d'instruction à remplir
+     */
     ExpressionStateMachine(Lexer &lexer, DataMap &dmap, InstructionList &instructions);
+    ~ExpressionStateMachine(){}
 
+    /**
+     * @brief Exécute la machine à états
+     * @note le paramètre n'est pas utilisé
+     */
     void Run(AbstractState * initialState = NULL);
 };
 

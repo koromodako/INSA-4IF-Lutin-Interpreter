@@ -14,26 +14,29 @@ class AbstractState;
 class AbstractStateMachine
 {
 public:
+    /**
+     * @brief Cette énumération définit les types d'erreur pouvant être rencontrés
+     */
     enum ErrorType{
-        WARNING,
-        SYNTAX_ERROR,
-        LEXICAL_ERROR,
-        ERROR
+        WARNING,        ///< Avertissement
+        SYNTAX_ERROR,   ///< Erreur de syntaxe
+        LEXICAL_ERROR,  ///< Erreur lexicale
+        ERROR           ///< Erreur
     };
 
     virtual ~AbstractStateMachine();
 
     /**
-     * @brief Execute la machine à état en utilisant le lexer
+     * @brief Exécute la machine à états en utilisant le lexer
      */
     virtual void Run(AbstractState * initialState);
 
     /**
-     * @brief Effectue la reduction souhaitée
+     * @brief Effectue la réduction souhaitée
      * @param size
      *      Taille de la réduction (en nombre d'états)
      */
-    void Reduce(Symbol symbol, int size);
+    void Reduce(const Symbol & symbol, int size);
 
     /**
      * @brief Effectue la transition vers l'état suivant
@@ -42,7 +45,7 @@ public:
      * @param state
      *      Etat suivant
      */
-    void PileUp(Symbol symbol, AbstractState * state);
+    void PileUp(const Symbol & symbol, AbstractState * state);
 
     /**
      * @brief Effectue la recupération sur erreur s'il y a lieu ou place la machine à état dans un état d'erreur
@@ -51,7 +54,7 @@ public:
      * @param state
      *      Nouvel état
      */
-    void Unexpected(ErrorType type, Symbol symbol);
+    void Unexpected(ErrorType type, const Symbol & symbol);
     /**
      * @brief Effectue la recupération sur erreur s'il y a lieu ou place la machine à état dans un état d'erreur
      * @param symbole
@@ -59,19 +62,31 @@ public:
      * @param state
      *      Nouvel état
      */
-    void Unexpected(ErrorType type, string message);
-
-    inline InstructionList & GetInstructionList() { return _instructions; } // inline explicite
+    void Unexpected(ErrorType type, const string & message);
+    /**
+     * @brief Retourne une référence sur la liste d'instructions manipulée par la machine à états
+     * @return
+     */
+    inline InstructionList & GetInstructionList() { return _instructions; }
+    /**
+     * @brief Retourne une référence sur le dictionnaire des mémoires manipulé par la machine à états
+     * @return
+     */
     inline DataMap & GetDataMap() { return _dMap; }
+    /**
+     * @brief Retourne une référence au lexer manipulé par la machine à états
+     * @return
+     */
     inline Lexer & GetLexer() {return _lexer;}
 
 protected:
+    // constructeur protégé (classe abstraite)
     AbstractStateMachine(Lexer & lexer, DataMap & dmap, InstructionList & instructions);
 
 private:
     Lexer & _lexer;
-    DataMap & _dMap; // cet automate doit remplir cette structure avec les déclarations de variables et constantes
-    InstructionList & _instructions;
+    DataMap & _dMap;                    // l'automate doit remplir cette structure avec les déclarations de variables et constantes
+    InstructionList & _instructions;    // l'automate doit remplir cette liste avec les instructions qu'il rencontre
     stack<string> _errorsStack;         // pile des erreurs
     SymbolStack _symbolsStack;          // pile des symboles
     stack<AbstractState*> _statesStack; // pile des états
