@@ -12,7 +12,7 @@ class PS10 : public AbstractState
 {
 public:
     ~PS10(){}
-    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, const Symbol & symbol);
     PS10();
 };
 

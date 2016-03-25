@@ -1,6 +1,6 @@
 #include "ps16.h"
 #include "../rules.h"
-AbstractState::TransitionResult PS16::Transition(AbstractStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS16::Transition(AbstractStateMachine &machine, const Symbol & symbol)
 {
 
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;

@@ -13,7 +13,7 @@ class PS20 : public AbstractState
 public:
     ~PS20(){}
 
-    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, const Symbol & symbol);
     PS20();
 };
 

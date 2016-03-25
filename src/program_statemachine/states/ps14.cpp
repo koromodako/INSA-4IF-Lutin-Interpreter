@@ -1,7 +1,7 @@
 #include "ps14.h"
 #include "ps15.h"
 
-AbstractState::TransitionResult PS14::Transition(AbstractStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS14::Transition(AbstractStateMachine &machine, const Symbol & symbol)
 {
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {

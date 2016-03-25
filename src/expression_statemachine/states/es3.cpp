@@ -5,7 +5,7 @@
 #include "es13.h"
 #include "es12.h"
 
-AbstractState::TransitionResult ES3::Transition(AbstractStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult ES3::Transition(AbstractStateMachine &machine, const Symbol & symbol)
 {
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {

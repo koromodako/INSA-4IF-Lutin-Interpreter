@@ -1,7 +1,7 @@
 #include "ps18.h"
 #include "ps19.h"
 
-AbstractState::TransitionResult PS18::Transition(AbstractStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS18::Transition(AbstractStateMachine &machine, const Symbol & symbol)
 {
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {

@@ -38,7 +38,7 @@ public:
      * @param identifier
      *      Identifiant de la variable dans laquelle la lecture doit être faite
      */
-    void StartRead(string & identifier);
+    void StartRead(const string & identifier);
     /**
      * @brief Commence l'ajout d'une instruction d'affichage
      */
@@ -48,12 +48,12 @@ public:
      * @param identifier
      *      Identifiant de la variable à affecter
      */
-    void StartSet(string & identifier);
+    void StartSet(const string & identifier);
     /**
      * @brief Ajoute un symbole d'expression dans un buffer interne
      * @param symbol
      */
-    void AppendSymbol(Symbol symbol);
+    void AppendSymbol(const Symbol & symbol);
     /**
      * @brief Construit l'expression à partir de la liste de symboles
      */

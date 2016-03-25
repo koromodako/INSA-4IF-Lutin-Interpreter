@@ -13,7 +13,7 @@ class PS8 : public AbstractState
 public:
     ~PS8(){}
 
-    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, const Symbol & symbol);
 
     PS8();
 };

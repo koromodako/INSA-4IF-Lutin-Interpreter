@@ -4,7 +4,7 @@
 
 #include "src/debug.h"
 
-AbstractState::TransitionResult PS10::Transition(AbstractStateMachine &machine, Symbol)
+AbstractState::TransitionResult PS10::Transition(AbstractStateMachine &machine, const Symbol&)
 {
     // -- ici on suppose que ce qui suit est une expression on passe donc la main à l'automate d'expression
 

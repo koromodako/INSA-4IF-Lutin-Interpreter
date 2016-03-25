@@ -4,7 +4,7 @@
 #include "es17.h"
 #include "../rules.h"
 
-AbstractState::TransitionResult ES1::Transition(AbstractStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult ES1::Transition(AbstractStateMachine &machine, const Symbol & symbol)
 {
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {

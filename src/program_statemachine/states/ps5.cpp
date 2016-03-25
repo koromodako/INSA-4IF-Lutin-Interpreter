@@ -4,7 +4,7 @@
 
 #include "src/debug.h"
 
-AbstractState::TransitionResult PS5::Transition(AbstractStateMachine &machine, Symbol)
+AbstractState::TransitionResult PS5::Transition(AbstractStateMachine &machine, const Symbol&)
 {
     machine.GetInstructionList().StartPrint();
     // -- DEBUG ------------------------------------------------

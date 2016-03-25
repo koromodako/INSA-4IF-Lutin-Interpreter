@@ -20,7 +20,7 @@ InstructionList::~InstructionList()
     }
 }
 
-void InstructionList::StartRead(string &identifier)
+void InstructionList::StartRead(const string & identifier)
 {
     _currentInstr = Instruction(ICODE_READ, identifier);
 }
@@ -30,12 +30,12 @@ void InstructionList::StartPrint()
     _currentInstr = Instruction(ICODE_PRINT);
 }
 
-void InstructionList::StartSet(string &identifier)
+void InstructionList::StartSet(const string & identifier)
 {
     _currentInstr = Instruction(ICODE_SET, identifier);
 }
 
-void InstructionList::AppendSymbol(Symbol symbol)
+void InstructionList::AppendSymbol(const Symbol &symbol)
 {
     // -- DEBUG ----------------------------------------------------
     DEBUG("adding symbol(code='"<< symbol.code <<"',buf='"<< symbol.buf <<"')");
