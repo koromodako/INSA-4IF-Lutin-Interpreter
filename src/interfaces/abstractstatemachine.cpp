@@ -11,6 +11,8 @@ AbstractStateMachine::~AbstractStateMachine()
     }
 }
 
+#define MAX_ERRORS 3
+
 void AbstractStateMachine::Run(AbstractState * initialState)
 {
     DEBUG("Running state machine with initial state '" << initialState->name() << "'");
@@ -18,22 +20,37 @@ void AbstractStateMachine::Run(AbstractState * initialState)
     _statesStack.push(initialState);
     // boucle d'exécution principale
     Symbol symbol;
+    int errorCount(0);
     bool ok(true), accept(false);
     while(!_statesStack.empty() && ok && !accept)
     {
         symbol = _lexer.GetNext();
 
-        if(symbol.code==S_LEXER_ERROR){
+        if(symbol.code==S_LEXER_ERROR)
+        {
             Unexpected(LEXICAL_ERROR, symbol);
             break;
         }
 
         switch(_statesStack.top()->Transition(*this, symbol))
         {
-        case AbstractState::UNEXPECTED: ok = false; break;
-        case AbstractState::REDUCED: break;
-        case AbstractState::PILED_UP: _lexer.MoveForward(); break;
-        case AbstractState::ACCEPT: accept = true; break;
+        case AbstractState::UNEXPECTED:
+            errorCount++;
+            if(errorCount >= MAX_ERRORS)
+            {   ok = false;
+            }
+            else
+            {   _lexer.MoveForward();
+            }
+            break;
+        case AbstractState::REDUCED:
+            break;
+        case AbstractState::PILED_UP:
+            _lexer.MoveForward();
+            break;
+        case AbstractState::ACCEPT:
+            accept = true;
+            break;
         }
 
         DEBUG("is back to transition loop");
@@ -70,8 +87,9 @@ void AbstractStateMachine::PileUp(const Symbol &symbol, AbstractState *state)
     _symbolsStack.push(symbol);
 }
 
-void AbstractStateMachine::Unexpected(ErrorType type, const Symbol &symbol)
+bool AbstractStateMachine::Unexpected(ErrorType type, const Symbol &symbol)
 {
+    bool tryAgain(false);
     switch(type)
     {
     case LEXICAL_ERROR:
@@ -79,10 +97,12 @@ void AbstractStateMachine::Unexpected(ErrorType type, const Symbol &symbol)
         break;
     case SYNTAX_ERROR:
         cerr << "Syntax error (" << _lexer.GetLine() << ":" << _lexer.GetCol() << "): expected symbol '" << symbol.buf << "'" << endl;
+        tryAgain = true;
         break;    
     default:
         break;
     }
+    return tryAgain;
 }
 
 void AbstractStateMachine::Unexpected(ErrorType type, const string & message)

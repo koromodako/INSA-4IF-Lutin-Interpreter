@@ -39,7 +39,7 @@ AbstractState::TransitionResult ES11::Transition(AbstractStateMachine &machine, 
         ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR,S_ID);
+        SYNTAX_ERROR_HANDLER(SYM_ID)
         break;
     }
     return ret;

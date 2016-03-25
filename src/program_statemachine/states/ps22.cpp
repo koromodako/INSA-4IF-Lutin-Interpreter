@@ -15,7 +15,7 @@ AbstractState::TransitionResult PS22::Transition(AbstractStateMachine &machine, 
             ret = AbstractState::PILED_UP;
             break;
         default:
-            machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, SYM_PV);
+            SYNTAX_ERROR_HANDLER(SYM_PV)
             break;
     }
     return ret;

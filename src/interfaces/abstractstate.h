@@ -2,9 +2,9 @@
 #define ABSTRACTSTATE_H
 
 #include <string>
+#include "../config.h"
 #include "../types/types.h"
 #include "abstractstatemachine.h"
-
 
 using namespace std;
 class AbstractStateMachine;
@@ -47,5 +47,16 @@ protected:
 private:
     string _name; // nom de l'état
 };
+
+// ------------------ macros
+#ifdef ERROR_HANDLING_SUPPORT
+#   define SYNTAX_ERROR_HANDLER(expectedSymbol) \
+        if(machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, expectedSymbol)) \
+        {   Transition(machine, expectedSymbol); \
+        }
+#else
+#   define SYNTAX_ERROR_HANDLER(expectedSymbol) \
+        machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, expectedSymbol)
+#endif
 
 #endif // ABSTRACTSTATE_H

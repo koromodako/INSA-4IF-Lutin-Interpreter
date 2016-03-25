@@ -44,7 +44,7 @@ AbstractState::TransitionResult PS1::Transition(AbstractStateMachine &machine, c
         ret = AbstractState::PILED_UP;
         break;
     default:
-        machine.Unexpected(AbstractStateMachine::ERROR, "Program must be declaration then intruction");
+        machine.Unexpected(AbstractStateMachine::ERROR, "Program must begin with declarations followed by a list of instructions");
         break;
     }
     return ret;

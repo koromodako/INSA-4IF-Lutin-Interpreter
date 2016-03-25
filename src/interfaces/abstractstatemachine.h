@@ -53,8 +53,9 @@ public:
      *      Symbole courant
      * @param state
      *      Nouvel état
+     * @return vrai si l'exécution doit continuer, faux dans le cas contraire
      */
-    void Unexpected(ErrorType type, const Symbol & symbol);
+    bool Unexpected(ErrorType type, const Symbol & symbol);
     /**
      * @brief Effectue la recupération sur erreur s'il y a lieu ou place la machine à état dans un état d'erreur
      * @param symbole
