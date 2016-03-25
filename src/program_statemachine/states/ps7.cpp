@@ -10,9 +10,7 @@ AbstractState::TransitionResult PS7::Transition(AbstractStateMachine &machine, c
         ret = AbstractState::PILED_UP;
         break;
     default:
-        if(machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, SYM_PV))
-        {   Transition(machine, SYM_PV);
-        }
+        SYNTAX_ERROR_HANDLER(SYM_PV)
         break;
     }
     return ret;

@@ -19,9 +19,7 @@ AbstractState::TransitionResult PS20::Transition(AbstractStateMachine &machine, 
             }
             break;
         default:
-            if(machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, SYM_NUM))
-            {   Transition(machine, SYM_NUM);
-            }
+            SYNTAX_ERROR_HANDLER(SYM_NUM)
             break;
     }
     return ret;

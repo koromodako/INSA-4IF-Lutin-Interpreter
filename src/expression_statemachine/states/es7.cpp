@@ -34,9 +34,7 @@ AbstractState::TransitionResult ES7::Transition(AbstractStateMachine &machine, c
         ret = AbstractState::REDUCED;
         break;
     default:
-        if(machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, SYM_PV))
-        {   Transition(machine, SYM_PV);
-        }
+        SYNTAX_ERROR_HANDLER(SYM_PV)
         break;
     }
     return ret;

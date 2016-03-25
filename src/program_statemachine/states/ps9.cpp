@@ -11,9 +11,7 @@ AbstractState::TransitionResult PS9::Transition(AbstractStateMachine &machine, c
         ret = AbstractState::PILED_UP;
         break;
     default:
-        if(machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, SYM_AFFECT))
-        {   Transition(machine, SYM_AFFECT);
-        }
+        SYNTAX_ERROR_HANDLER(SYM_AFFECT)
         break;
     }
     return ret;
