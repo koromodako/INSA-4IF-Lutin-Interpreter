@@ -32,21 +32,24 @@ void init()
     PUSH("=",             S_EQ);
     PUSH("\\(",           S_PO);
     PUSH("\\)",           S_PF);
-    //PUSH("",              S_EOF);
 }
 
 
 Lexer::Lexer(ifstream & stream) :
     _buf(""),
     _matched_length(0),
-    _stream(stream)
+    _stream(stream),
+    _line(0),
+    _col(0)
 {
     init();
-    _line=0;
-    _col=0;
 }
 
-#define TRIM_BUF(buffer)  while(buffer[0] == ' ' || buffer[0] == '\t'|| buffer[0] == '\n'|| buffer[0] == '\r'){buffer.erase(0,1); _col++;}
+#define TRIM_BUF(buffer) \
+    while(buffer[0] == ' ' || buffer[0] == '\t'|| buffer[0] == '\n'|| buffer[0] == '\r') \
+    { \
+        buffer.erase(0,1); _col++; \
+    }
 
 void Lexer::MoveForward()
 {   DEBUG("Lexer : MoveForward called.");
@@ -92,14 +95,15 @@ Symbol Lexer::GetNext()
     for(DictRegexSymbolCode::iterator p = REGEX.begin(); p != REGEX.end(); ++p)
     {
         DEBUG("Lexer : testing regexp '" << p->first.expression() << "' against '" << _buf << "'");
-        //
         match_results<string::const_iterator> matches;
         // si la regexp match en debut de chaine
         if(regex_search(_buf, matches, p->first, format_first_only))
-        {   size_t currentIndex = _buf.find_first_of(matches[0]);
+        {
+            size_t currentIndex = _buf.find_first_of(matches[0]);
             DEBUG("Lexer : regex '" << p->first.expression() << "' has matched : '" << matches[0] << "' at index '" << currentIndex << "'");
             if(currentIndex == 0)
-            {   DEBUG("Lexer : first to match is '" << matches[0] << "'");
+            {
+                DEBUG("Lexer : first to match is '" << matches[0] << "'");
                 // maj matched
                 matched = matches[0];
                 // maj symbole
@@ -109,20 +113,20 @@ Symbol Lexer::GetNext()
             }
         }
     }
-    // si le symbole est différent de lexer error après la boucle précédente c'est qu'on a un match
+    // si le symbole est différent de lexer error après la boucle précédente alors il existe un match
     if(symbol.code != S_LEXER_ERROR)
-    {   DEBUG("Lexer : finally returning match '" << matched << "'");
+    {
+        DEBUG("Lexer : finally returning match '" << matched << "'");
         symbol.buf = matched;
         _matched_length = matched.length();
     }
     else
-    {
-        for(unsigned int i = 0 ; i<_buf.length() && _buf[i] != ' ' && _buf[i] != '\n' && _buf[i] != '\r' && _buf[i] != '\t'; i++)
+    // sinon c'est une lexer error donc on ne fait rien
+    {   for(size_t i = 0 ; i<_buf.length() && _buf[i] != ' ' && _buf[i] != '\n' && _buf[i] != '\r' && _buf[i] != '\t'; i++)
         {
             symbol.buf += _buf[i];
-            // sinon c'est une lexer error donc on ne fait rien
-            DEBUG("Lexer : no regex match found. It might be an error in input file");
         }
+        DEBUG("Lexer : no regex match found. It might be an error in input file");
     }
     return symbol;
 }

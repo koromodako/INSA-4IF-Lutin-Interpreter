@@ -8,7 +8,7 @@
 using namespace std;
 
 /**
- * @brief Cette classe représente un lexer quelconque chargé de l'analyse lexicale
+ * @brief Cette classe représente un lexer chargé de l'analyse lexicale
  */
 class Lexer
 {
@@ -16,7 +16,7 @@ public:
     Lexer(ifstream & stream);
     ~Lexer(){}
     /**
-     * @brief Déplace la tête de lecture
+     * @brief Met à jour le buffer en déplaçant la tête de lecture
      */
     void MoveForward();
     /**
@@ -25,15 +25,15 @@ public:
      */
     Symbol GetNext();
     /**
-     * @brief Retourne la ligne courante du lexer
+     * @brief Retourne le numéro de la ligne courante du lexer
      * @return
      */
-    inline int GetLine() const;
+    inline int GetLine() const { return _line; }
     /**
-     * @brief Retourne la colonne courante du lexer
+     * @brief Retourne le numéro de la colonne courante du lexer
      * @return
      */
-    inline int GetCol() const;
+    inline int GetCol() const { return _col; }
 
 private:
     string _buf;
@@ -42,15 +42,5 @@ private:
     int _line;
     int _col;
 };
-
-inline int Lexer::GetLine() const
-{
-    return _line;
-}
-
-inline int Lexer::GetCol() const
-{
-    return _col;
-}
 
 #endif // ABSTRACTLEXER_H

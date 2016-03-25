@@ -10,30 +10,47 @@
 class OptionsManager
 {
 public:
+    /**
+     * @brief Constructeur
+     * @param dataMap
+     *      Dictionnaire des mémoires
+     * @param instructionList
+     *      Liste des instructions
+     */
     OptionsManager(DataMap &dataMap, InstructionList &instructionList);
-
+    /**
+     * @brief Vérifie quelles options sont requises pour l'exécution
+     * @param argc
+     *      Nombre d'arguments
+     * @param argv
+     *      Tableau des arguments
+     * @return
+     */
     int CheckOptions(int argc, char *argv[]);
+    /**
+     * @brief Exécute les options demandées sur le fichier lutin passé en paramètre du programme
+     */
     void Execute();
 
 private:
     /**
-     * @brief Analyse le programme donné de manière statique afin d'en extraire les erreurs.
+     * @brief Analyse le programme donné de manière statique afin d'en extraire les erreurs
      */
     void analysis() const;
 
     /**
-     * @brief Interprete chacune des instructions du programme de manière intéractive.
+     * @brief Interprète chacune des instructions du programme de manière interactive
      */
     void execute() const;
 
     /**
-     * @brief Affiche sur la sortie standard la représentation en mémoire du programme.
+     * @brief Affiche sur la sortie standard la représentation en mémoire du programme
      *        Les éventuelles erreurs sont affichées sur la sortie standard
      */
     void print() const;
 
     /**
-     * @brief Tranforme le programme en mémoire afin de l'optimiser.
+     * @brief Tranforme le programme en mémoire afin de l'optimiser
      */
     void transform();
 

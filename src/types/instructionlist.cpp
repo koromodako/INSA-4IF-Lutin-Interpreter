@@ -96,10 +96,10 @@ string InstructionList::Stringify() const
     return instructions;
 }
 
-string InstructionList::Test(DataMap &dataMap)
+string InstructionList::Test(DataMap &dataMap) const
 {
     stringstream result;
-    for (InstructionList::iterator it = begin() ; it != end() ; ++it)
+    for (InstructionList::const_iterator it = begin() ; it != end() ; ++it)
     {
         DataMap::iterator itData = dataMap.find(it->identifier);
         if (it->identifier != "" && itData == dataMap.end())
