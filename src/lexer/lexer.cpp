@@ -98,8 +98,7 @@ Symbol Lexer::GetNext()
         match_results<string::const_iterator> matches;
         // si la regexp match en debut de chaine
         if(regex_search(_buf, matches, p->first, format_first_only))
-        {
-            size_t currentIndex = _buf.find_first_of(matches[0]);
+        {   size_t currentIndex = _buf.find(matches[0]);
             DEBUG("Lexer : regex '" << p->first.expression() << "' has matched : '" << matches[0] << "' at index '" << currentIndex << "'");
             if(currentIndex == 0)
             {
