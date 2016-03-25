@@ -23,6 +23,13 @@ bool DataMap::AppendVar(const string &identifier)
     return EndData();
 }
 
+void DataMap::AddIfNotExist(const string &identifier)
+{
+    DataMap::iterator d = find(identifier);
+    if (d == end())
+        insert(make_pair(identifier, Data()));
+}
+
 bool DataMap::SetDataValue(double value)
 {
     if (!_currentData.cst)

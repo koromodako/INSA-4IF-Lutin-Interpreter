@@ -1,0 +1,37 @@
+test perf decl_aff_wri (user) avec -e
+100: 0.011s
+1000: 0.12s
+5000 : 1.1s
+10000: 3.4s
+
+test perf decl_aff_wri (user) avec -a
+100: 0.011s
+1000: 0.123s
+5000 : 1.1s
+10000: 3.3s
+
+test perf decl_aff_wri (user) avec -o
+100: 0.014s
+1000: 0.11s
+5000 : 1.1s
+10000: 3.4s
+
+
+test perf opti (user) avec -e
+100: 0.030s
+1000: 0.33s
+5000 : 5.7s
+10000: 21.4s
+
+test perf opti (user) avec -a
+100: 0.018s
+1000: 0.36s
+5000 : 5.7s
+10000: 21.5s
+
+test perf opti (user) avec -o
+100: 0.030s
+1000: 0.33s
+5000 : 5.8s
+10000: 21.4s
+

@@ -37,6 +37,14 @@ public:
      *      Identifiant de la constante
      */
     void StartConst(const string & identifier);
+
+    /**
+     * @brief Ajoute une donnée
+     * @param identifier
+     *      Identifiant de la variable
+     */
+    void AddIfNotExist(const string &identifier);
+
     /**
      * @brief Ajoute une nouvelle variable
      * @param identifier
