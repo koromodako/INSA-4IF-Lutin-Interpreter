@@ -2,7 +2,7 @@
 
 #include "ps7.h"
 
-AbstractState::TransitionResult PS6::Transition(AbstractStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS6::Transition(AbstractStateMachine &machine, const Symbol & symbol)
 {
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {

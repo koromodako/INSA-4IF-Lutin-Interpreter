@@ -3,7 +3,7 @@
 #include "es2.h"
 #include "es3.h"
 
-AbstractState::TransitionResult ES14::Transition(AbstractStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult ES14::Transition(AbstractStateMachine &machine, const Symbol & symbol)
 {
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {

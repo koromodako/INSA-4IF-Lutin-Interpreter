@@ -16,33 +16,44 @@ public:
      *      Valeur de la constante numérique
      */
     Number(double value);
-    Number(Number & other);
-
-    inline bool IsNumber() { return true; }
-    inline bool IsVariable() { return false; }
-    inline bool IsBinaryExpression() { return false; }
-
-    /**
-     * @brief Rempli la liste avec toutes les variables utilisées dans l'expression
-     * @param list
-     */
-    void GetUsedVariables(set<string> &list);
 
     /**
      * @override
-     * @see AbstractExpression::eval()
+     * @see AbstractExpression::IsNumber()
      */
-    double Eval(DataMap &dmap, bool & ok);
+    inline bool IsNumber() const { return true; }
     /**
      * @override
-     * @see AbstractExpression::simplify()
+     * @see AbstractExpression::IsVariable()
+     */
+    inline bool IsVariable() const { return false; }
+    /**
+     * @override
+     * @see AbstractExpression::IsBinaryExpression()
+     */
+    inline bool IsBinaryExpression() const { return false; }
+
+    /**
+     * @override
+     * @see AbstractExpression::GetUsedVariables()
+     */
+    void GetUsedVariables(set<string> &list) const;
+
+    /**
+     * @override
+     * @see AbstractExpression::Eval()
+     */
+    double Eval(DataMap &dmap, bool & ok) const;
+    /**
+     * @override
+     * @see AbstractExpression::Simplify()
      */
     AbstractExpression * Simplify(DataMap &dmap, bool &ok);
     /**
      * @override
-     * @see AbstractExpression::stringify()
+     * @see AbstractExpression::Stringify()
      */
-    string Stringify();
+    string Stringify() const;
 
 private:
     double _value; // valeur

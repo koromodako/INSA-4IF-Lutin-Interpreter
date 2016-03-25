@@ -1,7 +1,7 @@
 #include "ps4.h"
 #include "../rules.h"
 
-AbstractState::TransitionResult PS4::Transition(AbstractStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS4::Transition(AbstractStateMachine &machine, const Symbol & symbol)
 {
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {

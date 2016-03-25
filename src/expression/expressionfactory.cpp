@@ -49,10 +49,10 @@ SymbolList ExpressionFactory::infixToPostfix(SymbolList &symbols)
         opStack.pop();
     }
     // -- DEBUG ----------------------------------------
-    //DBG_PRT("input expr is : ");
-    //DBG_SYM_LIST(symbols);
-    //DBG_PRT("postfix expr is : ");
-    //DBG_SYM_LIST(postfix);
+    DBG_PRT("input expr is : ");
+    DBG_SYM_LIST(symbols);
+    DBG_PRT("postfix expr is : ");
+    DBG_SYM_LIST(postfix);
     // -- DEBUG ----------------------------------------
     return postfix;
 }

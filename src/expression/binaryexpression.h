@@ -11,47 +11,63 @@ class BinaryExpression : public AbstractExpression
 public:
     ~BinaryExpression();
     /**
-     * @brief Construit une nouvelle instance d'une operation à deux operandes
+     * @brief Construit une nouvelle instance d'une opération à deux opérandes
      * @param op
-     *      Operateur entre les deux operandes
+     *      Opérateur entre les deux opérandes
      * @param left
-     *      Operande gauche
+     *      Opérande gauche
      * @param right
-     *      Operande droite
+     *      Opérande droite
      */
     BinaryExpression(BinaryOperator op, AbstractExpression * left, AbstractExpression * right);
+    /**
+     * @brief Constructeur de copie
+     * @param other
+     */
     BinaryExpression(BinaryExpression & other);
 
-    inline bool IsNumber() { return false; }
-    inline bool IsVariable() { return false; }
-    inline bool IsBinaryExpression() { return true; }
-
     /**
-     * @brief Rempli la liste avec toutes les variables utilisées dans l'expression
-     * @param list
+     * @override
+     * @see AbstractExpression::IsNumber()
      */
-    void GetUsedVariables(set<string> &list);
+    inline bool IsNumber() const { return false; }
+    /**
+     * @override
+     * @see AbstractExpression::IsVariable()
+     */
+    inline bool IsVariable() const { return false; }
+    /**
+     * @override
+     * @see AbstractExpression::IsBinaryExpression()
+     */
+    inline bool IsBinaryExpression() const { return true; }
 
     /**
      * @override
-     * @see AbstractExpression::eval()
+     * @see AbstractExpression::GetUsedVariables()
      */
-    double Eval(DataMap &dmap, bool &ok);
+    void GetUsedVariables(set<string> &list) const;
+
     /**
      * @override
-     * @see AbstractExpression::simplify()
+     * @see AbstractExpression::Eval()
+     */
+    double Eval(DataMap &dmap, bool &ok) const;
+    /**
+     * @override
+     * @see AbstractExpression::Simplify()
      */
     AbstractExpression * Simplify(DataMap &dmap, bool & ok);
     /**
      * @override
-     * @see AbstractExpression::stringify()
+     * @see AbstractExpression::Stringify()
      */
-    string Stringify();
+    string Stringify() const;
 
 private:
     BinaryOperator _op;            // opérateur
-    AbstractExpression * _left;    // opérande à gauche
-    AbstractExpression * _right;   // opérande à droite
+    AbstractExpression * _left;    // opérande de gauche
+    AbstractExpression * _right;   // opérande de droite
 };
 
 #endif // BINARYEXPRESSION_H

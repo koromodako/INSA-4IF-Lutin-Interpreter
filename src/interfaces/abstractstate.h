@@ -14,12 +14,15 @@ class AbstractStateMachine;
 class AbstractState
 {
 public:
+    /**
+     * @brief Cette énumération définit les différents résultats possibles suite à une transition
+     */
     enum TransitionResult
     {
-        UNEXPECTED,
-        REDUCED,
-        PILED_UP,
-        ACCEPT
+        UNEXPECTED, ///<    Erreur
+        REDUCED,    ///<    Réduction d'une règle
+        PILED_UP,   ///<    Empilement d'un nouvel état
+        ACCEPT      ///<    Fin de l'exécution
     };
     virtual ~AbstractState(){}
     /**
@@ -30,7 +33,7 @@ public:
      *      Symbole suivant
      * @return
      */
-    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol) = 0;
+    virtual TransitionResult Transition(AbstractStateMachine & machine, const Symbol & symbol) = 0;
     /**
      * @brief Retourne le nom de l'état courant
      * @return
@@ -38,6 +41,7 @@ public:
     inline const string & name() const { return _name; }
 
 protected:
+    // constructeur privé (classe abstraite)
     AbstractState(const string & name);
 
 private:

@@ -14,7 +14,7 @@ class PS21 : public AbstractState
 public:
     ~PS21(){}
 
-    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, const Symbol & symbol);
     PS21();
 };
 

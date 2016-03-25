@@ -5,8 +5,8 @@
 #include "src/interfaces/abstractstate.h"
 
 /**
- * @brief Etat définissant le comportement par defaut pour les transitions des états de
- *      la machine à état qui analyse les expressions arithmétiques.
+ * @brief Etat définissant le comportement par défaut pour les transitions des états de
+ *      la machine à états qui analyse les expressions arithmétiques.
  */
 class ES1 : public AbstractState
 {
@@ -20,7 +20,7 @@ public:
      * @param symbol
      * @return
      */
-    virtual TransitionResult Transition(AbstractStateMachine & machine, Symbol symbol);
+    virtual TransitionResult Transition(AbstractStateMachine & machine, const Symbol & symbol);
 
 
 };

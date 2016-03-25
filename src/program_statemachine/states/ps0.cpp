@@ -3,7 +3,7 @@
 #include "ps1.h"
 #include "../rules.h"
 
-AbstractState::TransitionResult PS0::Transition(AbstractStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS0::Transition(AbstractStateMachine &machine, const Symbol & symbol)
 {
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {

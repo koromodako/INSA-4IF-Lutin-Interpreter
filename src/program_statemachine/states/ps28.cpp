@@ -2,7 +2,7 @@
 #include "../rules.h"
 #include "../../expression_statemachine/expressionstatemachine.h"
 
-AbstractState::TransitionResult PS28::Transition(AbstractStateMachine &machine, Symbol symbol)
+AbstractState::TransitionResult PS28::Transition(AbstractStateMachine &machine, const Symbol & symbol)
 {
     AbstractState::TransitionResult ret = AbstractState::UNEXPECTED;
     switch (symbol.code) {

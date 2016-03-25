@@ -14,13 +14,23 @@ using namespace std;
 class ProgramStateMachine : public AbstractStateMachine
 {
 public:
-    ~ProgramStateMachine(){}
+    /**
+     * @brief Constructeur de la machine à états d'analyse du programme
+     * @param lexer
+     *      Lexer pour l'analyse lexicale
+     * @param dmap
+     *      Dictionnaire des mémoires à remplir
+     * @param instructions
+     *      Liste d'instruction à remplir
+     */
     ProgramStateMachine(Lexer & lexer, DataMap & dmap, InstructionList & instructions);
+    ~ProgramStateMachine(){}
 
+    /**
+     * @brief Exécute la machine à états
+     * @note le paramètre n'est pas utilisé
+     */
     void Run(AbstractState * initialState = NULL);
-
-private:
-
 };
 
 #endif // PROGRAMSTATEMACHINE_H

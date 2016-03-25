@@ -16,33 +16,44 @@ public:
      *      Identifiant de la variable à construire
      */
     Variable(string identifier);
-    Variable(Variable & other);
-
-    inline bool IsNumber() { return false; }
-    inline bool IsVariable() { return true; }
-    inline bool IsBinaryExpression() { return false; }
-
-    /**
-     * @brief Rempli la liste avec toutes les variables utilisées dans l'expression
-     * @param list
-     */
-    void GetUsedVariables(set<string> &list);
 
     /**
      * @override
-     * @see AbstractExpression::eval()
+     * @see AbstractExpression::IsNumber()
      */
-    double Eval(DataMap &dmap, bool & ok);
+    inline bool IsNumber() const { return false; }
     /**
      * @override
-     * @see AbstractExpression::simplify()
+     * @see AbstractExpression::IsVariable()
+     */
+    inline bool IsVariable() const { return true; }
+    /**
+     * @override
+     * @see AbstractExpression::IsBinaryExpression()
+     */
+    inline bool IsBinaryExpression() const { return false; }
+
+    /**
+     * @override
+     * @see AbstractExpression::GetUsedVariables()
+     */
+    void GetUsedVariables(set<string> &list) const;
+
+    /**
+     * @override
+     * @see AbstractExpression::Eval()
+     */
+    double Eval(DataMap &dmap, bool & ok) const;
+    /**
+     * @override
+     * @see AbstractExpression::Simplify()
      */
     AbstractExpression *Simplify(DataMap &dmap, bool &ok);
     /**
      * @override
-     * @see AbstractExpression::stringify()
+     * @see AbstractExpression::Stringify()
      */
-    string Stringify();
+    string Stringify() const;
 
 private:
     string _identifier; // identifiant

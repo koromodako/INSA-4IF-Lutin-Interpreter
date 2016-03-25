@@ -6,9 +6,8 @@ ExpressionStateMachine::ExpressionStateMachine(Lexer & lexer, DataMap & dmap, In
 {
 }
 
-void ExpressionStateMachine::Run(AbstractState *initialState)
+void ExpressionStateMachine::Run(AbstractState*)
 {
-    (void)initialState;
     // -- run state machine
     AbstractStateMachine::Run(new ES0);
 }

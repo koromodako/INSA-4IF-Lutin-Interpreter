@@ -22,23 +22,7 @@ enum InstructionCode {
 class AbstractExpression;
 
 /**
- * @brief Cette structure représente une instruction d'un script lutin
- */
-struct Instruction {
-    InstructionCode code;       ///< Ce code permet de définir de quel type d'instruction il s'agit (READ,WRITE,AFFECT)
-    string identifier;          ///< Utile dans le cas d'une affectation pour savoir quelle variable on affecte dans les cas READ ou AFFECT
-    AbstractExpression * expr;  ///< Expression arithmétique de liée à l'instruction si nécessaire
-    Instruction(InstructionCode _code = ICODE_READ,
-                string _identifier = "",
-                AbstractExpression* _expr = NULL):
-        code(_code),
-        identifier(_identifier),
-        expr(_expr)
-    {}
-};
-
-/**
- * @brief Cette énumération définie les différents types d'opérateurs à deux opérandes
+ * @brief Cette énumération définit les différents types d'opérations binaires
  */
 enum BinaryOperator {
     BOP_PLUS,       ///< Opérateur d'addition
@@ -48,9 +32,9 @@ enum BinaryOperator {
 };
 
 /**
- * @brief Cette cnumération décrit les différents symboles
- * terminaux et non terminaux pouvant être rencontrés dans
- * lors de l'analyse syntaxique
+ * @brief Cette énumération décrit les différents symboles
+ * terminaux et non terminaux pouvant être rencontrés lors
+ * de l'analyse syntaxique
  */
 enum SymbolCode {
     // terminaux
@@ -73,7 +57,7 @@ enum SymbolCode {
     S_DIV           = 116,  ///< '\'
     S_EOF           = 117,  ///< $ (fin du flux)
     // non terminaux
-    S_EXP           = 201,  ///< expression arithmetique  ---> appel de l'automate d'expression par l'automate de programme
+    S_EXP           = 201,  ///< expression arithmétique  ---> appel de l'automate d'expression par l'automate de programme
     S_P             = 202,  ///< programme
     S_D             = 203,  ///< déclaration
     S_LD            = 204,  ///< liste de déclarations
@@ -86,6 +70,9 @@ enum SymbolCode {
     S_F             = 211   ///< facteur
 };
 
+/**
+ * @brief Cette structure définit un symbole par son code et sa chaîne de caractères
+ */
 struct Symbol {
     SymbolCode code;
     string buf;
@@ -93,40 +80,39 @@ struct Symbol {
         code(_code), buf(_buf)
     {}
 };
-
-// -- quelques définitions de types
+// ------------------------------- types
 typedef stack<Symbol> SymbolStack;
 typedef list<Symbol> SymbolList;
 
-// -- non-terminal symbols
-#define SYM_EXP Symbol(S_EXP, "EXP")
-#define SYM_P   Symbol(S_P, "P")
-#define SYM_D   Symbol(S_D, "D")
-#define SYM_LD  Symbol(S_LD, "LD")
-#define SYM_LC  Symbol(S_LC, "LC")
-#define SYM_LI  Symbol(S_LI, "LI")
-#define SYM_LV  Symbol(S_LV, "LV")
-#define SYM_I   Symbol(S_I, "I")
-#define SYM_A   Symbol(S_A, "A")
-#define SYM_T   Symbol(S_T, "T")
-#define SYM_F   Symbol(S_F, "F")
-#define SYM_EOF Symbol(S_EOF, "EOF")
-// -- terminal symbols
-#define SYM_CONST         Symbol(S_CONST, "const")
-#define SYM_VAR           Symbol(S_VAR, "var")
-#define SYM_NUM           Symbol(S_NUM, "numeric value")
-#define SYM_EQ            Symbol(S_EQ, "=")
-#define SYM_AFFECT        Symbol(S_AFFECT, ":=")
-#define SYM_V             Symbol(S_V, ",")
-#define SYM_PV            Symbol(S_PV, ";")
-#define SYM_READ          Symbol(S_READ, "lire")
-#define SYM_WRITE         Symbol(S_WRITE, "ecrire")
-#define SYM_ID            Symbol(S_ID, "identifier")
-#define SYM_PO            Symbol(S_PO, "(")
-#define SYM_PF            Symbol(S_PF, ")")
-#define SYM_PLUS          Symbol(S_PLUS, "+")
-#define SYM_MINUS         Symbol(S_MINUS, "-")
-#define SYM_MULT          Symbol(S_MULT, "*")
-#define SYM_DIV           Symbol(S_DIV, "/")
+// ------------------------------- macros
+#define SYM_EXP         Symbol(S_EXP, "EXP")
+#define SYM_P           Symbol(S_P, "P")
+#define SYM_D           Symbol(S_D, "D")
+#define SYM_LD          Symbol(S_LD, "LD")
+#define SYM_LC          Symbol(S_LC, "LC")
+#define SYM_LI          Symbol(S_LI, "LI")
+#define SYM_LV          Symbol(S_LV, "LV")
+#define SYM_I           Symbol(S_I, "I")
+#define SYM_A           Symbol(S_A, "A")
+#define SYM_T           Symbol(S_T, "T")
+#define SYM_F           Symbol(S_F, "F")
+#define SYM_EOF         Symbol(S_EOF, "EOF")
+
+#define SYM_CONST       Symbol(S_CONST, "const")
+#define SYM_VAR         Symbol(S_VAR, "var")
+#define SYM_NUM         Symbol(S_NUM, "numeric value")
+#define SYM_EQ          Symbol(S_EQ, "=")
+#define SYM_AFFECT      Symbol(S_AFFECT, ":=")
+#define SYM_V           Symbol(S_V, ",")
+#define SYM_PV          Symbol(S_PV, ";")
+#define SYM_READ        Symbol(S_READ, "lire")
+#define SYM_WRITE       Symbol(S_WRITE, "ecrire")
+#define SYM_ID          Symbol(S_ID, "identifier")
+#define SYM_PO          Symbol(S_PO, "(")
+#define SYM_PF          Symbol(S_PF, ")")
+#define SYM_PLUS        Symbol(S_PLUS, "+")
+#define SYM_MINUS       Symbol(S_MINUS, "-")
+#define SYM_MULT        Symbol(S_MULT, "*")
+#define SYM_DIV         Symbol(S_DIV, "/")
 
 #endif // TYPES_H
