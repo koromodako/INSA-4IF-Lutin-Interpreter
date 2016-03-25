@@ -1,0 +1,4 @@
+var a;
+/* Ceci est un commentaire */
+a := 2;
+ecrire a;
