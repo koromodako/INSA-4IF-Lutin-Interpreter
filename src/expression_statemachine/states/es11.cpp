@@ -12,6 +12,7 @@ AbstractState::TransitionResult ES11::Transition(AbstractStateMachine &machine, 
     switch (symbol.code) {
     case S_ID:
         machine.GetInstructionList().AppendSymbol(symbol); // on ajoute le symbole ID
+        machine.GetDataMap().AddIfNotExist(symbol.buf);
         machine.PileUp(symbol, new ES9);
         ret = AbstractState::PILED_UP;
         break;
