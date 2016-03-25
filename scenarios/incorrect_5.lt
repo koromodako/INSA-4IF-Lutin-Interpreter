@@ -1,0 +1,6 @@
+var a, b
+const c:=5;
+lire b;
+a = c*6;
+b == c*3;
+ecrire b*a;
