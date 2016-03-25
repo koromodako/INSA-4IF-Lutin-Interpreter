@@ -5,19 +5,15 @@
 Variable::Variable(string identifier) :
     AbstractExpression(),
     _identifier(identifier)
-{}
-
-Variable::Variable(Variable &other) :
-    _identifier(other._identifier)
 {
 }
 
-void Variable::GetUsedVariables(set<string> &list)
+void Variable::GetUsedVariables(set<string> &list) const
 {
     list.insert(_identifier);
 }
 
-double Variable::Eval(DataMap &dmap, bool &ok)
+double Variable::Eval(DataMap &dmap, bool &ok) const
 {
     ok = false;
     double value(0);
@@ -47,7 +43,7 @@ AbstractExpression * Variable::Simplify(DataMap &dmap, bool & ok)
     return simplified;
 }
 
-string Variable::Stringify()
+string Variable::Stringify() const
 {
     return _identifier;
 }

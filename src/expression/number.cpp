@@ -6,16 +6,11 @@ Number::Number(double value) :
     AbstractExpression(), _value(value)
 {}
 
-Number::Number(Number &other) :
-    _value(other._value)
+void Number::GetUsedVariables(set<string> &) const
 {
 }
 
-void Number::GetUsedVariables(set<string> &)
-{
-}
-
-double Number::Eval(DataMap &, bool &ok)
+double Number::Eval(DataMap &, bool &ok) const
 {
     ok = true;
     return _value;
@@ -28,7 +23,7 @@ AbstractExpression * Number::Simplify(DataMap &, bool & ok)
     return NULL;
 }
 
-string Number::Stringify()
+string Number::Stringify() const
 {
     stringstream ss("");
     ss << _value;

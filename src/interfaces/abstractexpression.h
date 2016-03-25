@@ -15,26 +15,37 @@ class AbstractExpression
 public:
     virtual ~AbstractExpression(){}
 
-    /// \todo Trouver si on peut pas éviter ça,
-    ///         pas en mettant un enum de type non plus bien sûr
-    ///         mais en essayant de trouver une meilleure solution dans le simplify de BinaryExpression
-    virtual bool IsNumber() = 0;
-    virtual bool IsBinaryExpression() = 0;
-    virtual bool IsVariable() = 0;
+    /**
+     * @brief Retourne vrai si l'expression est un nombre
+     * @see Number
+     */
+    virtual bool IsNumber() const = 0;
+    /**
+     * @brief Retourne vrai si l'expression est une opération binaire
+     * @see BinaryExpression
+     */
+    virtual bool IsBinaryExpression() const = 0;
+    /**
+     * @brief Retourne vrai si l'expression est une variable
+     * @see Variable
+     */
+    virtual bool IsVariable() const = 0;
 
     /**
-     * @brief Rempli la liste avec toutes les variables utilisées dans l'expression
+     * @brief Remplit la liste avec toutes les variables utilisées dans l'expression
      * @param list
      */
-    virtual void GetUsedVariables(set<string> &list) = 0;
+    virtual void GetUsedVariables(set<string> &list) const = 0;
 
     /**
-     * @brief Retourne la valeur calculée à partir de l'évaluation
+     * @brief Retourne la valeur évaluée de l'arbre
      * @param dmap
+     *      Dictionnaire des mémoires
      * @param ok
+     *      Si ok vaut 'false' après exécution, alors l'évaluation a échoué
      * @return
      */
-    virtual double Eval(DataMap & dmap, bool & ok) = 0;
+    virtual double Eval(DataMap & dmap, bool & ok) const = 0;
     /**
      * @brief Simplifie l'expression arithmétique en réduisant l'arbre grâce aux opérations
      *          suivantes :
@@ -44,19 +55,22 @@ public:
      * @param dmap
      *      Dictionnaire des mémoires du programme
      * @param ok
-     *      Ce paramètre est utilisé pour savoir si l'évaluation à rencontré une erreur ou non
+     *      Ce paramètre est utilisé pour savoir si l'évaluation a rencontré une erreur ou non
      * @return
      */
     virtual AbstractExpression * Simplify(DataMap & dmap, bool & ok) = 0;
     /**
-     * @brief Construit la chaine de caractère correspondant à l'expression arithmétique
+     * @brief Construit la chaîne de caractères correspondant à l'expression arithmétique
      * @return
      */
-    virtual string Stringify() = 0;
-
+    virtual string Stringify() const = 0;
+    /**
+     * @brief Permet d'indiquer si l'expression doit être parenthésée
+     */
     inline void SetRequireParenthesis() { _requireParenthesis = true; }
 
 protected:
+    // constructeur protégé
     AbstractExpression();
 
 protected:
