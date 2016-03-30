@@ -4,7 +4,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = 
 CFLAGS        = -pipe -O2 -Wall -W -fPIE $(DEFINES)
-CXXFLAGS      = -pipe -Wall -Werror -O2 -Wall -W -fPIE $(DEFINES)
+CXXFLAGS      = -pipe -Wall -O2 -Wall -W -fPIE $(DEFINES)
 INCPATH       = -I. -I/opt/local/include
 LINK          = g++
 LFLAGS        = -headerpad_max_install_names -stdlib=libc++
@@ -198,6 +198,10 @@ all: $(TARGET)
 
 $(TARGET):  $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
+
+test: $(TARGET)
+	cp ./lut tests/lut
+	cd tests ; ./mktest.sh
 clean:
 	-$(DEL_FILE) $(OBJECTS)
 	-$(DEL_FILE) *~ core *.core

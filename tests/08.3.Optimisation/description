@@ -1,2 +1,2 @@
-Optimisation du programme option -o - propagation de constantes.
+Optimisation du programme option -o - propagation de constantes plus poussée (propagation des variables connues)
 
