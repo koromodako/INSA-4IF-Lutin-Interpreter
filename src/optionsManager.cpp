@@ -42,11 +42,11 @@ void OptionsManager::Execute()
         transform();
     if (_analysis)
         analysis(ok);
-    if (!ok)
-        cout << "Unable to execute a program with errors." << endl;
     if (_execute && ok)
         execute();
-    if (_display && ok)
+    else if (_execute)
+        cout << "Unable to execute a program with errors." << endl;
+    if (_display)
         print();
 }
 

@@ -11,7 +11,8 @@ AbstractState::TransitionResult PS5::Transition(AbstractStateMachine &machine, c
     DEBUG("starting expression analysis");
     // -- DEBUG ------------------------------------------------
     ExpressionStateMachine esm(machine.GetLexer(), machine.GetDataMap(), machine.GetInstructionList());
-    esm.Run();
+    if (!esm.Run())
+        return AbstractState::UNEXPECTED;
     // -- DEBUG ------------------------------------------------
     DEBUG("return from expression analysis");
     // -- DEBUG ------------------------------------------------

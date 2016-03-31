@@ -6,10 +6,10 @@ ProgramStateMachine::ProgramStateMachine(Lexer &lexer, DataMap &dmap, Instructio
 {
 }
 
-void ProgramStateMachine::Run(AbstractState*)
+bool ProgramStateMachine::Run(AbstractState*)
 {
     // initialisation du lexer avec une première lecture
     GetLexer().MoveForward();
     // exécution de la machine à états
-    AbstractStateMachine::Run(new PS0);
+    return AbstractStateMachine::Run(new PS0);
 }

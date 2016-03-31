@@ -102,6 +102,7 @@ string InstructionList::Test(DataMap &dataMap, bool &ok) const
     for (InstructionList::const_iterator it = begin() ; it != end() ; ++it)
     {
         DataMap::iterator itData = dataMap.find(it->identifier);
+
         if (it->identifier != "" && itData == dataMap.end())
             itData = dataMap.insert(make_pair(it->identifier, Data())).first;
 

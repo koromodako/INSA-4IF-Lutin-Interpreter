@@ -16,6 +16,11 @@ public:
     Lexer(ifstream & stream);
     ~Lexer(){}
     /**
+     * @brief Ajoute le symbole donnée sous la tête de lecture
+     */
+    void AddExpectedSymbol(const string &symbol);
+
+    /**
      * @brief Met à jour le buffer en déplaçant la tête de lecture
      */
     void MoveForward();

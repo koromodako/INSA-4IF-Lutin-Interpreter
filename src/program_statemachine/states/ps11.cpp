@@ -7,15 +7,11 @@ AbstractState::TransitionResult PS11::Transition(AbstractStateMachine &machine, 
     switch (symbol.code) {
     case S_ID:///< 'id'
         // on ajoute la nouvelle variable
-        if(machine.GetDataMap().AppendVar(symbol.buf))
-        {
-            machine.PileUp(symbol, new PS12());
-            ret = AbstractState::PILED_UP;
-        }
-        else
-        {
-            machine.Unexpected(AbstractStateMachine::WARNING,machine.GetDataMap().GetLastError());
-        }
+        if(!machine.GetDataMap().AppendVar(symbol.buf))
+			machine.Unexpected(AbstractStateMachine::WARNING,machine.GetDataMap().GetLastError());
+
+		machine.PileUp(symbol, new PS12());
+        ret = AbstractState::PILED_UP;
         break;
     default:
         SYNTAX_ERROR_HANDLER(SYM_ID)

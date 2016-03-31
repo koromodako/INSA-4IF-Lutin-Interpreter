@@ -1,8 +1,0 @@
-var a, b // Il manque un point virgule ici
-const c:=5; // L'affectation à une constante se fait avec "="
-lire b;
-a = c*6; // L'affectation d'une variable se fait avec ":="
-b == c*3; // L'affectation d'une variable se fait avec ":="
-ecrire b*a;
-/* Ce fichier comporte 4 erreurs 
-mais on n'en voit que 3 ! */

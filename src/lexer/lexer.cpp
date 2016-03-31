@@ -80,6 +80,11 @@ Lexer::Lexer(ifstream & stream) :
         } \
     }
 
+void Lexer::AddExpectedSymbol(const string &symbol)
+{
+    _buf = symbol + _buf;
+}
+
 void Lexer::MoveForward()
 {   DEBUG("Lexer : MoveForward called.");
     // si le buffer est vide

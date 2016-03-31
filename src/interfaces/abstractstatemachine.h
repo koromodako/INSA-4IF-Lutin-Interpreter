@@ -29,7 +29,7 @@ public:
     /**
      * @brief Exécute la machine à états en utilisant le lexer
      */
-    virtual void Run(AbstractState * initialState);
+    virtual bool Run(AbstractState * initialState);
 
     /**
      * @brief Effectue la réduction souhaitée

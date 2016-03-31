@@ -49,14 +49,7 @@ private:
 };
 
 // ------------------ macros
-#ifdef ERROR_HANDLING_SUPPORT
-#   define SYNTAX_ERROR_HANDLER(expectedSymbol) \
-        if(machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, expectedSymbol)) \
-        {   Transition(machine, expectedSymbol); \
-        }
-#else
 #   define SYNTAX_ERROR_HANDLER(expectedSymbol) \
         machine.Unexpected(AbstractStateMachine::SYNTAX_ERROR, expectedSymbol);
-#endif
 
 #endif // ABSTRACTSTATE_H

@@ -11,16 +11,20 @@ AbstractStateMachine::~AbstractStateMachine()
     }
 }
 
-#define MAX_ERRORS 3
+#ifdef ERROR_HANDLING_SUPPORT
+    #define MAX_ERRORS 3
+#else
+    #define MAX_ERRORS 0
+#endif
 
-void AbstractStateMachine::Run(AbstractState * initialState)
+bool AbstractStateMachine::Run(AbstractState * initialState)
 {
     DEBUG("Running state machine with initial state '" << initialState->name() << "'");
     // initialisation de la machine à états
     _statesStack.push(initialState);
     // boucle d'exécution principale
     Symbol symbol;
-    int errorCount(0);
+    static int errorCount(0);
     bool ok(true), accept(false);
     while(!_statesStack.empty() && ok && !accept)
     {
@@ -36,11 +40,8 @@ void AbstractStateMachine::Run(AbstractState * initialState)
         {
         case AbstractState::UNEXPECTED:
             errorCount++;
-            if(errorCount >= MAX_ERRORS)
+            if(errorCount > MAX_ERRORS)
             {   ok = false;
-            }
-            else
-            {   _lexer.MoveForward();
             }
             break;
         case AbstractState::REDUCED:
@@ -56,6 +57,7 @@ void AbstractStateMachine::Run(AbstractState * initialState)
         DEBUG("is back to transition loop");
     }
     DEBUG("exiting transition loop");
+    return !(errorCount > MAX_ERRORS);
 }
 
 void AbstractStateMachine::Reduce(const Symbol &symbol, int size)
@@ -97,6 +99,9 @@ bool AbstractStateMachine::Unexpected(ErrorType type, const Symbol &symbol)
         break;
     case SYNTAX_ERROR:
         cerr << "Syntax error (" << _lexer.GetLine() << ":" << _lexer.GetCol() << "): expected symbol '" << symbol.buf << "'" << endl;
+#ifdef ERROR_HANDLING_SUPPORT
+        _lexer.AddExpectedSymbol(symbol.buf);
+#endif
         tryAgain = true;
         break;    
     default:
@@ -109,7 +114,7 @@ void AbstractStateMachine::Unexpected(ErrorType type, const string & message)
 {
    if(type == WARNING)
    {
-        cerr << "Warning :" << message << endl;
+        cerr << "Warning : " << message << endl;
    }
 }
 

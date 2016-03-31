@@ -2,3 +2,4 @@ var a;
 const c=1;
 a:=3;
 c:=3; // "c" est une constante et ne peut être modifiée
+ecrire a;

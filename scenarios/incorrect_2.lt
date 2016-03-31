@@ -1,5 +1,6 @@
 var a, b;
-const c:=5; // L'affectation à une constante se fait avec "="
+const c=5;
 lire b;
-a := c*6;
+a := c*10;
+b c*b; // L'affectation d'une variable se fait avec ":="
 ecrire b*a;

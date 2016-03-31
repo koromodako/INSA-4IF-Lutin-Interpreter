@@ -26,7 +26,7 @@ public:
      * @brief Exécute la machine à états
      * @note le paramètre n'est pas utilisé
      */
-    void Run(AbstractState * initialState = NULL);
+    bool Run(AbstractState * initialState = NULL);
 };
 
 #endif // EXPRESSIONSTATEMACHINE_H

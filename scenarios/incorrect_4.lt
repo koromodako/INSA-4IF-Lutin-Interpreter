@@ -1,6 +1,0 @@
-var a, b;
-const c=5;
-lire b;
-a := c*6;
-b c*3; // L'affectation d'une variable se fait avec ":="
-ecrire b*a;

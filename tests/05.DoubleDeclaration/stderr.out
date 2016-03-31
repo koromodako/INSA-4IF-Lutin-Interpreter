@@ -1,3 +1,1 @@
-Warning :redefinition of ’a’
-Syntax error (2:6): expected symbol 'identifier'
-Syntax error (3:1): expected symbol ','
+Warning : redefinition of ’a’
