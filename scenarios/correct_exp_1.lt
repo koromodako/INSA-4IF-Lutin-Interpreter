@@ -1,3 +1,4 @@
+// Ce fichier est correct !
 var a, b, c, d, e, f, g, k;
 a:=2;
 b:=3;

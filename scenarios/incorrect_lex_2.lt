@@ -1,4 +1,4 @@
 var a;
 const c=1;
-a:=k*c;
+a:=k*c; // nous ne connaissons pas "k"
 ecrire a;

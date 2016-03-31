@@ -7,5 +7,5 @@ e:=1;
 f:=2;
 g:=2;
 k:=1;
-ecrire (a+b)*(c-d)/((e+f)g-k);
+ecrire (a+b)*(c-d)/((e+f)g-k); // Il manque un "*" après (e+f)
 ecrire ((a+b)*(c-d)/((e+f)*g-k));

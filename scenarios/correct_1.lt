@@ -1,3 +1,4 @@
+// Ce fichier est correct ! 
 var a,b;
 const c=5;
 lire b;
