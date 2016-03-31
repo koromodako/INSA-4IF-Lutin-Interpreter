@@ -5,10 +5,10 @@ CXX           = g++
 DEFINES       = 
 CFLAGS        = -pipe -O2 -Wall -W -fPIE $(DEFINES)
 CXXFLAGS      = -pipe -Wall -O2 -Wall -W -fPIE $(DEFINES)
-INCPATH       = -I. -I/opt/local/include
+INCPATH       = -I. -I/opt/local/include -I/usr/include
 LINK          = g++
-LFLAGS        = -headerpad_max_install_names -stdlib=libc++
-LIBS          = $(SUBLIBS) -L/opt/local/lib/ -lboost_regex 
+LFLAGS        = 
+LIBS          = $(SUBLIBS) -L/opt/local/lib/ -L/usr/lib64/ -lboost_regex  
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 COPY          = cp -f
@@ -516,8 +516,7 @@ instructionlist.o: src/types/instructionlist.cpp src/types/instructionlist.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o instructionlist.o src/types/instructionlist.cpp
 
 lexer.o: src/lexer/lexer.cpp src/lexer/lexer.h \
-		src/debug.h \
-		/opt/local/include/boost/regex.hpp
+		src/debug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o lexer.o src/lexer/lexer.cpp
 
 optionsManager.o: src/optionsManager.cpp src/optionsManager.h \
